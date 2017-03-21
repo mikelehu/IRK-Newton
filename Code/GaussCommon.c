@@ -1,136 +1,145 @@
-/*------------------------------------------------------------------------------*/
-/*										*/
-/*    GaussCommon.c								*/
-/*										*/
-/*	Functions: 								*/
-/*	 print_u():								*/
-/*	 InitStat():								*/
-/*	 NormalizedDistance():							*/
-/*	 RemoveDigitsFcn():							*/
-/*	 Li_init();								*/
-/*	 Yi_update():								*/
-/*	 statlinit():								*/
-/*	 UpdateDMin();								*/
-/*	 Newton_it():								*/
-/*	 MyKroneckerProd():							*/
-/*	 MMfun():								*/
-/*	 MMfunOsoa():								*/
-/*	 Newton_Step():								*/
-/*	 TheOutput():								*/
-/*	 TheOutput2():								*/
-/*	 RKG():									*/
-/*	 RKG2():								*/
-/*       select_gauss();							*/
-/* -----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+/*									      */
+/*    GaussCommon.c							      */
+/*									      */
+/*	Functions: 							      */
+/*	 print_u():							      */
+/*	 InitStat():							      */
+/*	 NormalizedDistance():						      */
+/*	 RemoveDigitsFcn():						      */
+/*	 Li_init();							      */
+/*	 Yi_update():							      */
+/*	 Yi_update_Classic():						      */
+/*	 statlinit():							      */
+/*	 StopCriterion();						      */
+/*       StopCriterionFloat();						      */
+/*	 NSS_Step():							      */
+/*	 NSS_Step_plus():						      */
+/*	 NSS_MIX_Step():						      */
+/*       MatAdd();                                                            */
+/*       MatAddID();                                                          */
+/*	 MMNewtonSS():							      */
+/*	 NSS_Solve():							      */
+/*	 NSS_Solve_plus():						      */
+/*       Compute_R();                                                         */
+/*       Compute_Z();                                                         */
+/*       Compute_W1();                                                        */
+/*       Compute_W2();                                                        */
+/*       Compute_DL();                                                        */
+/*       Compute_GG();                                                        */
+/*	 TheOutput():							      */
+/*	 RKG():								      */
+/*       select_gauss();						      */
+/*       select_odefun();						      */
+/*                                                                            */
+/* ---------------------------------------------------------------------------*/
 
 #include <GaussCommon.h>
 #include <quadmath.h>
 
-/************************************************************************************/
-/* 					   					    */
-/* print_u 		         	  					    */
-/*                                        					    */
-/*										    */
-/************************************************************************************/
+/******************************************************************************/
+/* 					   				      */
+/* print_u 		         	  				      */
+/*                                        				      */
+/*									      */
+/******************************************************************************/
 
 void print_u (int neq,val_type *u)
 {
      int i;
 
-#    if PREC ==2  //QUADRUPLEPRECISION
-     int n;
-     int width = 46;
-     char buf[128];
-#    endif
 
-#if PREC ==2  //QUADRUPLEPRECISION
-           printf("u:");
-           for (i=0; i<neq; i++)
-           { 
-               n = quadmath_snprintf(buf, sizeof buf, "%+-#*.30Qe", width, u[i]);
-               if (i<neq-1)
-               {  if ((size_t) n < sizeof buf) printf("%s,",buf);}
-               else
-               {  if ((size_t) n < sizeof buf) printf("%s\n,",buf);} 
-           }        
-
-#else  // DOUBLEPRECISION, FLOAT    
-           for (i = 0;i<neq;i++) 
-           {
-               if (i<neq-1)
-                  printf("%.20lg,", u[i]);
-               else
-                  printf("%.20lg\n", u[i]);
-           }     
-#endif 
+     for (i = 0;i<neq;i++) 
+     {
+           if (i<neq-1)
+                 printf("%.20lg,", u[i]);
+           else
+                 printf("%.20lg\n", u[i]);
+     }     
 
 
 }
 
 
-/************************************************************************************/
-/* 					   					    */
-/* InitStat 		         	  					    */
-/*                                        					    */
-/*										    */
-/************************************************************************************/
+/******************************************************************************/
+/* 					   				      */
+/* InitStat 		         	  				      */
+/*                                        				      */
+/*									      */
+/******************************************************************************/
       
 void InitStat (ode_sys *system,gauss_method *gsmethod, solver_stat *thestatptr)
 {
 
-     int i,is,neq,ns;
+     int i,is,neq,ns,mm;
 
      ns=gsmethod->ns;
      neq=system->neq;
+     mm=gsmethod->mm;     
 
      thestatptr->laststep = false;    
      thestatptr->stepcount = 0;
      thestatptr->itcount=0;
      thestatptr->totitcount=0;
+     thestatptr->totitcountzero=0;
      thestatptr->maxitcount=0;
      thestatptr->itzero=0;
      thestatptr->fcn=0;
+     thestatptr->convergence=SUCCESS;
+     thestatptr->nout=0;
+     thestatptr->MaxDE=0.;
+
+     for (i=0; i<3; i++)
+     {
+          thestatptr->totitDL[i]=0;
+          thestatptr->itzeroDL[i]=0;
+
+     }
       
      thestatptr->z = (val_type *)malloc(neq*ns*sizeof(val_type));
      thestatptr->li = (val_type *)malloc(neq*ns*sizeof(val_type));
-     thestatptr->liold = (val_type *)malloc(neq*ns*sizeof(val_type));
      thestatptr->lit0 = (val_type *)malloc(neq*ns*sizeof(val_type));
      thestatptr->initqlty = (int *)malloc(neq*ns*sizeof(int));
+     thestatptr->lik = (val_type *)malloc(neq*ns*sizeof(val_type));
+     thestatptr->DL = (val_type *)malloc(neq*ns*sizeof(val_type));
+     thestatptr->jac = (val_type *)malloc(neq*neq*sizeof(val_type));
+     thestatptr->INVIDJ2= (val_type *) malloc(mm*(neq*neq)*sizeof(val_type));
+     thestatptr->jac_i = (val_type *)malloc(ns*(neq*neq)*sizeof(val_type));
 
-     thestatptr->z0 = (val_type0 *)malloc(neq*ns*sizeof(val_type0));
-     thestatptr->li0 = (val_type0 *)malloc(neq*ns*sizeof(val_type0));
+    
      
-
      for (is=0; is<ns; is++)
           for (i=0; i<neq; i++)
           {
                thestatptr->li[is*neq+i]=0.;
                thestatptr->initqlty[is*neq+i]=0;
           }
+
+
      return;
 
 }
 
 
-/************************************************************************************/
-/* 					   					    */
-/* NormalizedDistance: 	         	  					    */
-/*                                        					    */
-/*										    */
-/************************************************************************************/
+/******************************************************************************/
+/* 					   				      */
+/* NormalizedDistance: 	         	  				      */
+/*                                        				      */
+/*									      */
+/******************************************************************************/
 
 val_type NormalizedDistance (int neq,int ns,
                              toptions *options,val_type *z,val_type *zold)
 {
 
 
-/*---------------- Declarations -----------------------------------------*/
+/*---------------- Declarations ----------------------------------------------*/
 
      int i,is,ix;
      val_type maxi,mayi,relerrors;
      val_type maxz,maxzold;
 
-/* --------------- Implementation --------------------------------------*/
+/* --------------- Implementation --------------------------------------------*/
    	
      maxi=0.;
 
@@ -152,7 +161,8 @@ val_type NormalizedDistance (int neq,int ns,
           for (is=0; is<ns; is++)
           {
                ix=neq*is+i;
-               relerrors=FMAX(relerrors,FABS(z[ix]-zold[ix])/(mayi*options->rtol[i]+options->atol[i]));
+               relerrors=FMAX(relerrors,
+                         FABS(z[ix]-zold[ix])/(mayi*options->rtol[i]+options->atol[i]));
           }
 
           maxi=FMAX(maxi,relerrors);
@@ -163,67 +173,60 @@ val_type NormalizedDistance (int neq,int ns,
 
 }
 
-/************************************************************************************/
-/* 					   					    */
-/* RemoveDigitsFcn	         	  					    */
-/*                                        					    */
-/*										    */
-/************************************************************************************/
+/******************************************************************************/
+/* 					   				      */
+/* RemoveDigitsFcn	         	  				      */
+/*                                        				      */
+/*									      */
+/******************************************************************************/
 
-void RemoveDigitsFcn (ode_sys *system,gauss_method *method,val_type *z, int m)
+void RemoveDigitsFcn (val_type *x, int m)
 {
 
-/* ---------- First initializations ------------------------------------*/
 
-     int neq,ns;
-    
-     neq=system->neq;
-     ns=method->ns;
+/*---------------- Declarations ----------------------------------------------*/
 
-/*---------------- Declarations -----------------------------------------*/
+     val_type aux,mx,mxx;
 
-     int i,is,ix;
-     val_type mY,mYY;
+/* --------------- Implementation --------------------------------------------*/
 
-/* --------------- Implementation --------------------------------------*/
+     aux=*x;
+     mx=m*aux;
+     mxx=mx+aux;
+     *x=mxx-mx;
 
-     for (i=0; i<neq; i++)
-          for (is=0; is<ns; is++)
-          { 
-               ix=neq*is+i;
-               mY=m*z[ix];
-               mYY=mY+z[ix];
-               z[ix]=mYY-mY;
-           }
+     return;
 
 }
 
-/************************************************************************************/
-/* 					   					    */
-/* Li_init: 		         	  					    */
-/*                                        					    */
-/*										    */
-/************************************************************************************/
+/******************************************************************************/
+/* 					   				      */
+/* Li_init: 		         	  				      */
+/*                                        				      */
+/*									      */
+/******************************************************************************/
 
 int Li_init(solution *u, val_type *z,ode_sys *system,
             gauss_method *method,solver_stat *thestatptr, toptions *options)
 {
 
 
-/* ---------- First initializations -------------------------------------*/
+/* ---------- First initializations ------------------------------------------*/
 
      int neq,ns;
 
      neq=system->neq;
      ns=method->ns;
 
-/*------------- declarations -----------------------------------------*/ 
+/*------------- declarations -------------------------------------------------*/ 
 
      int i,is,in,js,jsn;
-     val_type *coef,*li,*liold,*lit0;
+     val_type *coef,*li,*lit0;
      val_type sum;
 
-/* ----------- implementation  --------------------------------------*/
+     val_type liold[neq*ns];
+
+/* ----------- implementation  -----------------------------------------------*/
 
      switch (options->approximation)
      {
@@ -241,10 +244,13 @@ int Li_init(solution *u, val_type *z,ode_sys *system,
                }
      break;
 
-     case 1:         //liInit !!!! 
+     case 1:         
    
+
+          for (is=0; is<ns;is++)
+                for (i=0; i<neq; i++) liold[neq*is+i]=thestatptr->li[neq*is+i];
+
           li=thestatptr->li;
-          liold=thestatptr->liold;
           lit0=thestatptr->lit0;
           coef=method->munu;     
   
@@ -267,6 +273,7 @@ int Li_init(solution *u, val_type *z,ode_sys *system,
           }  
 
      break;
+
           
      default:
           printf("approximation=%i error\n", options->approximation);
@@ -279,54 +286,54 @@ int Li_init(solution *u, val_type *z,ode_sys *system,
 }
 
 
-/************************************************************************************/
-/* 					   					    */
-/* Yi_update: 		         	  					    */
-/*                                        					    */
-/*										    */
-/************************************************************************************/
+/******************************************************************************/
+/* 					   				      */
+/* Yi_update: 		         	  				      */
+/*                                        				      */
+/*									      */
+/******************************************************************************/
 
 int Yi_update(solution *u, val_type *z,ode_sys *system,
             gauss_method *method,solver_stat *thestatptr)
 {
 
 
-/* ---------- First initializations -------------------------------------*/
+/* ---------- First initializations ------------------------------------------*/
 
      int neq,ns;
 
      neq=system->neq;
      ns=method->ns;
 
-/*------------- declarations -----------------------------------------*/ 
+/*------------- declarations -------------------------------------------------*/ 
 
      int i,is,in,js,jsn;
      val_type *coef,*li;
      val_type sum;
 
-/* ----------- implementation  --------------------------------------*/
+/* ----------- implementation  -----------------------------------------------*/
 
 
     li=thestatptr->li;
     coef=method->m;
+
 
     for (is = 0; is<ns; is++)
     {
                 for (i = 0; i<neq; i++)
                 {  
                      in=neq*is+i;
-                     sum=0.;
+                     sum=coef[ns*is]*li[i]+u->ee[i];
 
-                     for (js = 0; js<ns; js++)
+                     for (js = 1; js<ns; js++)
                      {
                           jsn=ns*is+js;
-                          sum+=li[neq*js+i]*(coef[jsn]);
+                          sum+=(coef[jsn])*li[neq*js+i];
                      }
 
                      z[in]=u->uu[i]+sum;
                 }
      }  
-
  
    
      return(0);
@@ -334,52 +341,105 @@ int Yi_update(solution *u, val_type *z,ode_sys *system,
 }
 
 
-/************************************************************************************/
-/* 					   					    */
-/* statlinit: 		         	  					    */
-/*                                        					    */
-/*										    */
-/************************************************************************************/
+/******************************************************************************/
+/* 					   				      */
+/* Yi_update_Classic: 		    	  				      */
+/*                                        				      */
+/*									      */
+/******************************************************************************/
 
-int statlinit (ode_sys *system,gauss_method *method,solver_stat *thestatptr)
+int Yi_update_Classic (solution *u, val_type *z,ode_sys *system,
+                       gauss_method *method,solver_stat *thestatptr)
 {
 
 
-/* ---------- First initializations -------------------------------------*/
+/* ---------- First initializations ------------------------------------------*/
 
      int neq,ns;
 
      neq=system->neq;
      ns=method->ns;
 
-/*------------- declarations -----------------------------------------*/ 
+/*------------- declarations -------------------------------------------------*/ 
+
+     int i,is,in;
+     int lda, ldb, ldc;
+     val_type *coef,*li;
+     val_type alpha, beta;
+
+/* ----------- implementation  -----------------------------------------------*/
+
+
+    li=thestatptr->li;
+    coef=method->m;
+
+
+    for (is = 0; is<ns; is++)
+    {
+                for (i = 0; i<neq; i++)
+                {  
+                     in=neq*is+i;                    
+                     z[in]=u->uu[i];
+                }
+     }  
+
+
+     alpha = 1.; beta = 1.;
+     lda=ns; ldb=neq; ldc=neq;   
+
+     GEMM(CblasRowMajor,CblasNoTrans,CblasNoTrans, ns,neq,ns,
+          alpha, coef, lda, li, ldb, beta, z, ldc );
+
+   
+     return(0);
+
+}
+
+
+
+
+/******************************************************************************/
+/* 					   				      */
+/* statlinit: 		         	  				      */
+/*                                        				      */
+/*									      */
+/******************************************************************************/
+
+int statlinit (ode_sys *system,gauss_method *method,solver_stat *thestatptr)
+{
+
+
+/* ---------- First initializations ------------------------------------------*/
+
+     int neq,ns;
+
+     neq=system->neq;
+     ns=method->ns;
+
+/*------------- declarations -------------------------------------------------*/ 
 
      int i,is,in;
      val_type *li,*lit0;
      int *initqlty;
      int prec;
 
-/* ----------- implementation  --------------------------------------*/
+/* ----------- implementation  -----------------------------------------------*/
 
 
-    li=thestatptr->li;
-    lit0=thestatptr->lit0;
-    initqlty=thestatptr->initqlty;
+     li=thestatptr->li;
+     lit0=thestatptr->lit0;
+     initqlty=thestatptr->initqlty;
+     prec=16;
 
-#if PREC ==2     //QUADRUPLEPRECISION
-    prec=34;
-#elif PREC ==3   //FLOAT
-    prec=8;
-#else            //DOUBLE
-    prec=16;
-#endif
-
-    for (is = 0; is<ns; is++)
+     for (is = 0; is<ns; is++)
            for (i = 0; i<neq; i++)
            {                      
                  in=neq*is+i;
                  if (li[in]==lit0[in]) {initqlty[in]+=prec;}
-                       else {initqlty[in]+=(int)round(fabs(log10(fabs(li[in]-lit0[in])/fabs(lit0[in]))));}
+                       else 
+                       {
+                        initqlty[in]+=(int)round(fabs(log10(fabs(li[in]-lit0[in])/fabs(lit0[in]))));
+                       }
            }
                     
      return(0);
@@ -388,134 +448,205 @@ int statlinit (ode_sys *system,gauss_method *method,solver_stat *thestatptr)
 
 
 
+/******************************************************************************/
+/* 									      */
+/*   StopCriterion  						              */
+/* 									      */
+/* 									      */
+/******************************************************************************/
 
-/****************************************************************************************/
-/* 											*/
-/*   UpdateDmin  								        */
-/* 											*/
-/* 											*/
-/****************************************************************************************/
-void UpdateDMin (ode_sys *system,gauss_method *method,
-                 int *D0,bool *cont,val_type *DMin,val_type *Y,val_type *Yold)
+void StopCriterion (ode_sys *system, gauss_method *method,
+                    int *D0,bool *cont,val_type *DMin, 
+                    val_type *Y, val_type *Yold)
 {
-/*----------------  First: initialization -------------------------------*/
+/*----------------  First: initialization ------------------------------------*/
      int neq,ns;
 
      neq=system->neq;
      ns=method->ns;
 
-/*------ declarations --------------------------------------------------*/
-     int i,is;
+/*------ declarations --------------------------------------------------------*/
+     int i,is,isn;
      val_type dY;
 
-/* ----------- implementation  --------------------------------------*/ 
+/* ----------- implementation  -----------------------------------------------*/ 
+
+
+     bool plusIt;
+
+     if (*D0<0) plusIt=false;
+         else plusIt=true;
 
      *D0=0;
      *cont=false;
 
+
      for (is=0; is<ns; is++)
+     {
           for (i=0; i<neq; i++) 
           { 
-               dY=FABS(Y[is*neq+i]-Yold[is*neq+i]);
+               isn=is*neq+i;
+               dY=FABS(Y[isn]-Yold[isn]);
+
                if (dY>0.)
-               { 
-                    
-                   if (dY<DMin[is*neq+i])
+               {                     
+                   if (dY<DMin[isn])
                     {
-                         DMin[is*neq+i]=dY;
+                         DMin[isn]=dY;
                          *cont=true;
                     }
-                   else
-                    {
-                         DMin[is*neq+i]=-1;
-                    } 
+
                }
                else
                {
-                    DMin[is*neq+i]=0;
                     *D0=*D0+1;
                } 
           }
+     
+     }
+
   
+    if (*cont==false && *D0<(ns*neq) && plusIt)
+    {
+          *D0=-1;
+          *cont=true;
+    }
+
+
      return;
 
 }
 
 
-/****************************************************************************************/
-/* 											*/
-/*   Newton_it  								        */
-/* 											*/
-/* 											*/
-/****************************************************************************************/
 
+/******************************************************************************/
+/* 									      */
+/*   StopCriterionFloat						              */
+/* 									      */
+/* 									      */
+/******************************************************************************/
 
-void Newton_it  ( ode_sys *system, solution *u, val_type tn,val_type h, 
-                  toptions *options,gauss_method *method,solver_stat *thestatptr)
-
-{ 
-
-/*----------------  First: initialization -------------------------------*/
+void StopCriterionFloat (ode_sys *system, gauss_method *method,
+                         int *D0,bool *cont,val_type *DMin, 
+                         val_type *Y, val_type *Yold)
+{
+/*----------------  First: initialization ------------------------------------*/
      int neq,ns;
 
      neq=system->neq;
      ns=method->ns;
 
-/*------ declarations --------------------------------------------------*/
+/*------ declarations --------------------------------------------------------*/
+     int i,is,isn;
+     float dY,YY,YYold;
+
+/* ----------- implementation  -----------------------------------------------*/ 
+
+
+     bool plusIt;
+
+     if (*D0<0) plusIt=false;
+         else plusIt=true;
+
+     *D0=0;
+     *cont=false;
+
+
+     for (is=0; is<ns; is++)
+     {
+          for (i=0; i<neq; i++) 
+          { 
+               isn=is*neq+i;
+               YY=Y[isn];
+               YYold=Yold[isn];
+               dY=FABS(YY-YYold);
+
+               if (dY>0.)
+               {                     
+                   if (dY<DMin[isn])
+                    {
+                         DMin[isn]=dY;
+                         *cont=true;
+                    }
+
+               }
+               else
+               {
+                    *D0=*D0+1;
+               } 
+          }
+     
+     }
+
+  
+    if (*cont==false && *D0<(ns*neq) && plusIt)
+    {
+          *D0=-1;
+          *cont=true;
+    }
+
+
+     return;
+
+}
+
+
+
+/******************************************************************************/
+/* 							          	      */
+/*   NSS_Step    							      */
+/* 									      */
+/* 									      */
+/******************************************************************************/
+
+
+void NSS_Step   ( ode_sys *system, solution *u, val_type tn,val_type h, 
+                  toptions *options,gauss_method *method,solver_stat *thestatptr)
+
+{ 
+
+/*----------------  First: initialization ------------------------------------*/
+     int neq,ns;
+
+     neq=system->neq;
+     ns=method->ns;
+
+/*------ declarations --------------------------------------------------------*/
 
      int i,is;
      bool iter0;
-//     bool D0;			
      int D0;			
      val_type difftest,DMin[neq*ns];
      val_type *z;
-     parameters *params;
      val_type zold[neq*ns];
-     lowfloat *MM;
+     val_type *MM;
 
      int n,m,lda,info;
-     int ipiv[neq*(ns+1)];
-     lowfloat Jac[neq*neq];
-     
-/* ----------- implementation  --------------------------------------*/ 
+     int ipiv[neq*ns];
 
-     MM=(lowfloat *)malloc((neq*(ns+1))*(neq*(ns+1))*sizeof(lowfloat));
+     
+/* ----------- implementation  -----------------------------------------------*/ 
+
+     MM=(val_type *)malloc((neq*(ns))*(neq*(ns))*sizeof(val_type));
      z=thestatptr->z;
-     params=&system->params;
 
      iter0=true;
-  
+     D0=0;
      for (is=0; is<ns; is++)
           for (i=0; i<neq; i++) DMin[is*neq+i]=INF;
 
      thestatptr->itcount=0;
 
-/* ------LU factorization of a general n-by-m matrix A--------------*/
 
-     n=neq*(ns+1);
+/* ------LU factorization of a general n-by-m matrix A------------------------*/
+
+     n=neq*(ns);
      m=n;
      lda=n;
 
-
-     switch (options->algorithm)
-     { 
-     case 1: 
-           system->jac(neq,tn,u->uu,Jac,params);
-           MMfun(neq,method,Jac,MM);
-     break;
-
-     case 2: 
-	   MMfunOsoa(neq,method,tn,system,thestatptr,MM);
-     break;
-
-     default:
-          printf("error. algorithm\n");
-     break;
-    }
-
+     MMNewtonSS (neq,method,tn,h,system,u->uu,MM);
 
      info = GETRF(LAPACK_ROW_MAJOR, n, m, MM, lda, ipiv);
-
      if( info > 0 )
      {
 	printf( "The diagonal element of the triangular factor of A,\n" );
@@ -524,38 +655,47 @@ void Newton_it  ( ode_sys *system, solution *u, val_type tn,val_type h,
 	exit( 1 );
      }
 
+
      while (iter0 && thestatptr->itcount<MAXIT)
-     { 
-          
-           for (is=0; is<ns;is++)
-                for (i=0; i<neq; i++) zold[neq*is+i]=thestatptr->z[neq*is+i];
+     {            
+           Yi_update (u,z,system,method,thestatptr);
               
-           options->iteration[0](system,u,tn,h,method,thestatptr,MM,ipiv); 
-           if (options->rdigits>0) RemoveDigitsFcn(system,method,z,options->mrdigits);
-           UpdateDMin(system,method,&D0,&iter0,DMin,z,zold);
-           thestatptr->itcount++;
+           NSS_Solve (system,u,tn,h,method,thestatptr,MM,ipiv); 
+           StopCriterion(system,method,&D0,&iter0,DMin,thestatptr->li,thestatptr->lik);
+           thestatptr->itcount++;    
+
      }
+
 
      if (thestatptr->itcount==MAXIT)
      { 
            printf("Break: step(MAXIT)=%i\n",thestatptr->itcount);
            thestatptr->convergence=FAIL; 
      }
- 
-     if (D0<(ns*neq))
-     {
-           difftest=NormalizedDistance(neq,ns,options,z,zold);
-           if (difftest>1.)
-           {
-                 printf("Lack of convegence of fixed-point iteration:\
-                         step=%i,difftest=%lg\n",thestatptr->itcount,difftest);
-                 thestatptr->convergence=FAIL;
-           }
-     }
+
      else
-     {
-           thestatptr->itzero++;
-     }
+           if (D0<(ns*neq))
+           {
+                 for (is=0; is<ns;is++) for (i=0; i<neq; i++)    
+                             zold[neq*is+i]=thestatptr->z[neq*is+i];
+                 Yi_update (u,z,system,method,thestatptr);
+                 difftest=NormalizedDistance(neq,ns,options,z,zold);
+                 if (difftest>1.)
+                 {
+                       thestatptr->convergence=FAIL;
+                       printf("Lack of convegence of Newton iteration:\
+                               step=%i,iteration=%i,",
+                               thestatptr->stepcount,thestatptr->itcount);  
+
+                       printf("difftest=%lg\n",difftest);                     
+                 }
+           }
+           else
+           {
+                (thestatptr->totitcountzero)+=(thestatptr->itcount);
+                thestatptr->itzero++;
+           }
+
 
      free(MM);
      return;
@@ -564,263 +704,604 @@ void Newton_it  ( ode_sys *system, solution *u, val_type tn,val_type h,
 
 
 
-/****************************************************************************************/
-/* 											*/
-/*   MMfun	  								        */
-/* 											*/
-/* 											*/
-/****************************************************************************************/
+/******************************************************************************/
+/* 							          	      */
+/*   NSS_Step_plus							      */
+/* 									      */
+/* 									      */
+/******************************************************************************/
 
 
-void MMfun (int neq, gauss_method *method,lowfloat *Jac,lowfloat *MM)
+void NSS_Step_plus  ( ode_sys *system, solution *u, val_type tn,val_type h, 
+                      toptions *options,gauss_method *method,solver_stat *thestatptr)
 
 { 
 
-/*----------------  First: initialization -------------------------------*/
-     int ns;
-     int row,col;
+/*----------------  First: initialization ------------------------------------*/
+     int neq,ns;
 
+     neq=system->neq;
      ns=method->ns;
 
-     row=(ns+1)*neq;
-     col=(ns+1)*neq;
-
-/*-------------declarations --------------------------------------------*/
-
-     int i,j;
-     lowfloat hB[ns*ns],C[ns*(ns+1)];
-     lowfloat Id[neq*neq],Ones[ns+1];
-     lowfloat mm[ns*ns];		// behinbehinekoa
-
-     lowfloat alpha,beta;
-     int lda,ldb,ldc,i0;
-
-/* ----------- implementation  ----------------------------------------*/ 
-
-     /* ---- Init: MM --------------------------------*/
-     for (i=0; i<row; i++)
-           for (j=0; j<col; j++) MM[i*row+j]=0.;
-     for (i=0; i<(row-neq); i++) MM[i*row+i]=1.;
-
-     /* ---- Init: Id --------------------------------*/
-     for (i=0; i<neq; i++)
-           for (j=0; j<neq; j++)
-                if (i==j) Id[i*neq+j]=1.;
-                else Id[i*neq+j]=0.;
-
-     /* ---- Init: Ones -----------------------------*/
-     for (i=0; i<ns; i++) Ones[i]=1./2;
-     Ones[ns]=-1.;
-
-     /* ---- Init: hB, C ----------------------------*/
-     for (i=0; i<ns; i++)
-           for (j=0; j<ns; j++)
-           {      
-                 if (i==j) hB[i*ns+j]=method->hb[i];
-                     else  hB[i*ns+j]=0.;
-                 C[i*(ns+1)+j]=-method->hb[i]/2;
-           }
-
-     /* ---- j=ns column-----------------------------*/
-     for (i=0; i<ns; i++)
-     {
-           j=ns;
-           C[i*(ns+1)+j]=method->hb[i];
-     }   
+/*------ declarations --------------------------------------------------------*/
 
 
-     /* ---- calculate ------------------------------*/
-     alpha = 1.; beta = 1.;
-     lda=ns; ldb=ns; ldc=ns+1;
-
-     for (i=0; i<(ns*ns); i++) mm[i]=method->m[i];   //behinbehinekoa. 
-
-#    if PREC ==2  //QUADRUPLEPRECISION
-     cblas_dgemm(CblasRowMajor,CblasNoTrans,CblasNoTrans,ns,ns,ns,alpha,	
-                  hB, lda, mm, ldb, beta, C, ldc);
-#    else //DOUBLEPRECISION or FLOAT 
-     cblas_sgemm(CblasRowMajor,CblasNoTrans,CblasNoTrans,ns,ns,ns,alpha,	
-                  hB, lda, mm, ldb, beta, C, ldc);
-#    endif 
-
-     alpha= -1.; beta= 1.;
-     i0=0;
-     MyKroneckerProd(alpha,C,Jac,beta,MM,i0,ns,ns+1,neq,neq);
-     
-     alpha= 1.; beta= 1.;
-     i0=ns;
-     MyKroneckerProd(alpha,Ones,Id,beta,MM,i0,1,ns+1,neq,neq);
-     
-
-     return;
-
-}
-
-
-/****************************************************************************************/
-/* 											*/
-/*   MMfunOsoa	  								        */
-/* 											*/
-/* 											*/
-/****************************************************************************************/
-
-
-void MMfunOsoa (int neq, gauss_method *method,val_type tn,
-                ode_sys *system,solver_stat *thestatptr,lowfloat *MM)
-{ 
-
-/*----------------  First: initialization -------------------------------*/
-     int ns;
-     int row,col;
-
-     ns=method->ns;
-
-     row=(ns+1)*neq;
-     col=(ns+1)*neq;
-
-/*-------------declarations --------------------------------------------*/
-
-     int i,is,j;
-     lowfloat hB[ns*ns],C[ns*(ns+1)];
-     lowfloat Id[neq*neq],Ones[ns+1];
-     lowfloat mm[ns*ns];		// behinbehinekoa
-     lowfloat Jac[neq*neq];
+     int i,is;
+     bool iter0;
+     int D0;			
+     val_type difftest,DMin[neq*ns];
      val_type *z;
+     val_type *jac;
      parameters *params;
+     val_type zold[neq*ns];
 
-     lowfloat alpha,beta;
-     int lda,ldb,ldc,i0;
+     int info;
 
+     val_type MM[neq*neq];
+     int ipiv[neq*neq];
 
-/* ----------- implementation  ----------------------------------------*/ 
+    
+/* ----------- implementation  -----------------------------------------------*/ 
 
      z=thestatptr->z;
+     jac=thestatptr->jac;
      params=&system->params;
 
-     /* ---- Init: MM --------------------------------*/
-     for (i=0; i<row; i++)
-           for (j=0; j<col; j++) MM[i*row+j]=0.;
-     for (i=0; i<(row-neq); i++) MM[i*row+i]=1.;
+     iter0=true;
+     D0=0;
+     for (is=0; is<ns; is++)
+          for (i=0; i<neq; i++) DMin[is*neq+i]=INF;
 
-     /* ---- Init: Id --------------------------------*/
-     for (i=0; i<neq; i++)
-           for (j=0; j<neq; j++)
-                if (i==j) Id[i*neq+j]=1.;
-                else Id[i*neq+j]=0.;
+     thestatptr->itcount=0;
 
-     /* ---- Init: Ones -----------------------------*/
-     for (i=0; i<ns; i++) Ones[i]=1./2;
-     Ones[ns]=-1.;
+     system->jac(neq,tn+h/2,u->uu,jac,params);
 
-     /* ---- Init: hB, C ----------------------------*/
-     for (i=0; i<ns; i++)
-           for (j=0; j<ns; j++)
-           {      
-                 if (i==j) hB[i*ns+j]=method->hb[i];
-                     else  hB[i*ns+j]=0.;
-                 C[i*(ns+1)+j]=-method->hb[i]/2;
+     /* -------- Compute M matrix ------------- */
+
+     Compute_MM (system,h,MM,method,thestatptr);
+ 
+     /* -------- LU factorization of (MM) matrix ----------- */
+
+     info = GETRF(LAPACK_ROW_MAJOR, neq, neq, MM, neq, ipiv);
+     if( info > 0 )
+     {
+ 	   printf( "The diagonal element of the triangular factor of A,\n" );
+	   printf( "U(%i,%i) is zero, so that A is singular;\n", info, info );
+	   printf( "the solution could not be computed.\n" );
+	   exit( 1 );
+     }     
+
+
+     while (iter0 && thestatptr->itcount<MAXIT)
+     { 
+
+           Yi_update (u,z,system,method,thestatptr);
+            
+           NSS_Solve_plus (system,u,tn,h,method,thestatptr,MM,ipiv); 
+           StopCriterion(system,method,&D0,&iter0,DMin,thestatptr->li,thestatptr->lik);
+           thestatptr->itcount++;
+           
+     }
+
+
+     if (thestatptr->itcount==MAXIT)
+     { 
+           printf("Break: step(MAXIT)=%i\n",thestatptr->itcount);
+           thestatptr->convergence=FAIL; 
+     }
+
+     else
+           if (D0<(ns*neq))
+           {
+                 for (is=0; is<ns;is++) for (i=0; i<neq; i++)     
+                             zold[neq*is+i]=thestatptr->z[neq*is+i];
+                 difftest=NormalizedDistance(neq,ns,options,z,zold);
+                 if (difftest>1.)
+                 {
+                       thestatptr->convergence=FAIL;
+                       printf("Lack of convegence of Newton iteration:\
+                               step=%i,iteration=%i,",
+                               thestatptr->stepcount,thestatptr->itcount);  
+                       printf("difftest=%lg\n",difftest);                    
+                 }
+           }
+           else
+           {
+                (thestatptr->totitcountzero)+=(thestatptr->itcount);
+                thestatptr->itzero++;
            }
 
-     /* ---- j=ns column-----------------------------*/
-     for (i=0; i<ns; i++)
+
+     return;
+
+}
+
+
+/******************************************************************************/
+/* 							          	      */
+/*   NSS_MIX_Step							      */
+/* 									      */
+/* 									      */
+/******************************************************************************/
+
+
+void NSS_MIX_Step   ( ode_sys *system, solution *u, val_type tn,val_type h, 
+                      toptions *options,gauss_method *method,solver_stat *thestatptr)
+
+{ 
+
+/*----------------  First: initialization ------------------------------------*/
+     int neq,ns;
+
+     neq=system->neq;
+     ns=method->ns;
+     int mm=method->mm;
+     int smm=method->smm;
+
+/*------ declarations --------------------------------------------------------*/
+
+
+     int i,is,j,k,l,isn;
+     bool iter0;
+     int D0;			
+     val_type difftest,DMin[neq*ns];
+     val_type *z,*li,*lik;
+     val_type *DL,*jac;
+     parameters *params;   
+
+     int info;
+
+     val_type MM[neq*neq];
+     int ipiv[neq*neq];
+
+     val_type fz[ns*neq];
+     val_type g[ns*neq];
+     val_type RR[mm*neq];
+     val_type ZZ[neq],W1[mm*neq],W2[smm*neq];
+     val_type GG[ns*neq],DLl[ns*neq];  
+
+     val_type DLOLD[ns*neq];
+     val_type zold[neq*ns];
+
+     val_type aa,bb;
+     int lda, incx,incy;
+    
+/* ----------- implementation  ----------------------------------------------*/ 
+
+     z=thestatptr->z;
+     li=thestatptr->li;
+     lik=thestatptr->lik;
+     jac=thestatptr->jac;
+     params=&system->params;
+     DL=thestatptr->DL;
+
+
+     thestatptr->itcount=0;
+
+     system->jac(neq,tn+h/2,u->uu,jac,params);
+
+     /* -------- Compute M matrix ------------- */
+
+     Compute_MM (system,h,MM,method,thestatptr);
+  
+     /* -------- LU factorization of (MM) matrix ----------- */
+
+     info = GETRF(LAPACK_ROW_MAJOR, neq, neq, MM, neq, ipiv);
+     if( info > 0 )
      {
-           j=ns;
-           C[i*(ns+1)+j]=method->hb[i];
-     }   
+ 	   printf( "The diagonal element of the triangular factor of A,\n" );
+	   printf( "U(%i,%i) is zero, so that A is singular;\n", info, info );
+	   printf( "the solution could not be computed.\n" );
+	   exit( 1 );
+     }     
 
+/*------------ 1-Step: Newton-simplified iterations (Float) -----------------*/
 
-     /* ---- calculate ------------------------------*/
-     alpha = 1.; beta = 1.;
-     lda=ns; ldb=ns; ldc=ns+1;
-
-     for (i=0; i<(ns*ns); i++) mm[i]=method->m[i];   //behinbehinekoa. 
-
-     GEMM (CblasRowMajor,CblasNoTrans,CblasNoTrans,ns,ns,ns,alpha,	
-                  hB, lda, mm, ldb, beta, C, ldc);
-
-     alpha= -1.; beta= 1.;
+     k=0;
+     iter0=true; 
+     D0=0; 
      for (is=0; is<ns; is++)
+          for (i=0; i<neq; i++) DMin[is*neq+i]=INF;
+     while (iter0  && thestatptr->itcount<MAXIT)
+     { 
+
+           thestatptr->itcount++; 
+           k++;
+           Yi_update_Classic (u,z,system,method,thestatptr);
+
+           /* ---------- g = hB F(L)- L -------------------*/
+#ifdef PARALLEL
+#      pragma omp parallel for num_threads(thread_count) private(isn)
+#endif       
+           for (is = 0; is<ns; is++)
+           {
+                 isn=neq*is;
+                 params->eval=system->cod[0];
+                 thestatptr->fcn++;
+                 system->f(neq,tn+method->hc[is],&z[isn],&fz[isn],params); 
+                 for (i=0; i<neq; i++)  g[isn+i]=fz[isn+i]*method->hb[is]-li[isn+i];
+           }
+
+
+           Compute_R (system, h, g, RR, method, thestatptr);
+           Compute_Z (system, h, MM, RR, ZZ, method, thestatptr, ipiv);
+           Compute_W1 (system, h, RR, ZZ, W1, method, thestatptr);
+           Compute_W2 (system, h, W1, ZZ, g, W2, method,thestatptr);
+           Compute_DL (system,W1,W2,DL,method,thestatptr);
+
+           /* ---- Lb=L+Dl ------------*/
+
+           for (is=0; is<ns; is++)
+           {
+                 isn=neq*is;
+                 for (i=0; i<neq; i++)
+                 {
+                       lik[isn+i]=li[isn+i];
+                       li[isn+i]=li[isn+i]+DL[isn+i];
+                 }
+           }
+
+           StopCriterionFloat (system,method,&D0,&iter0,DMin,li,lik);
+         
+     }
+
+      
+     if (thestatptr->itcount==MAXIT)
+     { 
+           printf("Break: step(MAXIT)=%i\n",thestatptr->itcount);
+           thestatptr->convergence=FAIL; 
+     }
+     else
+        if (D0==(ns*neq))
+        {
+                thestatptr->itzeroDL[0]++;
+        }
+
+    thestatptr->totitDL[0]+=k;
+  
+
+/*------------ 2-Step: Compute Jacobian matrices ----------------------------*/
+
+     Yi_update_Classic (u,z,system,method,thestatptr);
+
+     for (is=0; is<ns; is++)
+          system->jac(neq,tn+method->hc[is],
+                      &z[is*neq],&thestatptr->jac_i[is*(neq*neq)],params);
+
+/*------------ 3-Step: Inner iterations -------------------------------------*/
+
+     l=0;
+     iter0=true;
+     D0=0;
+     for (is=0; is<ns; is++)
+          for (i=0; i<neq; i++) DMin[is*neq+i]=INF;
+
+     while (iter0 && l<MAXIT)
      {
-           system->jac(neq,tn,&z[is*neq],Jac,params);
-           i0=is;
-           MyKroneckerProd(alpha,&C[is*(ns+1)],Jac,beta,MM,i0,1,ns+1,neq,neq);
+
+          l++;
+
+          Compute_GG (system, h, g, DL, GG, method, thestatptr);
+          Compute_R (system, h, GG, RR, method, thestatptr);
+          Compute_Z (system, h, MM, RR, ZZ, method, thestatptr, ipiv);
+          Compute_W1 (system, h, RR, ZZ, W1, method, thestatptr);
+          Compute_W2 (system, h, W1, ZZ, GG, W2, method,thestatptr);
+          Compute_DL (system,W1,W2,DLl,method,thestatptr);
+          
+          for (is=0; is<ns; is++)
+              for (j=0; j<neq; j++)
+              { DLOLD[neq*is+j]=DL[neq*is+j];
+                DL[is*neq+j]+=DLl[is*neq+j];
+              }
+
+          StopCriterionFloat (system,method,&D0,&iter0,DMin,DL,DLOLD);  
 
      }
-     
-     alpha= 1.; beta= 1.;
-     i0=ns;
-     MyKroneckerProd(alpha,Ones,Id,beta,MM,i0,1,ns+1,neq,neq);
-     
 
-     return;
+    if (D0==(ns*neq))  thestatptr->itzeroDL[1]++;
+    thestatptr->totitDL[1]+=l;
+
+     /* ---- L^[k]=L^[k-1]+DL^[k,l]------------*/
+
+     for (is=0; is<ns; is++)
+     {
+           isn=neq*is;
+           for (i=0; i<neq; i++)
+           {
+                thestatptr->li[isn+i]=thestatptr->lik[isn+i]+DL[isn+i];   
+           }
+     }
+
+
+/*------------ 4-Step: Inexact Newton iterations ----------------------------*/
+
+
+     thestatptr->itcount++;
+     Yi_update_Classic (u,z,system,method,thestatptr);
+
+     /* ---------- g = hB F(L)- L -------------------*/
+     #ifdef PARALLEL
+     #      pragma omp parallel for num_threads(thread_count) private(isn)
+     #endif    
+     bb=1.;   
+     lda=neq; incx=1; incy=1;
+     for (is = 0; is<ns; is++)
+     {
+           isn=neq*is;
+           params->eval=system->cod[0];
+           thestatptr->fcn++;
+           system->f(neq,tn+method->hc[is],&z[isn],&fz[isn],params); 
+           for (i=0; i<neq; i++)  g[isn+i]=fz[isn+i]*method->hb[is]-li[isn+i];
+           aa=method->hb[is];            
+           GEMV (CblasRowMajor,CblasNoTrans,neq,neq,aa,	
+                 &thestatptr->jac_i[is*(neq*neq)], lda, &u->ee[0], incx, bb, &g[isn], incy); 
+     }
+              
+
+     /* ------DL^{[k,0]}=(I-hBAB x J)^{-1} g^{[k]} ---*/
+
+     Compute_R (system, h, g, RR, method, thestatptr);
+     Compute_Z (system, h, MM, RR, ZZ, method, thestatptr, ipiv);
+     Compute_W1 (system, h, RR, ZZ, W1, method, thestatptr);
+     Compute_W2 (system, h, W1, ZZ, g, W2, method,thestatptr);
+     Compute_DL (system,W1,W2,DL,method,thestatptr);
+
+     /*------ Inner iterations -----------------------*/
+
+     iter0=true;
+     D0=0;
+     for (is=0; is<ns; is++)
+          for (i=0; i<neq; i++) DMin[is*neq+i]=INF;
+     l=0;
+     while (iter0 && l<MAXIT)
+     {
+           l++;
+
+           Compute_GG (system, h, g, DL, GG, method, thestatptr);
+           Compute_R (system, h, GG, RR, method, thestatptr);
+           Compute_Z (system, h, MM, RR, ZZ, method, thestatptr, ipiv);
+           Compute_W1 (system, h, RR, ZZ, W1, method, thestatptr);
+           Compute_W2 (system, h, W1, ZZ, GG, W2, method,thestatptr);
+           Compute_DL (system,W1,W2,DLl,method,thestatptr);
+           
+           for (is=0; is<ns; is++)
+                 for (j=0; j<neq; j++)
+                 {     DLOLD[neq*is+j]=DL[neq*is+j];
+                       DL[is*neq+j]+=DLl[is*neq+j];
+                 }
+
+           StopCriterionFloat (system,method,&D0,&iter0,DMin,DL,DLOLD);  
+
+     }
+   
+     if (D0==(ns*neq))  thestatptr->itzeroDL[2]++;
+     thestatptr->totitDL[2]+=l;
+
+
+     /* ---- Lb=L+Dl ------------*/
+
+     for (is=0; is<ns; is++)
+     {
+           isn=neq*is;
+           for (i=0; i<neq; i++)
+           {
+                 lik[isn+i]=li[isn+i];
+                 li[isn+i]=li[isn+i]+DL[isn+i];
+           }
+      }
+
+
+/*------------ End: Check convergence ---------------------------------------*/
+
+     for (is=0; is<ns;is++) for (i=0; i<neq; i++) zold[neq*is+i]=thestatptr->z[neq*is+i];
+     Yi_update_Classic (u,z,system,method,thestatptr);
+     difftest=NormalizedDistance(neq,ns,options,z,zold);
+     if (difftest>1.)
+     {
+         thestatptr->convergence=FAIL;
+         printf("Lack of convegence of Newton iteration:\
+                 step=%i,iteration=%i,",
+                 thestatptr->stepcount,thestatptr->itcount);  
+                 printf("difftest=%lg\n",difftest);                 
+     }
+
+    return;
 
 }
 
 
 
-/****************************************************************************************/
-/* 											*/
-/*   MyKroneckerProd  								        */
-/* 											*/
-/* 											*/
-/****************************************************************************************/
+/******************************************************************************/
+/* 								              */
+/*   MMNewtonSS: Newton Super Simplified				      */
+/* 									      */
+/* 									      */
+/******************************************************************************/
 
-void MyKroneckerProd (int alpha,lowfloat *A, lowfloat *B, 
-                      int beta, lowfloat *C, int i0,
-                      int n1, int m1, int n2, int m2)
-{
-/*-------------declarations --------------------------------------------*/
 
-     int i,j,k,l,ci,cj;
-     
-/* ----------- implementation  ----------------------------------------*/ 
+void MMNewtonSS (int neq, gauss_method *method, val_type tn, val_type h, 
+                 ode_sys *system, val_type *u, val_type *MM)
+{ 
+
+/*----------------  First: initialization ------------------------------------*/
+
+     int ns;
+     ns=method->ns;
+
+
+/*-------------declarations --------------------------------------------------*/
+
+     int i,j,k,l;
+     int n1,n2,m1,m2;
+     int ci,cj;
+
+     val_type Aij,Bkl;
+     val_type Jac[neq*neq];
+     parameters *params;
+
+/* ----------- implementation  -----------------------------------------------*/ 
+
+     params=&system->params;
+
+     n1=ns;
+     m1=ns;
+     n2=neq;
+     m2=neq;
+
+     system->jac(neq,tn+h/2,u,Jac,params);
 
      for (i=0; i<n1; i++)
-           for (j=0; j<m1; j++)
-                 for (k=0; k<n2; k++)
+     {
+           for (k=0; k<n2; k++)           
+           {
+                 ci=i*n2+k;
+
+                 for (j=0; j<m1; j++)
+                 {
+                       Aij=method->hBAB[i*m1+j];
+                       
                        for (l=0; l<m2; l++)
                        {
-                             ci=n2*(i+i0)+k;
                              cj=m2*j+l;
-                             C[ci*m1*m2+cj]=alpha*A[i*m1+j]*B[k*m2+l]+beta*C[ci*m1*m2+cj];
+                             Bkl=Jac[k*m2+l];
+                             
+                             if (ci==cj)
+                                 MM[ci*(m1*m2)+cj]=1.-Aij*Bkl;
+                             else
+                                 MM[ci*(m1*m2)+cj]=-Aij*Bkl;
+
                        }
+                 }
+            }
+     }
 
-
+     
      return;
 
 }
 
 
-/****************************************************************************************/
-/*											*/
-/*      Newton_Step									*/
-/*											*/
-/****************************************************************************************/
 
 
-int Newton_Step   (ode_sys *system, solution *u, val_type tn,val_type h, 
+/******************************************************************************/
+/* 									      */
+/*   MatAdd     							      */
+/* 									      */
+/* 									      */
+/******************************************************************************/
+
+void MatAdd (val_type aa,val_type *A,int lda, val_type bb,val_type *B, int ldb, 
+             val_type cc, val_type *C, int ldc,int m, int n)
+{
+/*----------------------------------------------------------------------------*/
+/* C=aa*A+bb*B+gamma*C                                                        */
+/* where A,B,C is an m-by-n matrix                                            */
+/*----------------------------------------------------------------------------*/
+/*-------------declarations --------------------------------------------------*/
+
+     int i,j;
+     
+/* ----------- implementation  -----------------------------------------------*/ 
+
+     for (i=0; i<m; i++)
+           for (j=0; j<n; j++) 
+               if (cc==0.)
+                   C[i*ldc+j]=aa*A[i*lda+j]+bb*B[i*ldb+j];
+               else
+                   C[i*ldc+j]=aa*A[i*lda+j]+bb*B[i*ldb+j]+cc*C[i*ldc+j];
+
+     return;
+
+}
+
+/******************************************************************************/
+/* 									      */
+/*   MatAddID     							      */
+/* 									      */
+/* 									      */
+/******************************************************************************/
+
+void MatAddID (val_type aa,val_type bb,val_type *B, int ldb, 
+               val_type cc, val_type *C, int ldc, int n)
+{
+/*----------------------------------------------------------------------------*/
+/* C=aa*Id+bb*B+gamma*C                                                       */
+/* where Id,B,C is an n-by-n matrix                                           */
+/* and Id is identity matrix                                                  */
+/*----------------------------------------------------------------------------*/
+/*-------------declarations --------------------------------------------------*/
+
+     int i,j;
+     
+/* ----------- implementation  -----------------------------------------------*/ 
+
+     for (i=0; i<n; i++)
+     {
+           /* diagonal */
+           j=i;
+           if (cc==0.)
+                   C[i*ldc+j]=aa+bb*B[i*ldb+j];
+               else
+                   C[i*ldc+j]=aa+bb*B[i*ldb+j]+cc*C[i*ldc+j];
+
+           /* no diagonal */
+           
+           for (j=i+1; j<n; j++) 
+           {
+               if (cc==0.)
+               {
+                   C[i*ldc+j]=bb*B[i*ldb+j];
+                   C[j*ldc+i]=bb*B[j*ldb+i];
+               }
+               else
+               {
+                   C[i*ldc+j]=bb*B[i*ldb+j]+cc*C[i*ldc+j];
+                   C[j*ldc+i]=bb*B[j*ldb+i]+cc*C[j*ldc+i];
+               }
+           }
+      }
+      return;
+
+}
+
+
+
+
+/******************************************************************************/
+/*									      */
+/*      NSS_Solve							      */
+/*									      */
+/******************************************************************************/
+
+
+int NSS_Solve     (ode_sys *system, solution *u, val_type tn,val_type h, 
                    gauss_method *method,solver_stat *thestatptr,
-                   lowfloat *MM, int *ipiv)
+                   val_type *MM, int *ipiv)
 {
 
-     int extern thread_count;
 
-/* ---------- First initializations ------------------------------------*/
+# ifdef PARALLEL
+     int extern thread_count;
+# endif
+
+/* ---------- First initializations ------------------------------------------*/
 
      int neq,ns;
      parameters *params;
-     val_type *z,*li;
+     val_type *z,*li,*lik;
+     val_type *DL;
     
      neq=system->neq;
      ns=method->ns;
      params=&system->params;
 
      val_type fz[ns*neq];
-     lowfloat fl[(ns+1)*neq];
      z=thestatptr->z;
      li=thestatptr->li;
+     DL=thestatptr->DL;
+     lik=thestatptr->lik;
 
-/*------ declarations --------------------------------------------------*/
+/*------ declarations --------------------------------------------------------*/
 
      int i,is,isn;
      int info;
@@ -828,7 +1309,7 @@ int Newton_Step   (ode_sys *system, solution *u, val_type tn,val_type h,
      int n,lda,ldb,nrhs;
      char trans;
   
-/* ----------- implementation  --------------------------------------*/
+/* ----------- implementation  -----------------------------------------------*/
 
 
 #ifdef PARALLEL
@@ -837,21 +1318,20 @@ int Newton_Step   (ode_sys *system, solution *u, val_type tn,val_type h,
      for (is = 0; is<ns; is++)
      {
            isn=neq*is;
-           params->ipar[0]=system->cod[0];
+           params->eval=system->cod[0];
            thestatptr->fcn++;
            system->f(neq,tn+method->hc[is],&z[isn],&fz[isn],params); 
-           for (i=0; i<neq; i++) fl[isn+i]=fz[isn+i]*method->hb[is]-li[isn+i];		
+           for (i=0; i<neq; i++) DL[isn+i]=fz[isn+i]*method->hb[is]-li[isn+i];	
      }
 
-     for (i=0; i<neq; i++) fl[neq*ns+i]=0.;
 
      trans = 'N';
-     n = (ns+1)*neq; // number of rows of B
-     nrhs=1;         // number of rigth sides
-     lda = (ns+1)*neq;
+     n = ns*neq;         
+     nrhs=1;             
+     lda = (ns)*neq;
      ldb = 1;
 
-     info= GETRS (LAPACK_ROW_MAJOR,trans,n,nrhs,MM,lda,ipiv,fl,ldb); 
+     info= GETRS (LAPACK_ROW_MAJOR,trans,n,nrhs,MM,lda,ipiv,DL,ldb); 
 
      if( info < 0 )
      {
@@ -865,34 +1345,674 @@ int Newton_Step   (ode_sys *system, solution *u, val_type tn,val_type h,
      for (is=0; is<ns; is++)
      {
            isn=neq*is;
-           for (i=0; i<neq; i++) li[isn+i]=li[isn+i]+fl[isn+i];
+           for (i=0; i<neq; i++)
+           {
+                 lik[isn+i]=li[isn+i];
+                 li[isn+i]=li[isn+i]+DL[isn+i];
+           }
      }
 
-     Yi_update (u,z,system,method,thestatptr);
      return(0);
 
 }	
 
 
 
+
+/******************************************************************************/
+/*									      */
+/*      NSS_Solve_plus   			   			      */
+/*									      */
+/******************************************************************************/
+
+
+int NSS_Solve_plus   (ode_sys *system, solution *u, val_type tn,val_type h, 
+                      gauss_method *method,solver_stat *thestatptr,
+                      val_type *MM, int *ipiv)
+{
+
+# ifdef PARALLEL
+     int extern thread_count;
+# endif
+
+/* ---------- First initializations ------------------------------------------*/
+
+     int neq,ns,mm,smm;
+     parameters *params;
+     val_type *z,*li,*lik;
+     val_type *DL;
+      
+     neq=system->neq;
+     ns=method->ns;
+     mm=method->mm;
+     smm=method->smm;
+
+     params=&system->params;
+
+     val_type fz[ns*neq];
+     val_type g[ns*neq];
+     val_type RR[mm*neq];
+     val_type ZZ[neq],W1[mm*neq],W2[smm*neq];
+     z=thestatptr->z;
+     li=thestatptr->li;
+     DL=thestatptr->DL;
+     lik=thestatptr->lik;
+
+
+/*------ declarations --------------------------------------------------------*/
+
+     int i,is,isn;
+  
+/* ----------- implementation  -----------------------------------------------*/
+
+
+/* ---------- g = hB F(L)- L -------------------*/
+#ifdef PARALLEL
+#      pragma omp parallel for num_threads(thread_count) private(isn)
+#endif       
+     for (is = 0; is<ns; is++)
+     {
+           isn=neq*is;
+           params->eval=system->cod[0];
+           thestatptr->fcn++;
+           system->f(neq,tn+method->hc[is],&z[isn],&fz[isn],params); 
+           for (i=0; i<neq; i++)  g[isn+i]=fz[isn+i]*method->hb[is]-li[isn+i];
+     }
+
+
+/* ------- R , Z, W1, W2  ---------------------------------------------------- */
+
+     Compute_R (system, h, g, RR, method, thestatptr);
+     Compute_Z (system, h, MM, RR, ZZ, method, thestatptr, ipiv);
+     Compute_W1 (system, h, RR, ZZ, W1, method, thestatptr);
+     Compute_W2 (system, h, W1, ZZ, g, W2, method,thestatptr);
+
+/* ---------- Compute DL --------------------------*/
+
+     Compute_DL (system,W1,W2,DL,method,thestatptr);
+
+     /* ---- Lb=L+Dl ------------*/
+
+     for (is=0; is<ns; is++)
+     {
+           isn=neq*is;
+           for (i=0; i<neq; i++)
+           {
+                 lik[isn+i]=li[isn+i];
+                 li[isn+i]=li[isn+i]+DL[isn+i];
+           }
+      }
+
+     return(0);
+
+}	
+
+
+
+
+/******************************************************************************/
+/*									      */
+/*      Compute_MM 							      */
+/*									      */
+/******************************************************************************/
+
+void Compute_MM   (ode_sys *system,val_type h,val_type *MM, 
+                  gauss_method *method,solver_stat *thestatptr)             
+
+{
+
+/*----------------  First: initialization ------------------------------------*/
+     int neq;
+
+     neq=system->neq;
+     int mm=method->mm;
+
+/*------ declarations --------------------------------------------------------*/
+
+     int i,j,ii,jj;
+     int ind0;
+     int info;
+
+     val_type C1[neq*neq],SUM[neq*neq];     
+
+     val_type aa,bb,cc;
+     int lda,ldb,ldc;
+     int ipiv[neq*neq];
+     
+/* ----------- implementation  -----------------------------------------------*/ 
+
+
+     /* ---- Init: MM--------------------------------*/
+ 
+     for (i=0; i<neq; i++)
+           for (j=0; j<neq; j++)
+           {
+                if (i==j) MM[i*neq+j]=1.;
+                else MM[i*neq+j]=0.;
+
+                SUM[i*neq+j]=0.;
+           }
+
+     /* --- Id + h^2 sigma_i^2 J^2 ------------ */
+
+     aa = h*h; bb = 0.;
+     lda=neq; ldb=neq; ldc=neq;
+     GEMM (CblasRowMajor,CblasNoTrans,CblasNoTrans,neq,neq,neq,aa,	
+           thestatptr->jac, lda, thestatptr->jac, ldb, bb, C1, ldc);
+
+     aa=1.;
+     cc=0.;
+     for (i=0; i<mm; i++)
+     {
+
+           ind0=i*(neq*neq);
+           
+           bb=method->sigma2[i];           
+           MatAddID (aa,bb,C1,neq,cc,&thestatptr->INVIDJ2[ind0],neq,neq);
+
+           info = GETRF(LAPACK_ROW_MAJOR, neq, neq,
+                        &thestatptr->INVIDJ2[ind0], neq, ipiv);
+
+           if( info > 0 )
+           {
+ 	         printf( "The diagonal element of the triangular factor of A,\n" );
+	         printf( "U(%i,%i) is zero, so that A is singular;\n", info, info );
+	         printf( "the solution could not be computed.\n" );
+	         exit( 1 );
+           }
+
+           info= GETRI (LAPACK_ROW_MAJOR,neq,
+                        &thestatptr->INVIDJ2[ind0],neq,ipiv); 
+
+           if( info < 0 )
+           {
+	         printf( "The execution (Compute IDM) _getri is unsuccesfull. info=%i,\n",info );
+	         printf( "the solution could not be computed.\n" );
+	         exit( 1 );
+           }
+
+
+           for (ii=0; ii<neq; ii++)
+                 for (jj=0; jj<neq; jj++)
+                      SUM[ii*neq+jj]+=method->alpha2[i]*thestatptr->INVIDJ2[ind0+ii*neq+jj];
+ 
+      }    
+
+
+     aa=-h/2; 
+     bb=1.;
+     lda=neq; ldb=neq; ldc=neq;
+     GEMM (CblasRowMajor,CblasNoTrans,CblasNoTrans,neq,neq,neq,aa,	
+           thestatptr->jac, lda, SUM, ldb, bb, MM, ldc);   
+
+
+/*
+     printf("\n(M). i=%i,\n", i);
+     for (i=0; i<neq; i++)
+     {      for (j=0; j<neq; j++) printf("%lg,",MM[i*neq+j]);
+            printf("\n");
+     }          
+
+*/
+
+     return;
+
+
+}
+
+
+
+
+/******************************************************************************/
+/*									      */
+/*      Compute_R  28-02-2017						      */
+/*									      */
+/******************************************************************************/
+
+void Compute_R (ode_sys *system, val_type h,val_type *g, val_type *RR, 
+                gauss_method *method,solver_stat *thestatptr)
+
+{
+
+/*----------------  First: initialization ------------------------------------*/
+     int neq,ns;
+
+     neq=system->neq;
+     ns=method->ns;
+     int mm=method->mm;
+
+/*------ declarations --------------------------------------------------------*/
+
+  
+     val_type aa,bb;
+     int lda,ldb,ldc;
+     val_type C1[mm*neq];
+     
+/* ----------- implementation  -----------------------------------------------*/ 
+
+
+/*   RR=(Q1T g+ (h DQ2T) g J^T) */
+     aa=1.;
+     bb=0.;
+     lda=mm; ldb=neq; ldc=neq;
+     GEMM (CblasRowMajor,CblasTrans,CblasNoTrans,mm,neq,ns,aa,	
+           method->Q1, lda, g, ldb, bb, RR, ldc);
+
+     aa=1.;
+     bb=0.;
+     lda=ns; ldb=neq; ldc=neq;
+     GEMM (CblasRowMajor,CblasNoTrans,CblasNoTrans,mm,neq,ns,aa,	
+           method->hDQ2T, lda, g, ldb, bb, C1, ldc);
+
+     aa=1.;
+     bb=1.;
+     lda=neq; ldb=neq; ldc=neq;
+     GEMM (CblasRowMajor,CblasNoTrans,CblasTrans,mm,neq,neq,aa,	
+           C1, lda,thestatptr->jac, ldb, bb, RR, ldc);
+     
+/*
+
+     int i,j;
+
+     printf("\nRR\n");
+     for (i=0; i<mm; i++) 
+     {
+          for (j=0; j<neq; j++) printf("%lg,",RR[i*neq+j]);
+          printf("\n");
+     }
+     printf("\n");
+*/
+
+     return;
+
+
+}
+
+
+
+
+
+/******************************************************************************/
+/*									      */
+/*      Compute_Z   		         				      */
+/*									      */
+/******************************************************************************/
+
+void Compute_Z (ode_sys *system, val_type h, val_type *MM,val_type *RR, 
+               val_type *ZZ,gauss_method *method,solver_stat *thestatptr,
+               int *ipiv)
+
+{
+
+/*----------------  First: initialization ------------------------------------*/
+     int neq;
+
+     neq=system->neq;
+     int mm=method->mm;
+
+/*------ declarations --------------------------------------------------------*/
+
+     int i;
+     int ind0;
+     int info;
+     val_type SUM[neq];  
+  
+     val_type aa,bb;
+     int n,lda,ldb,nrhs;
+     int incx,incy;
+     char trans;
+     
+/* ----------- implementation  -----------------------------------------------*/ 
+   
+
+     /* ---- compute d= h J sum alpha_i ( Id+h^2*sigma^2*J^2 )^-1 --*/
+
+     i=0;
+     aa=method->alpha[i];
+     bb=0.;
+     lda=neq; incx=1; incy=1;
+
+     GEMV (CblasRowMajor,CblasNoTrans,neq,neq,aa,	
+           &thestatptr->INVIDJ2[0], lda, &RR[i*neq], incx, bb, SUM, incy);
+
+     bb=1.;
+     for (i=1; i<mm; i++)
+     {
+
+           ind0=i*(neq*neq);
+           aa=method->alpha[i];
+           
+           GEMV (CblasRowMajor,CblasNoTrans,neq,neq,aa,	
+           &thestatptr->INVIDJ2[ind0], lda, &RR[i*neq], incx, bb, SUM, incy);
+
+     }
+
+     aa=h ; 
+     bb=0.;
+
+     GEMV (CblasRowMajor,CblasNoTrans,neq,neq,aa,	
+           thestatptr->jac, lda, SUM, incx, bb, ZZ, incy); 
+
+     /* -----  Solve M Dz= d --------*/
+
+     trans = 'N';
+     n = neq;        
+     nrhs=1;         
+     lda = neq;
+     ldb = 1;
+
+     info= GETRS (LAPACK_ROW_MAJOR,trans,n,nrhs,MM,lda,ipiv,ZZ,ldb);
+
+     if( info < 0 )
+     {
+	printf( "The execution (Compute z) _getrs is unsuccesfull. info=%i,\n",info );
+	printf( "the solution could not be computed.\n" );
+	exit( 1 );
+     }
+
+
+/*
+     printf("\nz\n");
+     for (i=0; i<neq; i++) printf("%lg,",ZZ[i]);
+     printf("\n");
+*/
+
+     return;
+
+}
+
+
+
+
+/******************************************************************************/
+/*									      */
+/*      Compute_W1    							      */
+/*									      */
+/******************************************************************************/
+
+void Compute_W1 (ode_sys *system, val_type h, val_type *RR,val_type *ZZ,
+                val_type *W1, gauss_method *method,solver_stat *thestatptr)
+
+{
+
+/*----------------  First: initialization ------------------------------------*/
+     int neq;
+
+     neq=system->neq;
+     int mm=method->mm;
+
+/*------ declarations --------------------------------------------------------*/
+
+     int i,j,ind;
+     val_type C1[neq]; 
+     val_type aux;
+  
+     val_type aa,bb;
+     int lda;
+     int incx,incy;
+     
+/* ----------- implementation  -----------------------------------------------*/ 
+
+
+     lda=neq; incx=1; incy=1;
+     aa=1.;
+     bb=0.;   
+
+     for (i=0; i<mm; i++)
+     {
+           ind=i*(neq*neq);
+    
+           aux=method->alpha[i]/2;
+           for (j=0; j<neq; j++) C1[j]=(RR[i*neq+j]+aux*ZZ[j]);
+
+           GEMV (CblasRowMajor,CblasNoTrans,neq,neq,aa,	
+                 &thestatptr->INVIDJ2[ind], lda, C1, incx, bb, &W1[i*neq], incy);
+
+     }
+
+/*
+     printf("\nW1\n");
+     for (i=0; i<mm; i++) 
+     {
+          for (j=0; j<neq; j++) printf("%lg,",W1[i*neq+j]);
+          printf("\n");
+     }
+     printf("\n");
+*/
+
+
+     return;
+}
+
+
+
+
+/******************************************************************************/
+/*									      */
+/*      Compute_W2    							      */
+/*									      */
+/******************************************************************************/
+
+void Compute_W2 (ode_sys *system, val_type h,val_type *W1,val_type *ZZ,
+                 val_type *g, val_type *W2, gauss_method *method,
+                 solver_stat *thestatptr)
+
+{
+
+/*----------------  First: initialization ------------------------------------*/
+     int neq,ns;
+
+     neq=system->neq;
+     ns=method->ns;
+     int mm=method->mm;
+     int smm=method->smm;
+
+/*------ declarations --------------------------------------------------------*/
+
+     val_type aa,bb;
+     int lda,ldb,ldc;
+     val_type C1[smm*neq];
+     
+/* ----------- implementation  -----------------------------------------------*/ 
+    
+
+     aa=1.;
+     bb=0.;
+     lda=smm; ldb=neq; ldc=neq;
+     GEMM (CblasRowMajor,CblasTrans,CblasNoTrans,smm,neq,ns,aa,	
+           method->Q2, lda, g, ldb, bb, W2, ldc);                
+
+     aa=-1.;
+     bb=0.;
+     lda=mm; ldb=neq; ldc=neq;
+     GEMM (CblasRowMajor,CblasNoTrans,CblasNoTrans,smm,neq,mm,aa,	
+           method->hDT, lda, W1, ldb, bb, C1, ldc);
+
+     aa=1.;
+     bb=1.;
+     lda=neq; ldb=neq; ldc=neq;
+     GEMM (CblasRowMajor,CblasNoTrans,CblasTrans,smm,neq,neq,aa,	
+           C1, lda,thestatptr->jac, ldb, bb, W2, ldc); 
+
+
+/*
+
+     int i,j;
+
+     printf("\nW2\n");
+     for (i=0; i<smm; i++) 
+     {
+          for (j=0; j<neq; j++) printf("%lg,",W2[i*neq+j]);
+          printf("\n");
+     }
+     printf("\n");
+*/
+
+     return;
+
+}
+
+
+
+
+/******************************************************************************/
+/*									      */
+/*      Compute_DL 		         				      */
+/*									      */
+/******************************************************************************/
+
+void Compute_DL (ode_sys *system, val_type *W1,val_type *W2,
+                 val_type *DL, gauss_method *method,
+                 solver_stat *thestatptr)
+
+{
+
+/*----------------  First: initialization ------------------------------------*/
+     int neq,ns;
+
+     neq=system->neq;
+     ns=method->ns;
+
+     int mm=method->mm;
+     int smm=method->smm;
+
+
+/*------ declarations --------------------------------------------------------*/
+
+     val_type aa,bb;
+     int lda,ldb,ldc;
+     
+/* ----------- implementation  -----------------------------------------------*/ 
+
+     aa=1.;
+     bb=0.;
+     lda=mm; ldb=neq; ldc=neq;
+     GEMM (CblasRowMajor,CblasNoTrans,CblasNoTrans,ns,neq,mm,aa,	
+           method->BQ1, lda, W1, ldb, bb, DL, ldc); 
+
+     aa=1.;
+     bb=1.;
+     lda=smm; ldb=neq; ldc=neq;
+     GEMM (CblasRowMajor,CblasNoTrans,CblasNoTrans,ns,neq,smm,aa,	
+           method->BQ2, lda, W2, ldb, bb, DL, ldc); 
+
+
+/*
+
+     int i,j;
+
+     printf("\nDL\n");
+     for (i=0; i<ns; i++) 
+     {
+          for (j=0; j<neq; j++) printf("%lg,",DL[i*neq+j]);
+          printf("\n");
+     }
+     printf("\n");
+*/
+
+
+     return;
+
+
+}
+
+
+/******************************************************************************/
+/*									      */
+/*      Compute_GG 							      */
+/*									      */
+/******************************************************************************/
+
+void Compute_GG (ode_sys *system, val_type h, 
+                 val_type *g, val_type *DL, val_type *GG,
+                 gauss_method *method, solver_stat *thestatptr)
+{
+
+/*----------------  First: initialization ------------------------------------*/
+     int neq,ns;
+
+     neq=system->neq;
+     ns=method->ns;
+
+/*------ declarations --------------------------------------------------------*/
+
+     int i,is,in;
+     int ind0,indi;
+
+     val_type alpha,beta;
+     int lda,ldb,ldc;
+     int incx,incy;
+
+     val_type SUM[ns*neq];   
+     val_type aux1,aux2;
+
+     
+/* ----------- implementation  -----------------------------------------------*/ 
+
+
+    alpha = 1.; beta = 0.;
+    lda=ns; ldb=neq; ldc=neq;  
+    GEMM(CblasRowMajor,CblasNoTrans,CblasNoTrans, ns,neq,ns,
+          alpha, method->hBAB, lda, DL, ldb, beta, SUM, ldc );
+
+    alpha = 1.; beta = 1.;
+    lda=neq;
+    incx=1; incy=1;
+
+    for (is = 0; is<ns; is++)
+    {
+           ind0=is*(neq*neq);
+           indi=is*neq;
+
+           for (i = 0; i<neq; i++)
+           {   
+                 in=indi+i;
+                 aux1=g[in];
+                 aux2=DL[in];
+                 GG[in]=(aux1-aux2);
+           }
+
+           GEMV (CblasRowMajor,CblasNoTrans,neq,neq,alpha,	
+                 &thestatptr->jac_i[ind0], lda, &SUM[indi], incx, beta, &GG[indi], incy); 
+
+     }  
+
+
+/*
+     printf("\nGG\n");
+     for (i=0; i<ns; i++) 
+     {
+          for (j=0; j<neq; j++) printf("%lg,",GG[i*neq+j]);
+          printf("\n");
+     }
+     printf("\n");
+*/
+
+     return;
+
+
+}
+
+
+
+/******************************************************************************/
+/*									      */
+/*      TheOutput (RKG)							      */
+/*									      */
+/******************************************************************************/
  
 void TheOutput(ode_sys *system,gauss_method *method,val_type t,solution *u,
                solver_stat *thestatptr,
                parameters *params,toptions *options,FILE *myfile)
 {
 
-/* ---------- First initializations ------------------------------------*/
+/* ---------- First initializations ------------------------------------------*/
 
      int neq;
      neq=system->neq;
 
-#    if PREC ==2  //QUADRUPLEPRECISION
-     int n;
-     int width = 46;
-     char buf[128];
-#    endif
 
-/*------ declarations --------------------------------------------------*/
+/*------ declarations --------------------------------------------------------*/
      val_type DH;
      int i,node;
   
@@ -905,7 +2025,7 @@ void TheOutput(ode_sys *system,gauss_method *method,val_type t,solution *u,
   
      struct rec my_record;
 
-/* ----------- implementation  -----------------------------------------*/ 
+/* ----------- implementation  -----------------------------------------------*/ 
 
      node=neq;
      DH=(system->ham(node,u,params)-thestatptr->E0)/thestatptr->E0;
@@ -914,13 +2034,7 @@ void TheOutput(ode_sys *system,gauss_method *method,val_type t,solution *u,
      if (((thestatptr->stepcount % options->sampling) == 0) || (thestatptr->laststep))
      {
            thestatptr->nout++;
-#    if PREC ==2  //QUADRUPLEPRECISION
-           printf("Energy Quadruple, %i,%i,",thestatptr->stepcount,thestatptr->itcount);
-           n = quadmath_snprintf(buf, sizeof buf, "%+-#*.30Qe", width, DH);
-           if ((size_t) n < sizeof buf) printf("%s\n",buf);
-#    else  //DOUBLEPRECISION
            printf("%i,%i, %lg\n",thestatptr->stepcount,thestatptr->itcount,DH);
-#    endif 
 
            my_record.t=t;
            for (i=0; i<neq;i++) 
@@ -938,139 +2052,130 @@ void TheOutput(ode_sys *system,gauss_method *method,val_type t,solution *u,
 
 }
 
-void TheOutput2(ode_sys *system,gauss_method *method,val_type t,
-                solution *u,solution *u2,solver_stat *thestatptr,
-                parameters *params,toptions *options,FILE *myfile)
+
+
+/******************************************************************************/
+/* 									      */
+/*   Compensated Summation:						      */
+/* 									      */
+/* 									      */
+/******************************************************************************/
+
+void CompensatedSummation (gauss_method *gsmethod,
+                           solution *u,ode_sys *system,
+                           toptions *options,solver_stat *thestatptr)
+
 {
+/* ---------- First initializations ------------------------------------------*/
 
-/* ---------- First initializations ------------------------------------*/
-
-     int neq;
+     int neq,ns;
+     
      neq=system->neq;
+     ns=gsmethod->ns;
 
-/*------ declarations --------------------------------------------------*/
+/*------ declarations --------------------------------------------------------*/
 
-     val_type DH;
-     int i,node;
-  
-     struct rec
-     {
-     val_type t;
-     val_type uu[neq];
-     val_type ee[neq];
-     val_type est[neq];
-     };
-  
-     struct rec my_record;
+     int i,ix,is,isn;
+     val_type aux;
+     val_type s0,s1,delta,eli,ee;
+     val_type *lik;
+     val_type *DL;
+     lik=thestatptr->lik;
+     DL=thestatptr->DL;
 
-#    if PREC ==2  //QUADRUPLEPRECISION
-     int n;
-     int width = 46;
-     char buf[128];
-#    endif
+/* ----------- implementation  -----------------------------------------------*/ 
 
-/* ----------- implementation  -----------------------------------------*/ 
 
-     node=neq;
-     DH=(system->ham(node,u,params)-thestatptr->E0)/thestatptr->E0;
-     if (fabs(DH)>thestatptr->MaxDE) thestatptr->MaxDE=fabs(DH);
+          for (i = 0; i<neq; i++)
+          {
+              eli= thestatptr->DL[i]; 
 
-     if (((thestatptr->stepcount % options->sampling) == 0) || (thestatptr->laststep))
-     {
-           thestatptr->nout++;
-#     if PREC ==2  //QUADRUPLEPRECISION
-           printf("Energy Quadruple, %i,",thestatptr->stepcount);
-           n = quadmath_snprintf(buf, sizeof buf, "%+-#*.30Qe", width, DH);
-           if ((size_t) n < sizeof buf) printf("%s\n",buf);
-#     else     //DOUBLEPRECISION
-           printf("%i, %lg\n",thestatptr->stepcount,DH);
-#     endif 
+              for (is=1; is<ns; is++)
+              {
+                      isn=neq*is+i;
+                      eli+=thestatptr->DL[isn];                      
+              }
 
-     my_record.t=t;
-     for (i=0; i<neq;i++) 
-     {
-           my_record.uu[i]=u->uu[i];
-           my_record.ee[i]=u->ee[i];
-           my_record.est[i]=(u->uu[i]-u2->uu[i])+(u->ee[i]-u2->ee[i]);}
-           fwrite(&my_record, sizeof(struct rec), 1, myfile);  
-     } 
+              u->ee[i]+=eli;
+       
+          }
 
-    if (thestatptr->stepcount>1) statlinit(system,method,thestatptr);
+     /* ----------------yn+1=yn+(Sum Li^{[k-1]}+e_n) 21-07-2016---------------------------*/
+
+          for (i = 0; i<neq; i++)
+          { 
+
+               s0=u->uu[i];
+               ee=u->ee[i];
+		
+               for (ix =0 ; ix<ns; ix++)
+               {
+                    is=gsmethod->orderedindices[ix];
+                    isn=neq*is+i;                
+                    delta=lik[isn]+ee;
+                    if (options->rdigits>0) 
+                        RemoveDigitsFcn(&delta,options->mrdigits);
+                    s1=s0;
+                    s0=s1+delta;
+                    aux=s1-s0;
+                    ee=aux+delta;
+               } 
+
+               u->uu[i]=s0;
+               u->ee[i]=ee;
+      	       	       
+          }
+     
+
 
      return;
-
 }
 
 
 
-/****************************************************************************************/
-/* 											*/
-/*   RGK:  									        */
-/* 											*/
-/* 											*/
-/****************************************************************************************/
+/******************************************************************************/
+/* 								              */
+/*   RGK:  								      */
+/* 									      */
+/* 									      */
+/*******************************************************************************/
 
 void RKG (gauss_method *gsmethod, solution *u,ode_sys *system,toptions *options,
           void RKG_Step (), solver_stat *thestatptr)
 
 {
 
-/* ---------- First initializations ------------------------------------*/
+/* ---------- First initializations ------------------------------------------*/
 
-     int neq,ns;
+     int neq;
      parameters *params;
 
      neq=system->neq;
-     ns=gsmethod->ns;
      params=&system->params;
 
-/*------ declarations --------------------------------------------------*/
+/*------ declarations --------------------------------------------------------*/
 
      FILE *myfile;
   
-     int i,is,isn,ix;
      int istep,nstep;
      val_type tn;             
-     val_type u0,sum,aux;  
-     val_type *z,*li,*liold;
+     val_type *z;
 
      z=thestatptr->z;
-     li=thestatptr->li;
-     liold=thestatptr->liold;
 
 
-#    if PREC ==2  //QUADRUPLEPRECISION
-     int n;
-     int width = 46;
-     char buf[128];
-#    endif
-
-/* ----------- implementation  ---------------------------------------*/ 
+/* ----------- implementation  -----------------------------------------------*/ 
 
      myfile = fopen(thestatptr->filename,"wb"); 
 
-/* ----------- initial energi (E0)   ---------------------------------*/
+/* ----------- initial energi (E0)   -----------------------------------------*/
 
      thestatptr->E0=system->ham(neq,u,params);
-
-#if PREC ==2  //QUADRUPLEPRECISION
-     printf("Initial energy:");
-     n = quadmath_snprintf(buf, sizeof buf, "%+-#*.30Qe", width, thestatptr->E0);
-     if ((size_t) n < sizeof buf) printf("%s\n",buf);
-
-#else     //DOUBLEPRECISION
      printf("Initial energy=%lg\n", thestatptr->E0);
-#endif 
 
-     thestatptr->MaxDE=0.; 
      tn=options->t0;
      nstep=((options->t1)-(options->t0))/(options->h);
-     if (nstep*(options->h)+(options->t0)<options->t1)  {nstep++;}    
-//     nstep=10;options->t1=nstep*(options->h);
-  
-     thestatptr->convergence=SUCCESS;
 
-     thestatptr->nout=0;
 
 #ifdef IOUT
      TheOutput(system,gsmethod,tn,u,thestatptr,params,options,myfile);
@@ -1078,10 +2183,8 @@ void RKG (gauss_method *gsmethod, solution *u,ode_sys *system,toptions *options,
 
      for(istep=0; istep<nstep; istep++) 
      {     
-          for (is=0; is<ns;is++)
-                for (i=0; i<neq; i++) liold[neq*is+i]=thestatptr->li[neq*is+i];
+          
           Li_init (u,z,system,gsmethod,thestatptr,options);              
-          Yi_update (u,z,system,gsmethod,thestatptr); 
 
           RKG_Step (system,u,tn,options->h,options,gsmethod,thestatptr);
 
@@ -1091,48 +2194,31 @@ void RKG (gauss_method *gsmethod, solution *u,ode_sys *system,toptions *options,
                nstep=istep;
           } 	      
 
-     /* ----------------yn+1=yn+(Sum Li+e_n) --------------------------------------*/
+          else
+          {
+               CompensatedSummation (gsmethod,u,system,options,thestatptr);
 
-          for (i = 0; i<neq; i++)
-          { 
-               ix=0;
-               is=gsmethod->orderedindices[ix];
-               sum=li[neq*is+i]+u->ee[i];			
+               tn=(istep+1)*(options->h);         
 
-               for (ix =1 ; ix<ns; ix++)
-               {
-                    is=gsmethod->orderedindices[ix];
-                    isn=neq*is+i;
-                    sum+=li[isn];
-               } 
-
-     /* ----------------compensated sumation ------------------------------------*/  
-
-               u0=u->uu[i];
-               u->uu[i]=u0+sum;
-               aux=u->uu[i]-u0;
-               u->ee[i]=sum-aux;
-      	       	       
-          }
-
-          tn=(istep+1)*(options->h);         
-
-          thestatptr->stepcount++;		
-          (thestatptr->totitcount)+=(thestatptr->itcount); 
-          if ((thestatptr->itcount)>(thestatptr->maxitcount))
-               (thestatptr->maxitcount)=(thestatptr->itcount);
+               thestatptr->stepcount++;		
+               (thestatptr->totitcount)+=(thestatptr->itcount); 
+               if ((thestatptr->itcount)>(thestatptr->maxitcount))
+                   (thestatptr->maxitcount)=(thestatptr->itcount);
 
 #ifdef IOUT
-          TheOutput(system,gsmethod,tn,u,thestatptr,params,options,myfile);
+               TheOutput(system,gsmethod,tn,u,thestatptr,params,options,myfile);
 #endif 
 
-          if ((tn+options->h)>=options->t1)
-          { 
-               options->h=options->t1-tn;
-               thestatptr->laststep=true;
-          } 
+               if ((tn+options->h)>=options->t1)
+               { 
+                     options->h=options->t1-tn;
+                     thestatptr->laststep=true;
+               } 
+
+          }
 
      }
+
 
      fclose(myfile);
 
@@ -1140,277 +2226,35 @@ void RKG (gauss_method *gsmethod, solution *u,ode_sys *system,toptions *options,
 
 }
 
-/****************************************************************************************/
-/* 											*/
-/*   RKG2:  double integration (sequentially).  				        */
-/*        									        */
-/* 											*/
-/****************************************************************************************/
 
-void RKG2 (gauss_method *gsmethod, gauss_method *gsmethod2,solution *u,solution *u2,
-           ode_sys *system,toptions *options,toptions *options2,
-           void RKG_Step (), solver_stat *thestatptr,solver_stat *thestatptr2)
- 
+
+/******************************************************************************/
+/* 								              */
+/*   select_gauss				 			      */
+/*        								      */
+/* 									      */
+/******************************************************************************/
+
+void select_gauss(gauss_method *gsmethodptr, 
+           solution *uptr,
+           ode_sys *systemptr,toptions *optionsptr,
+           solver_stat *thestatptr)
 {
-
-/* ---------- First initializations ------------------------------------*/
-
-     int neq,ns;
-     parameters *params;
-
-     neq=system->neq;
-     ns=gsmethod->ns;
-     params=&system->params;
-
-/*------ declarations --------------------------------------------------*/
-
-     FILE *myfile;
-  
-     int i,is,isn,ix,ksw;
-     int istep,nstep;
-     val_type tn;             
-     val_type sum,aux;
-     val_type u0[neq];     
-     val_type *z,*li,*z2,*li2;
-     bool initwithfirstintegration;         
-
-     z=thestatptr->z;
-     li=thestatptr->li;
-     z2=thestatptr2->z;
-     li2=thestatptr2->li;
-
-#    if PREC ==2  //QUADRUPLEPRECISION
-     int n;
-     int width = 46;
-     char buf[128];
-#    endif
-
-/* ----------- implementation  ---------------------------------------*/ 
-
-     myfile = fopen(thestatptr->filename,"wb"); 
-
-/* ----------- initial energi (E0)   ---------------------------------*/
-
-     thestatptr->E0=system->ham(neq,u,params);
-
-#if PREC ==2  //QUADRUPLEPRECISION
-     printf("Initial energy:");
-     n = quadmath_snprintf(buf, sizeof buf, "%+-#*.30Qe", width, thestatptr->E0);
-     if ((size_t) n < sizeof buf) printf("%s\n",buf);
-
-#else     //DOUBLEPRECISION
-     printf("Initial energy=%lg\n", thestatptr->E0);
-#endif 
-
-     thestatptr->MaxDE=0.; 
-  
-     tn=options->t0;
-     nstep=((options->t1)-(options->t0))/(options->h);
-     if (nstep*(options->h)+(options->t0)<options->t1) 
-           nstep++;    
-//  nstep=10;options->t1=nstep*(options->h);
-  
-     thestatptr->convergence=SUCCESS;
-     initwithfirstintegration=true;
-     ksw=0;
-
-     thestatptr->nout=0;
-
-#ifdef IOUT
-     TheOutput2(system,gsmethod,tn,u,u2,thestatptr,params,options,myfile);
-#endif 
-
-     for(istep=0; istep<nstep; istep++) 
-     {     
-
-          /* ---------------- First integration -----------------------------------------*/
-
-          Li_init (u,z,system,gsmethod,thestatptr,options);   
-          RKG_Step (system,u,tn,options->h,options,gsmethod,thestatptr);
-          if (thestatptr->convergence==FAIL)
-          {
-               printf("Stop Fail. step=%i\n", istep);
-               nstep=istep;
-          } 	      
-
-          for (i = 0; i<neq; i++)
-          { 
-               ix=0;
-               is=gsmethod->orderedindices[ix];
-               sum=li[neq*(is)+i]+u->ee[i];			
-
-               for (ix = 1 ; ix<ns; ix++)
-               {
-                    is=gsmethod->orderedindices[ix];
-                    isn=neq*is+i;
-                    sum+=li[isn];
-               } 
-
-               u0[i]=u->uu[i];
-               u->uu[i]=u0[i]+sum;
-               aux=u->uu[i]-u0[i];
-               u->ee[i]=sum-aux;
-      	       	       
-          }
-
-          /* ---------------- Second integration -----------------------------------------*/
-
-          if (initwithfirstintegration==false)
-          {
-               Li_init (u2,z2,system,gsmethod2,thestatptr2,options2);
-          }  
-          else
-          {    for (is=0; is<ns; is++)
-                     for (i=0; i<neq; i++)
-                          {z2[is*neq+i]=z[is*neq+i]+(u2->uu[i]-u0[i]);}
-          }
-
-          RKG_Step (system,u2,tn,options2->h,options2,gsmethod2,thestatptr2);
-          if (thestatptr2->convergence==FAIL)
-          {
-               printf("Stop Fail. step=%i\n", istep);
-               nstep=istep;
-          } 	
-  
-          for (i = 0; i<neq; i++)
-          { 
-               ix=0;
-               is=gsmethod2->orderedindices[ix];
-               sum=li2[neq*(is)+i]+u2->ee[i];			
-
-               for (ix = 1 ; ix<ns; ix++)
-               {
-                    is=gsmethod2->orderedindices[ix];
-                    isn=neq*is+i;
-                    sum+=li2[isn];
-               } 
-
-               u0[i]=u2->uu[i];
-               u2->uu[i]=u0[i]+sum;
-               aux=u2->uu[i]-u0[i];
-               u2->ee[i]=sum-aux;
-      	       	       
-          }
-   
-          if (NormalizedDistance(neq,1,options,u->uu,u2->uu)>ESTERRTHRS)     
-          { 
-                printf("Stop integration. Estimated error is high=%i\n", istep);
-                nstep=istep;
-          };
-     
-          if (initwithfirstintegration==true)
-          {
-                if ((thestatptr2->itcount) > thestatptr->itcount)
-                {
-                     ksw++;
-                     if (ksw>MAXKSW) {initwithfirstintegration=false;}
-                }
-                else
-                {
-                     ksw=0;
-                }
-          }
-
-          tn=(istep+1)*(options->h);
-
-          thestatptr->stepcount++;		
-          (thestatptr->totitcount)+=(thestatptr->itcount); 
-          if ((thestatptr->itcount)>(thestatptr->maxitcount))
-               {(thestatptr->maxitcount)=(thestatptr->itcount);}
-
-          thestatptr2->stepcount++;		
-          (thestatptr2->totitcount)+=(thestatptr2->itcount); 
-          if ((thestatptr2->itcount)>(thestatptr2->maxitcount))
-               {(thestatptr2->maxitcount)=(thestatptr2->itcount);}
-
-#ifdef IOUT
-          TheOutput2(system,gsmethod,tn,u,u2,thestatptr,params,options,myfile);
-#endif 
-
-          if ((tn+options->h)>=options->t1)
-          { 
-               options->h=options->t1-tn;
-               thestatptr->laststep=true;
-          } 
-
-      }
-
-
-      fclose(myfile);
-
-      return;
-
-}
-
-
-/****************************************************************************************/
-/* 											*/
-/*   select_gauss				 				        */
-/*        									        */
-/* 											*/
-/****************************************************************************************/
-
-void select_gauss(gauss_method *gsmethodptr, gauss_method *gsmethod2ptr,solution *uptr,solution *u2ptr,
-           ode_sys *systemptr,toptions *optionsptr,toptions *options2ptr,
-           solver_stat *thestatptr,solver_stat *thestat2ptr)
-{
-    int i;
 
     switch (optionsptr->algorithm)
     {  
-    case  1: case 2: 
-          optionsptr->iteration[0]=Newton_Step;
-          systemptr->cod[0]=0;
-          RKG (gsmethodptr,uptr,systemptr,optionsptr,Newton_it,thestatptr);                             
+    case  1: // NSS
+          RKG (gsmethodptr,uptr,systemptr,optionsptr,NSS_Step,thestatptr);                             
+    break; 
+
+    case  2: // NSS+ (efficient)
+          RKG (gsmethodptr,uptr,systemptr,optionsptr,NSS_Step_plus,thestatptr);                             
     break;  
 
-    case  11: case 12: 
-          optionsptr->iteration[0]=Newton_Step0;
-          optionsptr->iteration[1]=Newton_Step;
-          systemptr->cod[0]=0;
-          RKG (gsmethodptr,uptr,systemptr,optionsptr,Newton_it_Mix,thestatptr);                             
+    case  3: // NSS-MIX
+          RKG (gsmethodptr,uptr,systemptr,optionsptr,NSS_MIX_Step,thestatptr);                             
     break;  
 
-    case 13:
-         optionsptr->iteration[0]=Newton_Step0;
-         optionsptr->iteration[1]=Newton_Step;
-         systemptr->cod[0]=0;
-         RKG (gsmethodptr,uptr,systemptr,optionsptr,Newton_it_Mix2,thestatptr);                             
-    break;  
-
-    case 21: /* RKG2: sequential execution */
-          options2ptr->t0=optionsptr->t0;
-  	  options2ptr->t1=optionsptr->t1;
- 	  options2ptr->h=optionsptr->h;
- 	  options2ptr->algorithm=optionsptr->algorithm;
- 	  options2ptr->sampling=optionsptr->sampling;
- 	  options2ptr->approximation=optionsptr->approximation;
-
-          for (i=0; i<systemptr->neq; i++)
-          {
-               options2ptr->rtol[i]=optionsptr->rtol[i];
-               options2ptr->atol[i]=optionsptr->atol[i];
-          }
-
-          
-          for (i=0; i<systemptr->neq;i++)
-   	  {
-                u2ptr->uu[i]=uptr->uu[i];
-    		u2ptr->ee[i]=uptr->ee[i];					
-          }
-
-          optionsptr->iteration[0]=Newton_Step;
-          options2ptr->iteration[0]=Newton_Step;
-          systemptr->cod[0]=0;
-          gsmethod2ptr->ns=gsmethodptr->ns;
-
-          GaussCoefficients(gsmethod2ptr,options2ptr);
- 	  InitStat(systemptr,gsmethod2ptr,thestat2ptr);
-
-          RKG2 (gsmethodptr,gsmethod2ptr,uptr,u2ptr,systemptr,optionsptr,options2ptr,
-                Newton_it,thestatptr,thestat2ptr);  
-
-    break;
                       
     default:
           printf("Error (select gauss): incorrect algorithm\n");
@@ -1422,4 +2266,87 @@ void select_gauss(gauss_method *gsmethodptr, gauss_method *gsmethod2ptr,solution
     return;
 }
 
+
+/******************************************************************************/
+/* 									      */
+/*   select_odefun				 			      */
+/*        								      */
+/* 									      */
+/******************************************************************************/
+
+void select_odefun (int codfun, ode_sys *system)
+{
+
+     switch (codfun)
+     { 
+     case 1: 
+           system->f = Ode1;
+           system->ham= Ham1;
+           system->jac= Jac1;                    
+     break;
+
+     case 2: 
+           system->f = Ode2;
+           system->ham= Ham2;
+           system->jac= Jac2;
+     break;
+
+     case 3: 
+           system->f = Ode3;
+           system->ham= Ham3;
+           system->jac= Jac3;                     
+     break;
+
+     case 4: 
+           system->f = Ode4;
+           system->ham= Ham4;
+           system->jac= Jac4;                    
+     break;
+
+     case 5: 
+           system->f = Ode5;
+           system->ham= Ham5;
+           system->jac= Jac5;                     
+     break;
+
+     case 6: 
+           system->f = Ode6;
+           system->ham= Ham6;
+           system->jac= Jac6;                      
+     break;
+
+     case 7: 
+           system->f = Ode7;
+           system->ham= Ham7;
+           system->jac= Jac7;                      
+     break;
+
+     case 8: 
+           system->f = Ode8;
+           system->ham= Ham8;
+           system->jac= Jac8;                       
+     break;
+
+     case 9: 
+           system->f = Ode9;
+           system->ham= Ham9;
+           system->jac= Jac9;                     
+     break;
+
+     case 10: 
+           system->f = Ode10;
+           system->ham= Ham10;
+           system->jac= Jac10;                        
+     break;
+
+
+     default:
+           printf("error. codfun\n");
+     break;
+
+     }
+
+     return;
+
+}
 

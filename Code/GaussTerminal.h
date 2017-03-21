@@ -20,7 +20,6 @@
 #include <sys/types.h>
 #include <quadmath.h>
 #include <stdbool.h>
-#include <GaussUserProblem0.h> 
-#include <GaussCommon0.h>
+
 
 

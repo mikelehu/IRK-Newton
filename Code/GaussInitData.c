@@ -6,6 +6,9 @@
 /*         Initial values:							*/
 /*		1:  Double-Pendulum non-Chaotic.				*/
 /*		2:  Double-Pendulum Chaotic.					*/
+/*              3:  Double-Pendulum Stiff: non-Chaotic (C=0).                   */
+/*              4:  Double-Pendulum Stiff: non-Chaotic (C=32).                  */
+/*              5:  Double-Pendulum Stiff: non-Chaotic (C=64).                  */
 /*		11: 9-Nbody Problem (Solar-System).				*/
 /* -----------------------------------------------------------------------------*/
 
@@ -21,33 +24,22 @@ void InitialData (toptions *options, solution *u,
      int i;
 #    endif
      val_type m1,m2,l1,l2,g;
-     val_type C1,C2,C3,C4,C5,C6,C7;
+     val_type C1,C2,C3,C4,C5,C6,C7,C8;
+
+     val_type CC,KK;
     
      switch (system->problem)
      {
      case 1:     /* Double Pendulum: non-Chaotic initial values. */
+
            system->neq=4;
            system->n=2;
+           options->h = POW(2,-7);
            options->t0=0.;
-           options->t1=pow(2,4);  //options->t1=pow(2,10);  
+           options->t1=pow(2,12);  
+           options->sampling=POW(2,10);
+ 
            params->numrpar=7;
-
-#          if PREC ==2  //QUADRUPLEPRECISION
-
-           m1=1.q;
-           m2=1.q;
-           l1=1.q;
-           l2=1.q;
-           g=9.8q;
-
-           //u0=(q,p) 
-           u->uu[0]=1.1q; u->uu[1]=0.q; 	   
-           u->uu[2]=0.q;  u->uu[3]=2.7746q;
-
-           //e0
-           for (i=0; i<system->neq; i++) {u->ee[i]=0.q;}
-
-#          else //DOUBLEPRECISION or FLOAT
 
            m1=1.;
            m2=1.;
@@ -56,22 +48,20 @@ void InitialData (toptions *options, solution *u,
            g=9.8;
 
            //u0=(q,p) 
-           u->uu[0]=1.1; u->uu[1]=0.; 	   
-           u->uu[2]=0.;  u->uu[3]=2.7746;
+           u->uu[0]=11./10; u->uu[1]=-11./10; 	   
+           u->uu[2]=13873./5000;  u->uu[3]=13873./5000;
 
            //e0
            u->ee[0]=-8.8817841970012523234e-17;
-           u->ee[1]=0.;
-           u->ee[2]=0.;
-           u->ee[3]=4.4764192352886311710e-17;
-
-#          endif        
-       	
-           C1=l2*l2*m2;
-           C2=l1*l1*(m1+m2);
-           C3=-2*l1*l2*l2;
-           C4=2*l1*l1*l2*l2*m2*m1;
-           C5=2*m1*m1*l2*l2*m2*m2;
+           u->ee[1]= 8.8817841970012523234e-17;
+           u->ee[2]=4.4764192352886311710e-17; 
+           u->ee[3]=4.4764192352886311710e-17;     
+             	
+           C1=-l1*l1*(m1+m2);
+           C2=-l2*l2*m2;
+           C3=-2*l1*l2*m2;
+           C4=-2*l1*l1*l2*l2*m2*m1-l1*l1*l2*l2*m2*m2;
+           C5=-l1*l1*l2*l2*m2*m2;
            C6=g*l1*(m1+m2);
            C7=g*l2*m2;
 
@@ -144,6 +134,170 @@ void InitialData (toptions *options, solution *u,
            params->rpar[6]=C7;
 
      break;	
+
+     case 3:     /* Double Pendulum Stiff: non-Chaotic initial values. */
+                 /* C=0                                                */
+                 
+           system->neq=4;
+           system->n=2;
+           options->h = POW(2,-7);
+           options->t0=0.;
+           options->t1=pow(2,12); 
+           options->t1=pow(2,-4); 
+           options->sampling=POW(2,10);
+           options->sampling=1;
+ 
+           params->numrpar=8;
+
+           m1=1.;
+           m2=1.;
+           l1=1.;
+           l2=1.;
+           g=9.8;
+
+           //u0=(q,p) 
+           u->uu[0]=11./10; u->uu[1]=-11./10; 	   
+           u->uu[2]=13873./5000;  u->uu[3]=13873./5000;
+
+           //e0
+           u->ee[0]=-8.8817841970012523234e-17;
+           u->ee[1]= 8.8817841970012523234e-17;
+           u->ee[2]=4.4764192352886311710e-17; 
+           u->ee[3]=4.4764192352886311710e-17;     
+             	
+           C1=-l1*l1*(m1+m2);
+           C2=-l2*l2*m2;
+           C3=-2*l1*l2*m2;
+           C4=-2*l1*l1*l2*l2*m2*m1-l1*l1*l2*l2*m2*m2;
+           C5=-l1*l1*l2*l2*m2*m2;
+           C6=g*l1*(m1+m2);
+           C7=g*l2*m2;
+           C8=0;
+
+           params->rpar[0]=C1;
+           params->rpar[1]=C2;	
+           params->rpar[2]=C3;
+           params->rpar[3]=C4;
+           params->rpar[4]=C5;
+           params->rpar[5]=C6;
+           params->rpar[6]=C7;	
+           params->rpar[7]=C8; 
+
+     break;	
+
+
+     case 4:     /* Double Pendulum Stiff: non-Chaotic initial values. */
+                 /* C=32                                               */
+                 
+           system->neq=4;
+           system->n=2;
+           options->h = POW(2,-7);
+           options->t0=0.;
+           options->t1=pow(2,12); 
+           options->t1=pow(2,-4); 
+           options->sampling=POW(2,10);
+           options->sampling=1;
+ 
+           params->numrpar=8;           
+
+           m1=1.;
+           m2=1.;
+           l1=1.;
+           l2=1.;
+           g=9.8;
+
+           CC=POW(2,5);
+           KK=CC*CC;
+
+           //u0=(q,p) 
+           u->uu[0]=11./10; 
+           u->uu[1]=(-11./10)/SQRT(1+100*KK); 	   
+           u->uu[2]=13873./5000;
+           u->uu[3]=13873./5000;
+
+           //e0
+           u->ee[0]=-8.8817841970012523234e-17;
+           u->ee[1]= 8.8817841970012523234e-17;
+           u->ee[2]=4.4764192352886311710e-17; 
+           u->ee[3]=4.4764192352886311710e-17;     
+             	
+           C1=-l1*l1*(m1+m2);
+           C2=-l2*l2*m2;
+           C3=-2*l1*l2*m2;
+           C4=-2*l1*l1*l2*l2*m2*m1-l1*l1*l2*l2*m2*m2;
+           C5=-l1*l1*l2*l2*m2*m2;
+           C6=g*l1*(m1+m2);
+           C7=g*l2*m2;
+           C8=0;
+
+           params->rpar[0]=C1;
+           params->rpar[1]=C2;	
+           params->rpar[2]=C3;
+           params->rpar[3]=C4;
+           params->rpar[4]=C5;
+           params->rpar[5]=C6;
+           params->rpar[6]=C7;	
+           params->rpar[7]=KK/2; 
+
+     break;	
+
+     case 5:     /* Double Pendulum Stiff: non-Chaotic initial values. */
+                 /* C=64                                               */
+                 
+           system->neq=4;
+           system->n=2;
+           options->h = POW(2,-7);
+           options->t0=0.;
+           options->t1=pow(2,12); 
+           options->t1=pow(2,-4); 
+           options->sampling=POW(2,10);
+           options->sampling=1;
+ 
+           params->numrpar=8;           
+
+           m1=1.;
+           m2=1.;
+           l1=1.;
+           l2=1.;
+           g=9.8;
+
+           CC=POW(2,6);
+           KK=CC*CC;
+
+           //u0=(q,p) 
+           u->uu[0]=11./10; 
+           u->uu[1]=(-11./10)/SQRT(1+100*KK); 	   
+           u->uu[2]=13873./5000;
+           u->uu[3]=13873./5000;
+
+           //e0
+           u->ee[0]=-8.8817841970012523234e-17;
+           u->ee[1]= 8.8817841970012523234e-17;
+           u->ee[2]=4.4764192352886311710e-17; 
+           u->ee[3]=4.4764192352886311710e-17;     
+             	
+           C1=-l1*l1*(m1+m2);
+           C2=-l2*l2*m2;
+           C3=-2*l1*l2*m2;
+           C4=-2*l1*l1*l2*l2*m2*m1-l1*l1*l2*l2*m2*m2;
+           C5=-l1*l1*l2*l2*m2*m2;
+           C6=g*l1*(m1+m2);
+           C7=g*l2*m2;
+           C8=0;
+
+           params->rpar[0]=C1;
+           params->rpar[1]=C2;	
+           params->rpar[2]=C3;
+           params->rpar[3]=C4;
+           params->rpar[4]=C5;
+           params->rpar[5]=C6;
+           params->rpar[6]=C7;	
+           params->rpar[7]=KK/2; 
+
+     break;	
+
+
+
 
      case 11:      /*9-Nbody Problem (Solar-System)*/
 

@@ -1,28 +1,34 @@
-VERSION=10.0
-MATHLINKPATH = /usr/local/Wolfram/Mathematica/${VERSION}/SystemFiles/Links/MathLink/DeveloperKit/Linux-x86-64/CompilerAdditions
+#
+# make : 20-04-2017 
+#
+# Description: Makefile for compiling IRK-NEWTON project.
+# System: Ubuntu 16.04 lts (64 bits)
+# 
+
+# Compiler.
 SYS = Linux
-
-MPREP = $(MATHLINKPATH)/mprep
-
 CC = /usr/bin/gcc
 
-LIBFLAGS=-L$(MATHLINKPATH)
-FLAGS=-I$(MATHLINKPATH) -O2 -Wall -std=c99 -fno-common 
-EXTRA_CFLAGS=
-OMP_FLAGS=-fopenmp
-#OMP_FLAGS=
+# Wolfram Mathematica. 
+MATHLINKPATH = $(MATHEMATICA_HOME)/SystemFiles/Links/MathLink/DeveloperKit/Linux-x86-64/CompilerAdditions
+MPREP = $(MATHLINKPATH)/mprep
 
-OBJECTS = GaussTerminal.o GaussInitData.o GaussCommon.o GaussUserProblem.o GaussCoefficients.o GaussCommon0.o GaussUserProblem0.o
-REALOBJECTS = math-Gausstm.o math-Gauss.o GaussCommon.o GaussUserProblem.o GaussCoefficients.o GaussCommon0.o GaussUserProblem0.o
-QUADOBJECTS = quad-Gausstm.o quad-Gauss.o GaussCommon.o GaussUserProblem.o GaussCoefficients.o GaussCommon0.o GaussUserProblem0.o
-OBJECTS3 = math-GaussParatm.o math-GaussPar.o GaussCommon.o GaussUserProblem.o  GaussCoefficients.o GaussCommon0.o GaussUserProblem0.o
+# Compiler options.
+LIBFLAGS=-L$(MATHLINKPATH)
+
+FLAGS=-I$(MATHLINKPATH) -O2 -Wall -std=c99 -fno-common -mfma
+OMP_FLAGS=-fopenmp
+
+# Objects
+OBJECTS = GaussTerminal.o GaussInitData.o GaussCommon.o GaussUserProblem.o GaussCoefficients.o 
+REALOBJECTS = math-Gausstm.o math-Gauss.o GaussCommon.o GaussUserProblem.o GaussCoefficients.o 
+
+.PHONY: clean help 
 
 all : 
 	make clean;
 	make term-Gauss;
 	make math-Gauss;
-	make quad-Gauss;
-	make math-GaussPar
 
 term-Gauss: $(OBJECTS) 
 	${CC} $(OBJECTS) ${OMP_FLAGS} -lm -lquadmath -llapacke -lblas -o GaussTerminal.exe
@@ -30,27 +36,19 @@ term-Gauss: $(OBJECTS)
 math-Gausstm.c : math-Gauss.tm
 	${MPREP} math-Gauss.tm -o math-Gausstm.c
 
-quad-Gausstm.c : quad-Gauss.tm
-	${MPREP} quad-Gauss.tm -o quad-Gausstm.c
-
-math-GaussParatm.c : math-GaussPar.tm
-	${MPREP} math-GaussPar.tm -o math-GaussParatm.c
-
 %.o: %.c prec.h def.h 
-	${CC} ${FLAGS} ${OMP_FLAGS} -c -I./  $<
+	${CC}  ${FLAGS} ${OMP_FLAGS} -c -I./  $<
 
 math-Gauss : $(REALOBJECTS)    
-	${CC}  $(REALOBJECTS) $(LIBFLAGS) ${OMP_FLAGS} -lML64i4 -lm -lrt -lstdc++ -luuid -ldl -llapacke -lblas -o $@ 
-
-quad-Gauss : $(QUADOBJECTS)   
-	${CC} $(QUADOBJECTS) $(LIBFLAGS) ${OMP_FLAGS} -lML64i4 -lm -lrt -lstdc++ -luuid -ldl -lquadmath -llapacke -lblas -o $@ 
-
-math-GaussPar : $(OBJECTS3) 
-	${CC} $(OBJECTS3) $(LIBFLAGS) ${OMP_FLAGS}  -lML64i4 -lm -lrt -lstdc++ -luuid -ldl -lquadmath -llapacke -lblas -o $@
+	${CC}  $(REALOBJECTS) $(LIBFLAGS) ${OMP_FLAGS} -lML64i4 -lm -lrt -lstdc++ -luuid -ldl -llapacke -lblas  -o math-Gauss.exe 
 
 clean :
 	rm -rf *.o *~ core *tm.* *.exe 
 
+help:
+	@echo "Valid targets;"
+	@echo " term-Gauss"
+	@echo " math-Gauss"
 
 
 

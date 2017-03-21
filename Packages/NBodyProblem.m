@@ -7,72 +7,21 @@
 BeginPackage["NBodyProblem`"];
 
 
-Chdata::usage=".......";
-NBodyODE::usage=" 
-
-    \!\(\*SubscriptBox[\(q\), \(i\)]\)= \!\(\*SubscriptBox[\(v\), \(i\)]\); 
-    \!\(\*SubscriptBox[\(v\), \(i\)]\)= \!\(\*UnderoverscriptBox[\(\[Sum]\), \(j = 1  \\\\n  j \[NotEqual] i\), \(N\)]\)\!\(\*FractionBox[\(-Gmj\), SuperscriptBox[\(\[LeftDoubleBracketingBar]\*SubscriptBox[\(q\), \(i\)] - \*SubscriptBox[\(q\), \(j\)]\[RightDoubleBracketingBar]\), \(3\)]]\)(\!\(\*SubscriptBox[\(q\), \(i\)]\)-\!\(\*SubscriptBox[\(q\), \(j\)]\));
-
-    parameters[[1]]=1 ----> Return (fq)
-    parameters[[1]]=2 ----> Return (fp)
-    otherwise        ----> Return (f=fq,fp)";
+NBodyODE::usage=" ";
 NBodyODEc::usage=" ";
 NBodyODEd::usage=" ";
 NBodyODEfunc::usage=" ";
-NBodyHam::usage=" 
-    H(q,v)=H-P= \!\(\*FractionBox[\(1\), \(2\)]\) \!\(\*UnderoverscriptBox[\(\[Sum]\), \(i = 1\), \(N\)]\)\!\(\*SubscriptBox[\(Gm\), \(i\)]\)\[LeftDoubleBracketingBar]\!\(\*SubscriptBox[\(v\), \(i\)]\)\!\(\*SuperscriptBox[\(\[RightDoubleBracketingBar]\), \(2\)]\) -\!\(\*UnderoverscriptBox[\(\[Sum]\), \(1 \[LessEqual] i < j \[LessEqual] N\), \(N\)]\)\!\(\*FractionBox[\(\*SubscriptBox[\(Gm\), \(i\)] \*SubscriptBox[\(Gm\), \(j\)]\), \(\(\\\\\)\(\[LeftDoubleBracketingBar]\*SubscriptBox[\(q\), \(i\)] - \*SubscriptBox[\(q\), \(j\)] \[LeftDoubleBracketingBar]\)\)]\) ";
-NBodyHam2::usage="";
+
+NBodyHam::usage="";
+NBodyMom::usage="";
+
+NBodyHam3::usage=" Fortran";
 
 Begin["`Private`"];
 
 
 (* ::Subsection:: *)
 (*Functions*)
-
-
-(* ::Subsubsection::Closed:: *)
-(*Chdata*)
-
-
-Chdata[u_,parameters_List]:=
-Module[{dim,neq,d,nbody,Gm,MM,mq,mv,i,i1,i2,id,qi,vi,qnew,vnew},
-
-dim=3;
-neq=Length[u];
-d=neq/2;
-nbody=Length[u]/(2*dim);
-Gm=parameters;
-MM=Sum[Gm[[i]],{i,nbody}];
- mq=Array[0&,dim];
- mv=Array[0 &,dim];
-
- Do[ i1=(i-1)*dim;
-  i2=d+i1;
-  qi=Table[u[[i1+id]],{id,1,dim}];
-  vi=Table[u[[i2+id]],{id,1,dim}];
-  mq=mq+Gm[[i]]*qi;
-  mv=mv+Gm[[i]]*vi,
-{i,nbody}];
-
-  mq=mq/MM;
- mv=mv/MM;
-
-qnew={};
-vnew={};
-
-Do[ i1=(i-1)*dim;
-  i2=d+i1;
-  AppendTo[qnew,Table[u[[i1+id]]-mq[[id]],{id,1,dim}]];
-  AppendTo[vnew,Table[u[[i2+id]]-mv[[id]],{id,1,dim}]],
-{i,nbody}];
-
-Flatten[Join[qnew,vnew]]
-];
-
-
-
-(* ::Input:: *)
-(**)
 
 
 (* ::Subsubsection::Closed:: *)
@@ -135,7 +84,8 @@ f
 
 NBodyODEc[t_,u_,parameters_List]:=Apply[NBodyODEfunc,Flatten[{t,u,parameters}]];
 
-NBodyODEd[t_,u_,parameters_List]:=SetPrecision[Apply[NBodyODEfunc,Flatten[N[{t,u,parameters}]]],40];
+Quadprec=Abs[Log[10.,2^-113]];
+NBodyODEd[t_,u_,parameters_List]:=SetPrecision[Apply[NBodyODEfunc,Flatten[N[{t,u,parameters}]]],Quadprec];
 
 NBodyODEfunc=Compile[{t,
 q11,q12,q13,q21,q22,q23,q31,q32,q33,q41,q42,q43,q51,q52,q53,q61,q62,q63,q71,q72,q73,q81,q82,q83,q91,q92,q93,q101,q102,q103,
@@ -203,18 +153,25 @@ f
 
 
 (* ::Subsubsection::Closed:: *)
-(*Hamiltonian*)
+(*Hamiltonian C*)
 
 
-NBodyHam[{t_,u_,e_},parameters_List, doi_:100]:=
-Module[{dim,neq,d,nbody,Gm,uu,H,P,r,i,i1,i2,j,j1,j2,id,
-              qi,qj,qij,vi},
+NBodyHam[neq_,out_,parameters_List, doi_:100]:=
+Module[{dim,d,nbody,Gm,uu,H,P,r,i,i1,i2,j,j1,j2,id,
+              qi,qj,qij,vi,
+              d1,d2,d3,d4},
 dim=3;
-neq=Length[u];
 d=neq/2;
-nbody=Length[u]/(2*dim);
+nbody=neq/(2*dim);
+
+d1=2;
+d2=nbody*(2*dim)+1;
+d3=d2+1;
+d4=d3+nbody*(2*dim)-1;
+
+uu=SetPrecision[out[[d1;;d2]],doi]+SetPrecision[out[[d3;;d4]],doi];
+
 Gm =SetPrecision[parameters,doi];
-uu=SetPrecision[u,doi]+SetPrecision[e,doi];
 H=0;
 P=0;
 Do[ i1=(i-1)*dim;
@@ -224,29 +181,36 @@ Do[ i1=(i-1)*dim;
       H=H+Gm[[i]]*(vi.vi);
       Do [    j1=(j-1)*dim;
                 j2=d+j1;
-                 qj=Table[uu[[j1+id]],{id,1,dim}];
-                 qij=qi-qj;
-                 r=Norm[qij];
-                 P=P+Gm[[i]]*Gm[[j]]/r,
+                qj=Table[uu[[j1+id]],{id,1,dim}];
+                qij=qi-qj;
+                r=Norm[qij];
+                P=P+Gm[[i]]*Gm[[j]]/r,
  {j,i+1,nbody}],
 {i,nbody}];
 H/2-P
 ];
 
 
+(* ::Subsubsection:: *)
+(*Hamiltonian Fortran*)
 
-(* ::Subsubsection::Closed:: *)
-(*Hamiltonian C*)
 
-
-NBodyHam2[out_,parameters_List, doi_:100]:=
-Module[{dim,neq,d,nbody,Gm,uu,H,P,r,i,i1,i2,j,j1,j2,id,
-              qi,qj,qij,vi},
+NBodyHam3[neq_,out_,parameters_List, doi_:100]:=
+Module[{dim,d,nbody,Gm,uu,H,P,r,i,i1,i2,j,j1,j2,id,
+              qi,qj,qij,vi,
+              d1,d2,d3,d4},
 dim=3;
-uu=SetPrecision[out[[2;;61]],doi]+SetPrecision[out[[62;;121]],doi];
-neq=Length[uu];
 d=neq/2;
-nbody=Length[uu]/(2*dim);
+nbody=neq/(2*dim);
+
+d1=2;
+d2=nbody*(2*dim)+1;
+d3=d2+1;
+d4=d3+nbody*(2*dim)-1;
+
+(*uu=SetPrecision[out[[d1;;d2]],doi]+SetPrecision[out[[d3;;d4]],doi];*)
+uu=SetPrecision[out[[d1;;d2]],doi];
+
 Gm =SetPrecision[parameters,doi];
 H=0;
 P=0;
@@ -257,13 +221,36 @@ Do[ i1=(i-1)*dim;
       H=H+Gm[[i]]*(vi.vi);
       Do [    j1=(j-1)*dim;
                 j2=d+j1;
-                 qj=Table[uu[[j1+id]],{id,1,dim}];
-                 qij=qi-qj;
-                 r=Norm[qij];
-                 P=P+Gm[[i]]*Gm[[j]]/r,
+                qj=Table[uu[[j1+id]],{id,1,dim}];
+                qij=qi-qj;
+                r=Norm[qij];
+                P=P+Gm[[i]]*Gm[[j]]/r,
  {j,i+1,nbody}],
 {i,nbody}];
 H/2-P
+];
+
+
+(* ::Subsection::Closed:: *)
+(*Angular Momentum*)
+
+
+NBodyMom[neq_,out_,parameters_List, doi_:100]:=
+Module[{dim,d,nbody,Gm,qv,
+        d1,d2,d3,d4},
+dim=3;
+d=neq/2;
+nbody=neq/(2*dim);
+
+d1=2;
+d2=nbody*(2*dim)+1;
+d3=d2+1;
+d4=d3+nbody*(2*dim)-1;
+
+Gm =SetPrecision[parameters,doi];
+qv=Partition[SetPrecision[out[[d1;;d2]],doi]+SetPrecision[out[[d3;;d4]],doi],dim];
+
+Sum[Gm[[i]]*(qv[[i]]\[Cross]qv[[nbody+i]]),{i,nbody}]
 ];
 
 

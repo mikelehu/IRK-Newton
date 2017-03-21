@@ -1,27 +1,35 @@
 /*------------------------------------------------------------------------------*/
 /*										*/
 /*         GaussCoefficients.c							*/
-/*		Implicit Runge-Kutta (based Gauss quadrature)  coeficients.     */
+/*     										*/
+/*              GaussCoefficients ()	                                        */
+/*		   Implicit Runge-Kutta (based Gauss quadrature)  coefficients. */
+/*                 Method coefficients: m,b,c. 			                */
+/*                 Interpolation coefficientes: nu.                             */
 /*              			                                        */
-/*              	Method coefficients: m,b,c.                             */
-/*                      Interpolation coefficientes: nu.                        */     
-/*              			                                        */
+/*              GaussCoefficientsNewton ()                                      */
 /*                                                                              */      
 /* -----------------------------------------------------------------------------*/
 
 #include <GaussCoefficients.h>
 
 
-void GaussCoefficients (gauss_method *method,toptions *options)
+/******************************************************************************/
+/* 					   				      */
+/* GaussCoefficients	         	  				      */
+/*                                        				      */
+/*									      */
+/******************************************************************************/
+
+void GaussCoefficients (char *path,gauss_method *method,toptions *options)
 {
      int i,j;
+     int info;
      int ns=method->ns;
      val_type sum;
-     val_type0 sum0;
 
      char mydir[20];
      FILE *fileM,*fileA,*fileB,*fileC,*fileNU,*fileMUNU;
-     FILE *fileM0,*fileA0,*fileB0,*fileC0,*fileNU0,*fileMUNU0;
 
      char filenameM[STRMAX];
      char filenameA[STRMAX];
@@ -30,14 +38,9 @@ void GaussCoefficients (gauss_method *method,toptions *options)
      char filenameNU[STRMAX];
      char filenameMUNU[STRMAX];
 
-     char filenameM0[STRMAX];
-     char filenameA0[STRMAX];
-     char filenameB0[STRMAX];
-     char filenameC0[STRMAX];
-     char filenameNU0[STRMAX];
-     char filenameMUNU0[STRMAX];
 
      method->m =(val_type *) malloc(ns*ns*sizeof(val_type));
+     method->a =(val_type *) malloc(ns*ns*sizeof(val_type));
      method->b = (val_type *) malloc(ns*sizeof(val_type));     
      method->hb = (val_type *) malloc(ns*sizeof(val_type));      
      method->c = (val_type *) malloc((ns)*sizeof(val_type));
@@ -46,22 +49,8 @@ void GaussCoefficients (gauss_method *method,toptions *options)
      method->munu = (val_type *) malloc(ns*ns*sizeof(val_type));
      method->orderedindices=(int *) malloc(ns*sizeof(int));
 
-     method->m0 =(val_type0 *) malloc(ns*ns*sizeof(val_type0));
-     method->b0 = (val_type0 *) malloc(ns*sizeof(val_type0));     
-     method->hb0 = (val_type0 *) malloc(ns*sizeof(val_type0));      
-     method->c0 = (val_type0 *) malloc((ns)*sizeof(val_type0));
-     method->hc0 = (val_type0 *) malloc((ns)*sizeof(val_type0));
-     method->nu0 = (val_type0 *) malloc(ns*ns*sizeof(val_type0));
-     method->munu0 = (val_type0 *) malloc(ns*ns*sizeof(val_type0));
-
-
-#    if PREC ==2  //QUADRUPLEPRECISION
-     int n;
-     int width = 46;
-     char buf[128];
-     val_type aux;
-#    endif
-
+  
+     strcpy(mydir,path);
 
      switch (ns)
      { 
@@ -75,8 +64,7 @@ void GaussCoefficients (gauss_method *method,toptions *options)
 	   method->orderedindices[4]=2;
 	   method->orderedindices[5]=3;
 
-//	   strcpy(mydir,"./CoefficientsData/S6/");
-           strcpy(mydir,"../../CoefficientsData/S6/");
+           strcat(mydir,"S6/");
 
 
      break;
@@ -93,8 +81,24 @@ void GaussCoefficients (gauss_method *method,toptions *options)
 	   method->orderedindices[6]=3;
 	   method->orderedindices[7]=4;
 
-//           strcpy(mydir,"./CoefficientsData/S8/");
-           strcpy(mydir,"../../CoefficientsData/S8/");
+           strcat(mydir,"S8/");
+
+     break;
+
+     case 9: 
+
+           // orderindices (ascending order).
+           method->orderedindices[0]=0;   
+	   method->orderedindices[1]=8;
+           method->orderedindices[2]=1;
+	   method->orderedindices[3]=7;
+	   method->orderedindices[4]=2;
+	   method->orderedindices[5]=6;
+	   method->orderedindices[6]=3;
+	   method->orderedindices[7]=5;
+	   method->orderedindices[8]=4;
+
+           strcat(mydir,"S9/");
 
      break;
 
@@ -118,14 +122,28 @@ void GaussCoefficients (gauss_method *method,toptions *options)
            method->orderedindices[14]=7;
            method->orderedindices[15]=8;
 
-//           strcpy(mydir,"./CoefficientsData/S16/");
-           strcpy(mydir,"../../CoefficientsData/S16/");
+           strcat(mydir,"S16/");
+
+     break;
+
+     case 7: 
+
+           // orderindices (ascending order).
+           method->orderedindices[0]=0;   
+	   method->orderedindices[1]=6;
+           method->orderedindices[2]=1;
+	   method->orderedindices[3]=5;
+	   method->orderedindices[4]=2;
+	   method->orderedindices[5]=4;
+	   method->orderedindices[6]=3;
+
+           strcat(mydir,"S7/");
 
      break;
 
 
      default:
-          printf("Coefficients not defined\n");
+          printf("Coefficients not defined (I) \n");
      break;
 
      }
@@ -137,46 +155,6 @@ void GaussCoefficients (gauss_method *method,toptions *options)
      strcpy(filenameNU,mydir);
      strcpy(filenameMUNU,mydir);
 
-     strcpy(filenameM0,mydir);
-     strcpy(filenameA0,mydir);
-     strcpy(filenameB0,mydir);
-     strcpy(filenameC0,mydir);
-     strcpy(filenameNU0,mydir);
-     strcpy(filenameMUNU0,mydir);
-
-#if PREC ==2  //QUADRUPLEPRECISION
-
-     strcat(filenameM,"QMCoef.bin");
-     strcat(filenameA,"QACoef.bin");
-     strcat(filenameB,"QBCoef.bin");
-     strcat(filenameC,"QCCoef.bin");
-     strcat(filenameNU,"QNUCoef.bin");
-     strcat(filenameMUNU,"QMUNUCoef.bin");
-
-     strcat(filenameM0,"DMCoef.bin");
-     strcat(filenameA0,"DACoef.bin");
-     strcat(filenameB0,"DBCoef.bin");
-     strcat(filenameC0,"DCCoef.bin");
-     strcat(filenameNU0,"DNUCoef.bin");
-     strcat(filenameMUNU0,"DMUNUCoef.bin");
-
-#elif PREC ==3 //Float
-
-     strcat(filenameM,"FMCoef.bin");
-     strcat(filenameA,"FACoef.bin");
-     strcat(filenameB,"FBCoef.bin");
-     strcat(filenameC,"FCCoef.bin");
-     strcat(filenameNU,"FNUCoef.bin");
-     strcat(filenameMUNU,"FMUNUCoef.bin");
-
-     strcat(filenameM0,"FMCoef.bin");
-     strcat(filenameA0,"FACoef.bin");
-     strcat(filenameB0,"FBCoef.bin");
-     strcat(filenameC0,"FCCoef.bin");
-     strcat(filenameNU0,"FNUCoef.bin");
-     strcat(filenameMUNU0,"FMUNUCoef.bin");
-
-#else      // DOUBLEPRECISION
 
      strcat(filenameM,"DMCoef.bin");
      strcat(filenameA,"DACoef.bin");
@@ -185,73 +163,50 @@ void GaussCoefficients (gauss_method *method,toptions *options)
      strcat(filenameNU,"DNUCoef.bin");
      strcat(filenameMUNU,"DMUNUCoef.bin");
 
-     strcat(filenameM0,"FMCoef.bin");
-     strcat(filenameA0,"FACoef.bin");
-     strcat(filenameB0,"FBCoef.bin");
-     strcat(filenameC0,"FCCoef.bin");
-     strcat(filenameNU0,"FNUCoef.bin");
-     strcat(filenameMUNU0,"FMUNUCoef.bin");
- 
-#    endif
-
  
     fileM = fopen(filenameM,"rb");
     if (fileM == NULL) printf("File doesnt exists\n");
-
     fileA = fopen(filenameA,"rb");
+    if (fileA == NULL) printf("File doesnt exists\n");
     fileB = fopen(filenameB,"rb");
+    if (fileB == NULL) printf("File doesnt exists\n");
     fileC = fopen(filenameC,"rb");
+    if (fileC == NULL) printf("File doesnt exists\n");
     fileNU = fopen(filenameNU,"rb");
+    if (fileNU == NULL) printf("File doesnt exists\n");
     fileMUNU = fopen(filenameMUNU,"rb");
-
-    fileM0 = fopen(filenameM0,"rb");
-    if (fileM0 == NULL) printf("File doesnt exists\n");
-
-    fileA0 = fopen(filenameA0,"rb");
-    fileB0 = fopen(filenameB0,"rb");
-    fileC0 = fopen(filenameC0,"rb");
-    fileNU0 = fopen(filenameNU0,"rb");
-    fileMUNU0 = fopen(filenameMUNU0,"rb");
-
-    fread(method->m, sizeof(val_type),ns*ns,fileM);
-//    fread(method->a, sizeof(val_type),ns*ns,fileA);
-    fread(method->b, sizeof(val_type),ns,fileB);
-    fread(method->c, sizeof(val_type),ns,fileC);
-    fread(method->nu, sizeof(val_type),ns*ns,fileNU);
-    fread(method->munu, sizeof(val_type),ns*ns,fileMUNU);
-
-    fread(method->m0, sizeof(val_type0),ns*ns,fileM0);
-    fread(method->b0, sizeof(val_type0),ns,fileB0);
-    fread(method->c0, sizeof(val_type0),ns,fileC0);
-    fread(method->nu0, sizeof(val_type0),ns*ns,fileNU0);
-    fread(method->munu0, sizeof(val_type0),ns*ns,fileMUNU0);
-
-/*---- Verify symplectic condition --------------------------------*/
+    if (fileMUNU == NULL) printf("File doesnt exists\n");
 
 
-#    if PREC ==2  //QUADRUPLEPRECISION
-     for (i=0; i<ns; i++)
-     {
-        for (j=0; j<ns; j++)
-        {
-              aux=method->m[i*ns+j]+method->m[j*ns+i]-1.q;
-              n = quadmath_snprintf(buf, sizeof buf, "%+-#*.30Qe", width, aux);
-              if ((size_t) n < sizeof buf) printf("%s\n",buf);
-        }
 
-     }
-#    else //DOUBLEPRECISION
+    info=fread(method->m, sizeof(val_type),ns*ns,fileM);
+    if (info == -1) printf("Error fread command\n");
+    info=fread(method->a, sizeof(val_type),ns*ns,fileA);
+    if (info == -1) printf("Error fread command\n");
+    info=fread(method->b, sizeof(val_type),ns,fileB);
+    if (info == -1) printf("Error fread command\n");
+    info=fread(method->c, sizeof(val_type),ns,fileC);
+    if (info == -1) printf("Error fread command\n");
+    info=fread(method->nu, sizeof(val_type),ns*ns,fileNU);
+    if (info == -1) printf("Error fread command\n");
+    info=fread(method->munu, sizeof(val_type),ns*ns,fileMUNU);
+    if (info == -1) printf("Error fread command\n");
+
+
+
+/*---- Verify symplectic condition -------------------------------------------*/
+
+#    ifdef IOUT
      for (i=0; i<ns; i++)
      {
         printf("\n");
         for (j=0; j<ns; j++) printf ("%lg,", method->m[i*ns+j]+method->m[j*ns+i]-1.);
      }
 
+     printf("\n");
 #    endif
 
-     printf("\n");
-
-/*---- Calculate hb coefficients ----------------------------------*/
+/*---- Calculate hb coefficients ---------------------------------------------*/
 
      sum=0.;
      for (i=1; i<ns-1; i++)
@@ -263,16 +218,12 @@ void GaussCoefficients (gauss_method *method,toptions *options)
      method->hb[0]=((options->h)-sum)/2;
      method->hb[ns-1]=((options->h)-sum)/2;
 
+/*---- Calculate hc coefficients ---------------------------------------------*/
 
-     sum0=0.;
-     for (i=1; i<ns-1; i++)
+     for (i=0; i<ns; i++)
      {
-        method->hb0[i]=(options->h)*method->b0[i];
-        sum0+=method->hb0[i];
+        method->hc[i]=(options->h)*method->c[i];
      }
-     
-     method->hb0[0]=((options->h)-sum0)/2;
-     method->hb0[ns-1]=((options->h)-sum0)/2;
 
 
      fclose(fileM);
@@ -282,14 +233,275 @@ void GaussCoefficients (gauss_method *method,toptions *options)
      fclose(fileNU);
      fclose(fileMUNU);
 
-     fclose(fileM0);
-     fclose(fileA0);
-     fclose(fileB0);
-     fclose(fileC0);
-     fclose(fileNU0);
-     fclose(fileMUNU0);
+     return;
+
+}
+
+
+
+
+/******************************************************************************/
+/* 					   				      */
+/* GaussCoefficientsNewtonNEW            				      */
+/*                                        				      */
+/*									      */
+/******************************************************************************/
+
+void GaussCoefficientsNewton (char *path,ode_sys *system, 
+                              gauss_method *method,toptions *options)
+{
+
+     int i,j;
+     int info;
+     int ns=method->ns;
+     int neq=system->neq; 
+     int mm=method->mm;
+     int smm=method->smm;
+     val_type h=options->h;
+     val_type B[ns*ns],D[mm*smm],sigma[smm];
+     val_type hB32[ns*ns];
+     val_type m32[ns*ns];
+
+     val_type aa,bb;
+     int lda,ldb,ldc;    
+
+     char mydir[20];
+     FILE *fileQ1,*fileQ2,*fileSigma,*fileAlpha;
+
+     char filenameQ1[STRMAX];
+     char filenameQ2[STRMAX];
+     char filenameSigma[STRMAX];
+     char filenameAlpha[STRMAX];
+
+     method->Q1 = (val_type *) malloc(ns*mm*sizeof(val_type));
+     method->Q2 = (val_type *) malloc(ns*smm*sizeof(val_type));
+     method->sigma2 = (val_type *) malloc(smm*sizeof(val_type));
+     method->alpha = (val_type *) malloc(mm*sizeof(val_type));
+     method->alpha2 = (val_type *) malloc(mm*sizeof(val_type));
+     method->hDQ2T= (val_type *) malloc(mm*ns*sizeof(val_type));
+     method->hDT= (val_type *) malloc(smm*mm*sizeof(val_type));
+     method->BQ1= (val_type *) malloc(ns*mm*sizeof(val_type));
+     method->BQ2= (val_type *) malloc(ns*smm*sizeof(val_type));
+     method->hBAB= (val_type *) malloc((ns*ns)*sizeof(val_type));
+
+  
+     strcpy(mydir,path);
+
+     switch (ns)
+     { 
+     case 6: 
+           strcat(mydir,"S6/");
+     break;
+
+     case 8: 
+           strcat(mydir,"S8/");
+     break;
+
+     case 9: 
+           strcat(mydir,"S9/");
+     break;
+
+     case 16: 
+           strcat(mydir,"S16/");
+     break;
+
+     case 7: 
+           strcat(mydir,"S7/");
+     break;
+
+
+     default:
+          printf("Coefficients not defined (II)\n");
+     break;
+
+     }
+
+     strcpy(filenameQ1,mydir);
+     strcpy(filenameQ2,mydir);
+     strcpy(filenameSigma,mydir);
+     strcpy(filenameAlpha,mydir);
+
+     strcat(filenameQ1,"DQ1.bin");
+     strcat(filenameQ2,"DQ2.bin");
+     strcat(filenameSigma,"DSIGMA.bin");
+     strcat(filenameAlpha,"DALPHA.bin");
+
+
+    fileQ1 = fopen(filenameQ1,"rb");
+    if (fileQ1 == NULL) printf("File doesnt exists\n");
+    fileQ2 = fopen(filenameQ2,"rb");
+    if (fileQ2 == NULL) printf("File doesnt exists\n");
+    fileSigma = fopen(filenameSigma,"rb");
+    if (fileSigma == NULL) printf("File doesnt exists\n");
+    fileAlpha = fopen(filenameAlpha,"rb");
+    if (fileAlpha == NULL) printf("File doesnt exists\n");
+
+    info=fread(method->Q1, sizeof(val_type),ns*mm,fileQ1);
+    if (info == -1) printf("Error fread command\n");
+    info=fread(method->Q2, sizeof(val_type),ns*mm,fileQ2);
+    if (info == -1) printf("Error fread command\n");
+    info=fread(sigma, sizeof(val_type),mm,fileSigma);
+    if (info == -1) printf("Error fread command\n");
+    info=fread(method->alpha, sizeof(val_type),mm,fileAlpha);
+    if (info == -1) printf("Error fread command\n");
+
+
+/* ---- Precompute auxs matrices----------------------------------------------------------*/
+
+     /*----  B-----------------------*/
+
+     for (i=0; i<ns; i++)
+     {
+           for (j=0; j<ns; j++)
+           {
+                if (i==j) B[i*ns+j]=method->b[i]; 
+                else B[i*ns+j]=0.;
+           }
+     }
+
+     /*----  D-----------------------*/
+
+     for (i=0; i<mm; i++)
+     {
+           for (j=0; j<smm; j++)
+           {
+                if (i==j) D[i*smm+j]=sigma[i]; 
+                else D[i*smm+j]=0.;
+           }
+     }
+
+
+     /* ---- sigma2= sigma**2  ---- */
+     
+     for (i=0; i<mm; i++) method->sigma2[i]=sigma[i]*sigma[i];
+
+     /* ---- alpha2= alpha**2  ---- */
+     
+     for (i=0; i<mm; i++) method->alpha2[i]=method->alpha[i]*method->alpha[i];
+
+     /* ---- hDT -------------- */
+
+     for (i=0; i<smm; i++)
+          for (j=0; j<mm; j++) 
+          {
+                 if (i==j) method->hDT[i*mm+j]=h*sigma[i];
+                 else method->hDT[i*mm+j]=0.; 
+          } 
+
+     /* ----  hDQ2T ---------- */
+
+     aa = h; bb = 0.;
+     lda=smm; ldb=smm; ldc=ns;
+
+     GEMM (CblasRowMajor,CblasNoTrans,CblasTrans,mm,ns,smm,aa,	
+           D, lda,method->Q2, ldb, bb, method->hDQ2T, ldc);
+
+     /* -------  BQ1 ---------- */
+
+     aa = 1.; bb = 0.;
+     lda=ns; ldb=mm; ldc=mm;
+
+     GEMM (CblasRowMajor,CblasNoTrans,CblasNoTrans,ns,mm,ns,aa,	
+           B, lda,method->Q1, ldb, bb, method->BQ1, ldc);
+
+
+     /* -------  BQ2 ---------- */
+
+     aa = 1.; bb = 0.;
+     lda=ns; ldb=smm; ldc=smm;
+
+     GEMM (CblasRowMajor,CblasNoTrans,CblasNoTrans,ns,smm,ns,aa,	
+           B ,lda,method->Q2, ldb, bb, method->BQ2, ldc);
+
+
+     /* -------- hBAB -----------------------*/
+
+
+     for (i=0; i<ns; i++)
+           for (j=0; j<ns; j++)
+           {      
+                 if (i==j) hB32[i*ns+j]=method->hb[i];
+                     else  hB32[i*ns+j]=0.;                 
+                 m32[i*ns+j]=method->m[i*ns+j];
+           }
+
+     aa = 1.; bb = 0.;
+     lda=ns; ldb=ns; ldc=ns;
+
+     GEMM (CblasRowMajor,CblasNoTrans,CblasNoTrans,ns,ns,ns,aa,	
+           hB32, lda, m32, ldb, bb, method->hBAB, ldc);
+
+/*  ------ Tests -------------------------- */
+
+
+/*
+
+     printf("\nQ1\n");
+     for (i=0; i<ns; i++)
+     {
+           for (j=0; j<mm; j++) printf("%lg,",method->Q1[i*mm+j]);
+           printf("\n");
+     }
+
+     printf("\nQ2\n");
+     for (i=0; i<ns; i++)
+     {
+           for (j=0; j<smm; j++) printf("%lg,",method->Q2[i*smm+j]);
+           printf("\n");
+     }
+
+     printf("\nsigma\n");
+     for (i=0; i<smm; i++) printf("%lg,",sigma[i]);
+
+     printf("\nalpha\n");
+     for (i=0; i<mm; i++) printf("%lg,",method->alpha[i]);
+
+     printf("\nhDQ2T\n");
+     for (i=0; i<mm; i++)
+     {
+           for (j=0; j<ns; j++) printf("%lg,",method->hDQ2T[i*ns+j]);
+           printf("\n");
+     }
+
+     printf("\nhDT\n");
+     for (i=0; i<smm; i++)
+     {
+           for (j=0; j<mm; j++) printf("%lg,",method->hDT[i*mm+j]);
+           printf("\n");
+     }
+
+
+     printf("\nBQ1\n");
+     for (i=0; i<ns; i++)
+     {
+           for (j=0; j<mm; j++) printf("%lg,",method->BQ1[i*mm+j]);
+           printf("\n");
+     }
+
+
+     printf("\nBQ2\n");
+     for (i=0; i<ns; i++)
+     {
+           for (j=0; j<smm; j++) printf("%lg,",method->BQ2[i*smm+j]);
+           printf("\n");
+     }
+
+     printf("\n Coeficcients: hBAB\n");
+     for (i=0; i<ns; i++)
+     {
+         for (j=0; j<ns; j++) printf("%lg,",method->hBAB[i*ns+j]);
+         printf("\n");
+     }
+
+*/
+
+     fclose(fileQ1);
+     fclose(fileQ2);
+     fclose(fileSigma);
+     fclose(fileAlpha);
 
      return;
+
 }
 
 
