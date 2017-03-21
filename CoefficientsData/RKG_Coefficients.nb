@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[   1288272,      29244]
-NotebookOptionsPosition[   1264343,      28474]
-NotebookOutlinePosition[   1265071,      28498]
-CellTagsIndexPosition[   1265028,      28495]
+NotebookDataLength[   1297601,      29408]
+NotebookOptionsPosition[   1273481,      28633]
+NotebookOutlinePosition[   1274202,      28657]
+CellTagsIndexPosition[   1274159,      28654]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -110,10 +110,10 @@ Cell[BoxData[
    RowBox[{"ToFileName", "[", 
     RowBox[{"{", 
      RowBox[{
-      RowBox[{"ParentDirectory", "[", 
-       RowBox[{"ParentDirectory", "[", "]"}], "]"}], ",", 
-      "\"\<Packages\>\""}], "}"}], "]"}]}], ";"}]], "Input",
- CellChangeTimes->{{3.66955286636935*^9, 3.669552869876631*^9}}],
+      RowBox[{"ParentDirectory", "[", "]"}], ",", "\"\<Packages\>\""}], "}"}],
+     "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.66955286636935*^9, 3.669552869876631*^9}, {
+  3.678515862004034*^9, 3.6785158759597273`*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -126,7 +126,7 @@ Cell[BoxData[
    3.657996966623383*^9}, {3.665305718229576*^9, 3.665305721435115*^9}, {
    3.665305757876375*^9, 3.6653057593965054`*^9}, 3.6653057969832172`*^9, {
    3.669522361325693*^9, 3.669522375534747*^9}}]
-}, Open  ]]
+}, Closed]]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -170,8 +170,6 @@ Cell[CellGroupData[{
 Cell["ns=6", "Subsubsection",
  CellChangeTimes->{{3.669531833627928*^9, 3.669531836449678*^9}}],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"subdir", "=", "\"\<S6/\>\""}], ";"}], "\[IndentingNewLine]", 
@@ -187,17 +185,18 @@ Cell[BoxData[{
       RowBox[{"i", ",", 
        RowBox[{"Length", "[", "NameDouble", "]"}]}], "}"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
- RowBox[{"fileQS06", "=", 
-  RowBox[{"Table", "[", 
-   RowBox[{
+ RowBox[{
+  RowBox[{"fileQS06", "=", 
+   RowBox[{"Table", "[", 
     RowBox[{
-     RowBox[{"NotebookDirectory", "[", "]"}], "<>", "subdir", "<>", 
-     RowBox[{"NameQuadruple", "[", 
-      RowBox[{"[", "i", "]"}], "]"}]}], ",", 
-    RowBox[{"{", 
-     RowBox[{"i", ",", 
-      RowBox[{"Length", "[", "NameQuadruple", "]"}]}], "}"}]}], 
-   "]"}]}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], "<>", "subdir", "<>", 
+      RowBox[{"NameQuadruple", "[", 
+       RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "NameQuadruple", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"fileFS06", "=", 
    RowBox[{"Table", "[", 
@@ -215,25 +214,8 @@ Cell[BoxData[{
    3.669525301425954*^9}, {3.669532461670321*^9, 3.6695324746312513`*^9}, 
    3.669533105693033*^9, {3.669533144024844*^9, 3.6695332331458187`*^9}, 
    3.669533338233121*^9, {3.669533762395423*^9, 3.669533817654605*^9}, 
-   3.669549708234524*^9, {3.669552970388981*^9, 3.669552977539728*^9}}],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"/home/joseba/Mahaigaina/PIC/Softwatea/garapenak/4-Artikulurako-\
-I/C-inplementazioa/CoefficientsData/S6/QMCoef.bin\"\>", 
-   ",", "\<\"/home/joseba/Mahaigaina/PIC/Softwatea/garapenak/4-Artikulurako-I/\
-C-inplementazioa/CoefficientsData/S6/QACoef.bin\"\>", 
-   ",", "\<\"/home/joseba/Mahaigaina/PIC/Softwatea/garapenak/4-Artikulurako-I/\
-C-inplementazioa/CoefficientsData/S6/QBCoef.bin\"\>", 
-   ",", "\<\"/home/joseba/Mahaigaina/PIC/Softwatea/garapenak/4-Artikulurako-I/\
-C-inplementazioa/CoefficientsData/S6/QCCoef.bin\"\>", 
-   ",", "\<\"/home/joseba/Mahaigaina/PIC/Softwatea/garapenak/4-Artikulurako-I/\
-C-inplementazioa/CoefficientsData/S6/QNUCoef.bin\"\>", 
-   ",", "\<\"/home/joseba/Mahaigaina/PIC/Softwatea/garapenak/4-Artikulurako-I/\
-C-inplementazioa/CoefficientsData/S6/QMUNUCoef.bin\"\>"}], "}"}]], "Output",
- CellChangeTimes->{3.669549708665249*^9, 3.669550275516708*^9, 
-  3.669551089266382*^9, 3.6695520314109373`*^9, 3.669553010501122*^9}]
-}, Open  ]]
+   3.669549708234524*^9, {3.669552970388981*^9, 3.669552977539728*^9}, 
+   3.6785156409002533`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -340,6 +322,116 @@ Cell[BoxData[{
    3.66953248030414*^9, 3.669532578077416*^9}, {3.6695332973922443`*^9, 
    3.669533334917653*^9}, {3.669533842762657*^9, 3.669533863214622*^9}, {
    3.669552995790794*^9, 3.669553002263196*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["ns=7", "Subsubsection",
+ CellChangeTimes->{{3.669531833627928*^9, 3.669531836449678*^9}, {
+  3.681217976313963*^9, 3.681217977067686*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"subdir", "=", "\"\<S7/\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fileDS07", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], "<>", "subdir", "<>", 
+      RowBox[{"NameDouble", "[", 
+       RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "NameDouble", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fileQS07", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], "<>", "subdir", "<>", 
+      RowBox[{"NameQuadruple", "[", 
+       RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "NameQuadruple", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fileFS07", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], "<>", "subdir", "<>", 
+      RowBox[{"NameFloat", "[", 
+       RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "NameFloat", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.6695226881586027`*^9, 3.66952286683853*^9}, {
+   3.669524891430376*^9, 3.669524909030328*^9}, {3.6695252212074213`*^9, 
+   3.669525301425954*^9}, {3.669532461670321*^9, 3.6695324746312513`*^9}, 
+   3.669533105693033*^9, {3.669533144024844*^9, 3.6695332331458187`*^9}, 
+   3.669533338233121*^9, {3.669533762395423*^9, 3.669533817654605*^9}, 
+   3.669549708234524*^9, {3.669552970388981*^9, 3.669552977539728*^9}, 
+   3.6785156409002533`*^9, {3.681217978982542*^9, 3.681217992056603*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["ns=9", "Subsubsection",
+ CellChangeTimes->{{3.669531833627928*^9, 3.6695318470031233`*^9}, {
+  3.669531926082232*^9, 3.669531926850829*^9}, {3.696232040043643*^9, 
+  3.6962320412947063`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"subdir", "=", "\"\<S9/\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fileDS09", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], "<>", "subdir", "<>", 
+      RowBox[{"NameDouble", "[", 
+       RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "NameDouble", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fileQS09", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], "<>", "subdir", "<>", 
+      RowBox[{"NameQuadruple", "[", 
+       RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "NameQuadruple", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fileFS09", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], "<>", "subdir", "<>", 
+      RowBox[{"NameFloat", "[", 
+       RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "NameFloat", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.6695226881586027`*^9, 3.66952286683853*^9}, {
+   3.669524891430376*^9, 3.669524909030328*^9}, {3.6695252212074213`*^9, 
+   3.669525301425954*^9}, {3.669531854736649*^9, 3.669531911528078*^9}, {
+   3.66953194395282*^9, 3.669531949705339*^9}, 3.669532442074881*^9, {
+   3.66953248030414*^9, 3.669532578077416*^9}, {3.6695332973922443`*^9, 
+   3.669533334917653*^9}, {3.669533842762657*^9, 3.669533863214622*^9}, {
+   3.669552995790794*^9, 3.669553002263196*^9}, {3.696232043976523*^9, 
+   3.696232056255352*^9}}]
 }, Open  ]]
 }, Closed]],
 
@@ -394,7 +486,8 @@ Cell[BoxData["15.954589770191003`"], "Output",
    3.6695250186419277`*^9, 3.669533037781426*^9, 3.6695332473096123`*^9, 
    3.669533897944365*^9, 3.669534776440178*^9, 3.6695348234945173`*^9, 
    3.669534976417638*^9, 3.6695494633936167`*^9, 3.6695495990743313`*^9, 
-   3.669550276609138*^9, 3.66955108940061*^9, 3.669553020670211*^9}],
+   3.669550276609138*^9, 3.66955108940061*^9, 3.669553020670211*^9, 
+   3.6785159449435062`*^9, 3.679053810838879*^9}],
 
 Cell[BoxData["53"], "Output",
  CellChangeTimes->{{3.662708995681954*^9, 3.662709012061921*^9}, 
@@ -413,7 +506,8 @@ Cell[BoxData["53"], "Output",
    3.6695250186419277`*^9, 3.669533037781426*^9, 3.6695332473096123`*^9, 
    3.669533897944365*^9, 3.669534776440178*^9, 3.6695348234945173`*^9, 
    3.669534976417638*^9, 3.6695494633936167`*^9, 3.6695495990743313`*^9, 
-   3.669550276609138*^9, 3.66955108940061*^9, 3.66955302067152*^9}]
+   3.669550276609138*^9, 3.66955108940061*^9, 3.669553020670211*^9, 
+   3.6785159449435062`*^9, 3.679053810843071*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -435,7 +529,8 @@ Cell[BoxData[
    3.669533037836194*^9, 3.669533247411634*^9, 3.669533898039281*^9, 
    3.6695347766671467`*^9, 3.669534826572597*^9, 3.66953497650137*^9, 
    3.669549463509013*^9, 3.669549599110189*^9, 3.6695502766276627`*^9, 
-   3.66955108942973*^9, 3.669553020700512*^9}]
+   3.66955108942973*^9, 3.669553020700512*^9, 3.678515945072538*^9, 
+   3.679053812777749*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -474,7 +569,8 @@ Cell[BoxData[
   3.669533037908581*^9, 3.66953324747853*^9, 3.669533898157145*^9, 
   3.669534780588851*^9, 3.6695348396258087`*^9, 3.669534978386676*^9, 
   3.669549463883748*^9, 3.66954959916768*^9, 3.669550276657208*^9, 
-  3.669551089488826*^9, 3.669553020798259*^9}]
+  3.669551089488826*^9, 3.669553020798259*^9, 3.6785159457568502`*^9, 
+  3.679053816267715*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -535,7 +631,8 @@ Cell[BoxData[
    3.669533247530716*^9, 3.6695338982182627`*^9, 3.6695347811523037`*^9, 
    3.669534844184523*^9, 3.669534979047757*^9, 3.669549463993884*^9, 
    3.66954959920341*^9, 3.669550276678735*^9, 3.669551089518456*^9, 
-   3.669553020829626*^9}]
+   3.669553020829626*^9, 3.678515946030725*^9, {3.679053830188706*^9, 
+   3.6790538350078487`*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -581,7 +678,8 @@ Cell[BoxData[
    3.669533037993137*^9, 3.669533247600583*^9, 3.6695338982572613`*^9, 
    3.669534781429036*^9, 3.669534844372636*^9, 3.669534979121373*^9, 
    3.669549464081905*^9, 3.6695495992436523`*^9, 3.6695502766986732`*^9, 
-   3.669551089546878*^9, 3.669553020878916*^9}]
+   3.669551089546878*^9, 3.669553020878916*^9, 3.678515946152396*^9, 
+   3.67905383510086*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -668,7 +766,7 @@ Cell[BoxData[
    3.669533247670436*^9, 3.669533898320301*^9, 3.669534781742079*^9, 
    3.6695348444936438`*^9, 3.669534979378932*^9, 3.669549464314847*^9, 
    3.66954959929981*^9, 3.669550276728632*^9, 3.669551089588049*^9, 
-   3.669553020923459*^9}]
+   3.669553020923459*^9, 3.678515946516326*^9, 3.679053835256971*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -762,7 +860,8 @@ Cell[BoxData[
    3.6695250190079327`*^9, 3.6695330381005077`*^9, 3.669533247743004*^9, 
    3.6695338983848963`*^9, 3.669534782026546*^9, 3.6695348446286097`*^9, 
    3.669534979687642*^9, 3.669549464541422*^9, 3.6695495993335743`*^9, 
-   3.669550276805737*^9, 3.669551089627905*^9, 3.669553020962727*^9}]
+   3.669550276805737*^9, 3.669551089627905*^9, 3.669553020962727*^9, 
+   3.6785159465847807`*^9, 3.679053835344268*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1011,7 +1110,8 @@ Cell[BoxData[
    3.669525019070498*^9, 3.669533038156674*^9, 3.6695332478144207`*^9, 
    3.6695338984621553`*^9, 3.6695347834968348`*^9, 3.669534844759718*^9, 
    3.669534980330607*^9, 3.669549464635407*^9, 3.669549599377802*^9, 
-   3.669550276832719*^9, 3.669551089669241*^9, 3.669553021001354*^9}]
+   3.669550276832719*^9, 3.669551089669241*^9, 3.669553021001354*^9, 
+   3.678515946702087*^9, 3.679053835457034*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1057,7 +1157,8 @@ Cell[BoxData[
    3.669525019136979*^9, 3.669533038206759*^9, 3.669533247890457*^9, 
    3.669533898524131*^9, 3.66953478406919*^9, 3.669534844885561*^9, 
    3.669534980731121*^9, 3.669549464726536*^9, 3.669549599416975*^9, 
-   3.6695502768641157`*^9, 3.669551089691304*^9, 3.669553021054556*^9}]
+   3.6695502768641157`*^9, 3.669551089691304*^9, 3.669553021054556*^9, 
+   3.6785159468074512`*^9, 3.679053835543942*^9}]
 }, Open  ]]
 }, Closed]],
 
@@ -1207,21 +1308,21 @@ Cell[BoxData[
    3.6695330382869167`*^9, 3.66953324803631*^9, 3.669533898629808*^9, 
    3.669534787849793*^9, 3.669534847393931*^9, 3.669534983320388*^9, 
    3.669549465162031*^9, 3.669549599487837*^9, 3.6695502769279423`*^9, 
-   3.669551089763983*^9, 3.669553021179654*^9}],
+   3.669551089763983*^9, 3.669553021179654*^9, 3.678515947304332*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/DMCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/DMCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553021369331*^9}]
+ CellChangeTimes->{3.669553021369331*^9, 3.678515947433888*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1322,21 +1423,21 @@ Cell[BoxData[
    3.669533038446254*^9, 3.669533248230879*^9, 3.669533898866827*^9, 
    3.669534789338572*^9, 3.669534847489773*^9, 3.669534983548298*^9, 
    3.669549465267074*^9, 3.669549599860258*^9, 3.669550277189152*^9, 
-   3.669551089785199*^9, 3.669553021411892*^9}],
+   3.669551089785199*^9, 3.669553021411892*^9, 3.67851594752282*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/DACoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/DACoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530215365334`*^9}]
+ CellChangeTimes->{3.6695530215365334`*^9, 3.678515947608491*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1385,21 +1486,21 @@ Cell[BoxData[
    3.669533038589801*^9, 3.669533248404895*^9, 3.669533899084798*^9, 
    3.669534790409328*^9, 3.6695348475814047`*^9, 3.669534983679139*^9, 
    3.669549465345562*^9, 3.669549600263618*^9, 3.669550277329752*^9, 
-   3.669551089814261*^9, 3.669553021574298*^9}],
+   3.669551089814261*^9, 3.669553021574298*^9, 3.678515947710844*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/DBCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/DBCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553021680785*^9}]
+ CellChangeTimes->{3.669553021680785*^9, 3.678515947796273*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1448,21 +1549,21 @@ Cell[BoxData[
    3.669533038725719*^9, 3.669533248558032*^9, 3.6695338992159224`*^9, 
    3.669534791770576*^9, 3.669534847662972*^9, 3.669534984157878*^9, 
    3.6695494655820103`*^9, 3.669549600704137*^9, 3.669550277451701*^9, 
-   3.669551089843425*^9, 3.669553021843354*^9}],
+   3.669551089843425*^9, 3.669553021843354*^9, 3.678515947897892*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/DCCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/DCCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553021934194*^9}]
+ CellChangeTimes->{3.669553021934194*^9, 3.678515947985176*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1563,7 +1664,7 @@ Cell[BoxData[
    3.66953324871387*^9, 3.669533899366721*^9, 3.6695347927973824`*^9, 
    3.669534847728713*^9, 3.669534984709732*^9, 3.669549465607881*^9, 
    3.6695496010804996`*^9, 3.6695502775961723`*^9, 3.669551089866494*^9, 
-   3.6695530221318197`*^9}]
+   3.6695530221318197`*^9, 3.678515948194537*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1668,21 +1769,21 @@ Cell[BoxData[
    3.669533039042547*^9, 3.6695332488668633`*^9, 3.669533899529142*^9, 
    3.669534793690921*^9, 3.6695348477947903`*^9, 3.6695349851440573`*^9, 
    3.6695494656991377`*^9, 3.669549601458559*^9, 3.6695502776278057`*^9, 
-   3.669551089891563*^9, 3.6695530221631193`*^9}],
+   3.669551089891563*^9, 3.6695530221631193`*^9, 3.678515948298307*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/DMUNUCoef.bin\
-\\\\\\\"\\\"}]\\)\[NoBreak] not found. \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/DMUNUCoef.bin\\\\\
+\\\"\\\"}]\\)\[NoBreak] not found. \
 \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
 ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530222665453`*^9}]
+ CellChangeTimes->{3.6695530222665453`*^9, 3.678515948380643*^9}]
 }, Open  ]]
 }, Closed]]
 }, Closed]],
@@ -1730,7 +1831,7 @@ Cell[BoxData["113"], "Output",
    3.669533249016637*^9, 3.669533899689638*^9, 3.6695347945867157`*^9, 
    3.669534869246282*^9, 3.669534968043817*^9, 3.669549465771441*^9, 
    3.6695496018247643`*^9, 3.6695497304194107`*^9, 3.669550277764941*^9, 
-   3.6695510899114313`*^9, 3.669553022322236*^9}]
+   3.6695510899114313`*^9, 3.669553022322236*^9, 3.678515948491563*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -1771,7 +1872,7 @@ Cell[BoxData[
   3.66953304095571*^9, 3.6695332506735888`*^9, 3.669533902007236*^9, 
   3.6695347963456917`*^9, 3.669534968262391*^9, 3.669549469632227*^9, 
   3.669549606111136*^9, 3.66954973059451*^9, 3.6695502778925743`*^9, 
-  3.669551089953022*^9, 3.669553022398687*^9}]
+  3.669551089953022*^9, 3.669553022398687*^9, 3.6785159486672707`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1836,7 +1937,8 @@ Cell[BoxData[
    3.669525381489882*^9, 3.669533041599155*^9, 3.6695332512167063`*^9, 
    3.669533902588729*^9, 3.669534796955002*^9, 3.669534968308361*^9, 
    3.669549470514637*^9, 3.669549606816595*^9, 3.669549730625863*^9, 
-   3.6695502779239063`*^9, 3.669551089985262*^9, 3.669553022513257*^9}]
+   3.6695502779239063`*^9, 3.669551089985262*^9, 3.669553022513257*^9, 
+   3.6785159489185247`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1875,7 +1977,7 @@ Cell[BoxData[
   3.669533251287814*^9, 3.6695339026594887`*^9, 3.669534797151958*^9, 
   3.6695349683308496`*^9, 3.6695494706696663`*^9, 3.669549606947617*^9, 
   3.669549730642252*^9, 3.6695502779495773`*^9, 3.669551090010199*^9, 
-  3.669553022547275*^9}]
+  3.669553022547275*^9, 3.678515949180767*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1959,7 +2061,7 @@ Cell[BoxData[
    3.669533041962538*^9, 3.669533251517445*^9, 3.669533902890607*^9, 
    3.6695347975007133`*^9, 3.669534968376582*^9, 3.669549470980492*^9, 
    3.669549607231372*^9, 3.6695497306709843`*^9, 3.6695502779822903`*^9, 
-   3.669551090038865*^9, 3.669553022586473*^9}]
+   3.669551090038865*^9, 3.669553022586473*^9, 3.678515949349309*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2050,7 +2152,7 @@ Cell[BoxData[
    3.669533251768112*^9, 3.6695339031484413`*^9, 3.6695347978135853`*^9, 
    3.669534968431694*^9, 3.669549471248683*^9, 3.669549607536385*^9, 
    3.669549730702121*^9, 3.669550278010508*^9, 3.669551090069975*^9, 
-   3.669553022622848*^9}]
+   3.669553022622848*^9, 3.678515949466593*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2298,7 +2400,7 @@ Cell[BoxData[
    3.6695332525425587`*^9, 3.6695339038025*^9, 3.6695347985311193`*^9, 
    3.6695349684652*^9, 3.669549472059026*^9, 3.6695496093378143`*^9, 
    3.6695497307197943`*^9, 3.6695502780418253`*^9, 3.6695510901047792`*^9, 
-   3.669553022665463*^9}]
+   3.669553022665463*^9, 3.67851594958038*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2346,7 +2448,7 @@ Cell[BoxData[
    3.669533252954588*^9, 3.669533904189528*^9, 3.669534799135792*^9, 
    3.669534968512558*^9, 3.6695494725675173`*^9, 3.66954960995787*^9, 
    3.669549730737918*^9, 3.669550278078266*^9, 3.66955109013971*^9, 
-   3.669553022739491*^9}]
+   3.669553022739491*^9, 3.678515949691903*^9}]
 }, Open  ]]
 }, Closed]],
 
@@ -2527,21 +2629,21 @@ Cell[BoxData[
    3.6695330382869167`*^9, 3.66953324803631*^9, 3.669533898629808*^9, 
    3.669534787849793*^9, 3.669534847393931*^9, 3.669534983320388*^9, 
    3.669549465162031*^9, 3.669549599487837*^9, 3.66955027816602*^9, 
-   3.6695510902530603`*^9, 3.6695530228909483`*^9}],
+   3.6695510902530603`*^9, 3.6695530228909483`*^9, 3.678515950007409*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/QMCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/QMCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530229875917`*^9}]
+ CellChangeTimes->{3.6695530229875917`*^9, 3.678515950091416*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2677,21 +2779,21 @@ Cell[BoxData[
    3.669533038446254*^9, 3.669533248230879*^9, 3.669533898866827*^9, 
    3.669534789338572*^9, 3.669534847489773*^9, 3.669534983548298*^9, 
    3.669549465267074*^9, 3.669549599860258*^9, 3.669550278291041*^9, 
-   3.669551090280656*^9, 3.669553023025669*^9}],
+   3.669551090280656*^9, 3.669553023025669*^9, 3.678515950322653*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/QACoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/QACoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553023128573*^9}]
+ CellChangeTimes->{3.669553023128573*^9, 3.678515950410808*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2747,21 +2849,21 @@ Cell[BoxData[
    3.669533038589801*^9, 3.669533248404895*^9, 3.669533899084798*^9, 
    3.669534790409328*^9, 3.6695348475814047`*^9, 3.669534983679139*^9, 
    3.669549465345562*^9, 3.669549600263618*^9, 3.669550278431488*^9, 
-   3.6695510903024607`*^9, 3.669553023167597*^9}],
+   3.6695510903024607`*^9, 3.669553023167597*^9, 3.67851595050196*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/QBCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/QBCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553023267701*^9}]
+ CellChangeTimes->{3.669553023267701*^9, 3.678515950590637*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2817,21 +2919,21 @@ Cell[BoxData[
    3.669533038725719*^9, 3.669533248558032*^9, 3.6695338992159224`*^9, 
    3.669534791770576*^9, 3.669534847662972*^9, 3.669534984157878*^9, 
    3.6695494655820103`*^9, 3.669549600704137*^9, 3.669550278583185*^9, 
-   3.669551090322096*^9, 3.6695530233017263`*^9}],
+   3.669551090322096*^9, 3.6695530233017263`*^9, 3.6785159507004843`*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/QCCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/QCCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530234289427`*^9}]
+ CellChangeTimes->{3.6695530234289427`*^9, 3.67851595078449*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2968,7 +3070,7 @@ Cell[BoxData[
    3.66953324871387*^9, 3.669533899366721*^9, 3.6695347927973824`*^9, 
    3.669534847728713*^9, 3.669534984709732*^9, 3.669549465607881*^9, 
    3.6695496010804996`*^9, 3.6695502787223873`*^9, 3.6695510903463697`*^9, 
-   3.66955302346171*^9}]
+   3.66955302346171*^9, 3.678515950887295*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3109,21 +3211,21 @@ Cell[BoxData[
    3.669533039042547*^9, 3.6695332488668633`*^9, 3.669533899529142*^9, 
    3.669534793690921*^9, 3.6695348477947903`*^9, 3.6695349851440573`*^9, 
    3.6695494656991377`*^9, 3.669549601458559*^9, 3.6695502787468653`*^9, 
-   3.66955109037504*^9, 3.669553023525423*^9}],
+   3.66955109037504*^9, 3.669553023525423*^9, 3.678515950993278*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/QMUNUCoef.bin\
-\\\\\\\"\\\"}]\\)\[NoBreak] not found. \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/QMUNUCoef.bin\\\\\
+\\\"\\\"}]\\)\[NoBreak] not found. \
 \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
 ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553023616722*^9}]
+ CellChangeTimes->{3.669553023616722*^9, 3.6785159510741777`*^9}]
 }, Open  ]]
 }, Closed]]
 }, Closed]],
@@ -3200,7 +3302,7 @@ Cell[BoxData[
   3.669450547937457*^9, 3.669450645570284*^9, 3.669525550696188*^9, 
   3.669533049935068*^9, 3.669533259098338*^9, 3.669533910218396*^9, 
   3.6695494795805283`*^9, 3.669549621641077*^9, 3.669550278965054*^9, 
-  3.66955109042143*^9, 3.6695530240796843`*^9}]
+  3.66955109042143*^9, 3.6695530240796843`*^9, 3.678515951431383*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3265,7 +3367,7 @@ Cell[BoxData[
    3.669450548186049*^9, 3.669450645727594*^9, 3.669525555024406*^9, 
    3.669533050517948*^9, 3.669533259627612*^9, 3.669533910759986*^9, 
    3.669549480224966*^9, 3.669549622441248*^9, 3.669550278987487*^9, 
-   3.669551090454863*^9, 3.6695530241536837`*^9}]
+   3.669551090454863*^9, 3.6695530241536837`*^9, 3.678515951606089*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3301,7 +3403,8 @@ Cell[BoxData[
    3.666077664566156*^9, 3.669450548249777*^9, 3.6694506458302593`*^9, 
    3.669525555036119*^9, 3.6695330506226263`*^9, 3.66953325969491*^9, 
    3.669533910835878*^9, 3.669549480353801*^9, 3.6695496225606327`*^9, 
-   3.669550279005*^9, 3.669551090485567*^9, 3.669553024180565*^9}]
+   3.669550279005*^9, 3.669551090485567*^9, 3.669553024180565*^9, 
+   3.67851595171939*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3368,7 +3471,7 @@ Cell[BoxData[
    3.669450645938837*^9, 3.6695255551074543`*^9, 3.66953305082686*^9, 
    3.6695332598831387`*^9, 3.669533911027918*^9, 3.669549480675572*^9, 
    3.669549622851083*^9, 3.669550279031983*^9, 3.669551090515625*^9, 
-   3.669553024226413*^9}]
+   3.669553024226413*^9, 3.678515951836462*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3460,7 +3563,8 @@ Cell[BoxData[
    3.666077664662962*^9, 3.669450548382681*^9, 3.669450646042007*^9, 
    3.669525555172542*^9, 3.669533051077086*^9, 3.6695332601614037`*^9, 
    3.669533911267281*^9, 3.669549480989163*^9, 3.669549623146285*^9, 
-   3.669550279056643*^9, 3.669551090545122*^9, 3.669553024268084*^9}]
+   3.669550279056643*^9, 3.669551090545122*^9, 3.669553024268084*^9, 
+   3.678515951954557*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3706,7 +3810,8 @@ Cell[BoxData[
    3.6660776647108183`*^9, 3.669450548478891*^9, 3.669450646156506*^9, 
    3.669525555241943*^9, 3.669533051783033*^9, 3.6695332608366413`*^9, 
    3.669533911930209*^9, 3.669549481796433*^9, 3.6695496250575123`*^9, 
-   3.669550279079514*^9, 3.6695510905846863`*^9, 3.669553024312826*^9}]
+   3.669550279079514*^9, 3.6695510905846863`*^9, 3.669553024312826*^9, 
+   3.6785159520746727`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3729,7 +3834,7 @@ Cell[BoxData[
   "0.`", ",", "1.6847401421860346`*^-10", ",", "2.464637452808299`*^-10"}], 
   "}"}]], "Output",
  CellChangeTimes->{3.669550279106292*^9, 3.6695510906178303`*^9, 
-  3.669553024359611*^9}]
+  3.669553024359611*^9, 3.678515952177919*^9}]
 }, Open  ]]
 }, Closed]],
 
@@ -3880,21 +3985,21 @@ Cell[BoxData[
    3.6695330382869167`*^9, 3.66953324803631*^9, 3.669533898629808*^9, 
    3.669534787849793*^9, 3.669534847393931*^9, 3.669534983320388*^9, 
    3.669549465162031*^9, 3.669549599487837*^9, 3.6695502791803207`*^9, 
-   3.669551090680591*^9, 3.669553024435042*^9}],
+   3.669551090680591*^9, 3.669553024435042*^9, 3.678515952589738*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/FMCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/FMCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553024562663*^9}]
+ CellChangeTimes->{3.669553024562663*^9, 3.678515952668112*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3994,21 +4099,21 @@ Cell[BoxData[
    3.669533038446254*^9, 3.669533248230879*^9, 3.669533898866827*^9, 
    3.669534789338572*^9, 3.669534847489773*^9, 3.669534983548298*^9, 
    3.669549465267074*^9, 3.669549599860258*^9, 3.669550279331917*^9, 
-   3.669551090699905*^9, 3.669553024609623*^9}],
+   3.669551090699905*^9, 3.669553024609623*^9, 3.678515952770381*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/FACoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/FACoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530247190647`*^9}]
+ CellChangeTimes->{3.6695530247190647`*^9, 3.6785159528525333`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4058,21 +4163,21 @@ Cell[BoxData[
    3.669533038589801*^9, 3.669533248404895*^9, 3.669533899084798*^9, 
    3.669534790409328*^9, 3.6695348475814047`*^9, 3.669534983679139*^9, 
    3.669549465345562*^9, 3.669549600263618*^9, 3.669550279478773*^9, 
-   3.6695510907203217`*^9, 3.669553024756611*^9}],
+   3.6695510907203217`*^9, 3.669553024756611*^9, 3.6785159529629583`*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/FBCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/FBCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553024867608*^9}]
+ CellChangeTimes->{3.669553024867608*^9, 3.678515953045993*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4122,21 +4227,21 @@ Cell[BoxData[
    3.669533038725719*^9, 3.669533248558032*^9, 3.6695338992159224`*^9, 
    3.669534791770576*^9, 3.669534847662972*^9, 3.669534984157878*^9, 
    3.6695494655820103`*^9, 3.669549600704137*^9, 3.6695502796167192`*^9, 
-   3.669551090739435*^9, 3.669553024936761*^9}],
+   3.669551090739435*^9, 3.669553024936761*^9, 3.678515953140088*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/FCCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/FCCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553025032627*^9}]
+ CellChangeTimes->{3.669553025032627*^9, 3.678515953226734*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4237,7 +4342,7 @@ Cell[BoxData[
    3.66953324871387*^9, 3.669533899366721*^9, 3.6695347927973824`*^9, 
    3.669534847728713*^9, 3.669534984709732*^9, 3.669549465607881*^9, 
    3.6695496010804996`*^9, 3.669550279756504*^9, 3.669551090763667*^9, 
-   3.669553025066971*^9}]
+   3.669553025066971*^9, 3.678515953334022*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4342,21 +4447,21 @@ Cell[BoxData[
    3.669533039042547*^9, 3.6695332488668633`*^9, 3.669533899529142*^9, 
    3.669534793690921*^9, 3.6695348477947903`*^9, 3.6695349851440573`*^9, 
    3.6695494656991377`*^9, 3.669549601458559*^9, 3.66955027977892*^9, 
-   3.669551090785892*^9, 3.669553025092134*^9}],
+   3.669551090785892*^9, 3.669553025092134*^9, 3.678515953537492*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/FMUNUCoef.bin\
-\\\\\\\"\\\"}]\\)\[NoBreak] not found. \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S6/FMUNUCoef.bin\\\\\
+\\\"\\\"}]\\)\[NoBreak] not found. \
 \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
 ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.66955302519693*^9}]
+ CellChangeTimes->{3.66955302519693*^9, 3.6785159536184397`*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Closed]]
@@ -4413,7 +4518,7 @@ Cell[BoxData["15.954589770191003`"], "Output",
    3.6694505085989227`*^9, 3.669523016745379*^9, 3.6695248590116177`*^9, 
    3.6695250186419277`*^9, 3.669533354302827*^9, 3.669533934346195*^9, 
    3.669549516714409*^9, 3.6695503360876513`*^9, 3.6695510908185167`*^9, 
-   3.6695530252624607`*^9}],
+   3.6695530252624607`*^9, 3.678516104118424*^9}],
 
 Cell[BoxData["53"], "Output",
  CellChangeTimes->{{3.662708995681954*^9, 3.662709012061921*^9}, 
@@ -4431,7 +4536,7 @@ Cell[BoxData["53"], "Output",
    3.6694505085989227`*^9, 3.669523016745379*^9, 3.6695248590116177`*^9, 
    3.6695250186419277`*^9, 3.669533354302827*^9, 3.669533934346195*^9, 
    3.669549516714409*^9, 3.6695503360876513`*^9, 3.6695510908185167`*^9, 
-   3.669553025264081*^9}]
+   3.6695530252624607`*^9, 3.678516104122971*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4451,7 +4556,8 @@ Cell[BoxData[
    3.666077403845604*^9, 3.666077598125081*^9, 3.666676288240815*^9, 
    3.669450508825554*^9, 3.669523018725819*^9, 3.669525018758045*^9, 
    3.669533354328863*^9, 3.669533934368342*^9, 3.669549516737379*^9, 
-   3.6695503361351748`*^9, 3.669551090846821*^9, 3.669553025300888*^9}]
+   3.6695503361351748`*^9, 3.669551090846821*^9, 3.669553025300888*^9, 
+   3.6785161042342167`*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -4489,7 +4595,8 @@ Cell[BoxData[
  CellChangeTimes->{3.666676293026816*^9, 3.669450509403557*^9, 
   3.669523022986624*^9, 3.6695248630946417`*^9, 3.669525018821995*^9, 
   3.669533354434072*^9, 3.6695339344100018`*^9, 3.66954951679071*^9, 
-  3.669550336194956*^9, 3.6695510909024153`*^9, 3.669553025350909*^9}]
+  3.669550336194956*^9, 3.6695510909024153`*^9, 3.669553025350909*^9, 
+  3.678516104441552*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4550,7 +4657,7 @@ Cell[BoxData[
    3.66945050950881*^9, 3.6694505138338737`*^9}, 3.669523033803447*^9, 
    3.66952486493123*^9, 3.669525018853468*^9, 3.669533354465479*^9, 
    3.669533934425461*^9, 3.669549516815317*^9, 3.669550336244296*^9, 
-   3.669551090943892*^9, 3.66955302537212*^9}]
+   3.669551090943892*^9, 3.66955302537212*^9, 3.67851610454744*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4596,7 +4703,8 @@ Cell[BoxData[
    3.666077598226592*^9, {3.669450509619166*^9, 3.66945051401447*^9}, 
    3.6695230339145*^9, 3.669524865017674*^9, 3.669525018912305*^9, 
    3.669533354493373*^9, 3.669533934446422*^9, 3.669549516833232*^9, 
-   3.669550336282737*^9, 3.669551090975319*^9, 3.669553025401307*^9}]
+   3.669550336282737*^9, 3.669551090975319*^9, 3.669553025401307*^9, 
+   3.678516104653039*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4682,7 +4790,7 @@ Cell[BoxData[
    3.669450509929268*^9, 3.66945051413245*^9}, 3.669523034056232*^9, 
    3.669524865079734*^9, 3.6695250189602633`*^9, 3.669533354517954*^9, 
    3.6695339344690113`*^9, 3.6695495168549223`*^9, 3.669550336321104*^9, 
-   3.669551091005332*^9, 3.6695530254350147`*^9}]
+   3.669551091005332*^9, 3.6695530254350147`*^9, 3.678516104763501*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4785,7 +4893,7 @@ Cell[BoxData[
    3.66945051424184*^9}, 3.669523034128336*^9, 3.669524865136611*^9, 
    3.6695250190079327`*^9, 3.6695333545551653`*^9, 3.66953393448916*^9, 
    3.669549516875146*^9, 3.669550336367722*^9, 3.669551091033428*^9, 
-   3.669553025476365*^9}]
+   3.669553025476365*^9, 3.6785161048774643`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -5281,7 +5389,7 @@ Cell[BoxData[
    3.669450514356537*^9}, 3.66952303424137*^9, 3.669524865192523*^9, 
    3.669525019070498*^9, 3.669533354601481*^9, 3.6695339345193653`*^9, 
    3.6695495169034977`*^9, 3.6695503364225893`*^9, 3.669551091074396*^9, 
-   3.6695530255221357`*^9}]
+   3.6695530255221357`*^9, 3.678516105000019*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -5327,7 +5435,7 @@ Cell[BoxData[
    3.6694505144708767`*^9}, 3.669523034248042*^9, 3.66952486519865*^9, 
    3.669525019136979*^9, 3.669533354625791*^9, 3.6695339345379543`*^9, 
    3.669549516926771*^9, 3.669550336466555*^9, 3.669551091111175*^9, 
-   3.669553025554529*^9}]
+   3.669553025554529*^9, 3.67851610516956*^9}]
 }, Open  ]]
 }, Closed]],
 
@@ -5518,21 +5626,21 @@ Cell[BoxData[
    3.6695330382869167`*^9, 3.66953324803631*^9, 3.669533898629808*^9, 
    3.669534787849793*^9, 3.669534847393931*^9, 3.669534983320388*^9, 
    3.669549465162031*^9, 3.669549599487837*^9, 3.669550336595133*^9, 
-   3.669551091241178*^9, 3.669553025682948*^9}],
+   3.669551091241178*^9, 3.669553025682948*^9, 3.678516105924625*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/DMCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/DMCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530257913227`*^9}]
+ CellChangeTimes->{3.6695530257913227`*^9, 3.678516106009486*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -5673,21 +5781,21 @@ Cell[BoxData[
    3.669533038446254*^9, 3.669533248230879*^9, 3.669533898866827*^9, 
    3.669534789338572*^9, 3.669534847489773*^9, 3.669534983548298*^9, 
    3.669549465267074*^9, 3.669549599860258*^9, 3.669550336730204*^9, 
-   3.669551091258869*^9, 3.669553025833274*^9}],
+   3.669551091258869*^9, 3.669553025833274*^9, 3.67851610626903*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/DACoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/DACoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530259355173`*^9}]
+ CellChangeTimes->{3.6695530259355173`*^9, 3.678516106351791*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -5738,21 +5846,21 @@ Cell[BoxData[
    3.669533038589801*^9, 3.669533248404895*^9, 3.669533899084798*^9, 
    3.669534790409328*^9, 3.6695348475814047`*^9, 3.669534983679139*^9, 
    3.669549465345562*^9, 3.669549600263618*^9, 3.669550336865868*^9, 
-   3.669551091278646*^9, 3.669553025972465*^9}],
+   3.669551091278646*^9, 3.669553025972465*^9, 3.678516106458914*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/DBCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/DBCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553026075344*^9}]
+ CellChangeTimes->{3.669553026075344*^9, 3.6785161065354757`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -5803,21 +5911,21 @@ Cell[BoxData[
    3.669533038725719*^9, 3.669533248558032*^9, 3.6695338992159224`*^9, 
    3.669534791770576*^9, 3.669534847662972*^9, 3.669534984157878*^9, 
    3.6695494655820103`*^9, 3.669549600704137*^9, 3.669550337001122*^9, 
-   3.669551091297024*^9, 3.669553026112217*^9}],
+   3.669551091297024*^9, 3.669553026112217*^9, 3.6785161066404037`*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/DCCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/DCCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553026216661*^9}]
+ CellChangeTimes->{3.669553026216661*^9, 3.678516106717409*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -5964,7 +6072,7 @@ Cell[BoxData[
    3.66953324871387*^9, 3.669533899366721*^9, 3.6695347927973824`*^9, 
    3.669534847728713*^9, 3.669534984709732*^9, 3.669549465607881*^9, 
    3.6695496010804996`*^9, 3.669550337178707*^9, 3.669551091314897*^9, 
-   3.669553026305849*^9}]
+   3.669553026305849*^9, 3.6785161068254642`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6115,21 +6223,21 @@ Cell[BoxData[
    3.669533039042547*^9, 3.6695332488668633`*^9, 3.669533899529142*^9, 
    3.669534793690921*^9, 3.6695348477947903`*^9, 3.6695349851440573`*^9, 
    3.6695494656991377`*^9, 3.669549601458559*^9, 3.669550337194838*^9, 
-   3.669551091344468*^9, 3.66955302633084*^9}],
+   3.669551091344468*^9, 3.66955302633084*^9, 3.678516106930903*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/DMUNUCoef.bin\
-\\\\\\\"\\\"}]\\)\[NoBreak] not found. \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/DMUNUCoef.bin\\\\\
+\\\"\\\"}]\\)\[NoBreak] not found. \
 \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
 ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553026435862*^9}]
+ CellChangeTimes->{3.669553026435862*^9, 3.678516107008466*^9}]
 }, Open  ]],
 
 Cell[BoxData["\[IndentingNewLine]"], "Input",
@@ -6179,7 +6287,7 @@ Cell[BoxData["113"], "Output",
    3.666077645054538*^9, 3.666676393424399*^9, 3.6694505453387127`*^9, 
    3.669525101779237*^9, 3.669525371590769*^9, 3.669533355536425*^9, 
    3.66953393529922*^9, 3.669549517267138*^9, 3.6695503373220377`*^9, 
-   3.6695510913710737`*^9, 3.6695530264690037`*^9}]
+   3.6695510913710737`*^9, 3.6695530264690037`*^9, 3.678516107277857*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -6219,7 +6327,8 @@ Cell[BoxData[
  CellChangeTimes->{3.666676293026816*^9, 3.6666763973245573`*^9, 
   3.669450545606368*^9, 3.669525104589869*^9, 3.669525373962*^9, 
   3.6695333571158524`*^9, 3.669533936890085*^9, 3.6695495192967453`*^9, 
-  3.669550337369165*^9, 3.669551091420224*^9, 3.6695530265176563`*^9}]
+  3.669550337369165*^9, 3.669551091420224*^9, 3.6695530265176563`*^9, 
+  3.678516107434113*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6285,7 +6394,7 @@ Cell[BoxData[
    3.6660776451694202`*^9, 3.669450545784913*^9, 3.669525109286354*^9, 
    3.669525381489882*^9, 3.6695333576455927`*^9, 3.669533937424446*^9, 
    3.669549519908194*^9, 3.669550337388674*^9, 3.669551091455702*^9, 
-   3.669553026555066*^9}]
+   3.669553026555066*^9, 3.678516107584217*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6324,7 +6433,7 @@ Cell[BoxData[
   3.663911995173749*^9, 3.666077645206389*^9, 3.669450545877063*^9, 
   3.6695251093525047`*^9, 3.669525381548221*^9, 3.669533357716608*^9, 
   3.669533937496214*^9, 3.669549519985921*^9, 3.669550337436138*^9, 
-  3.669551091481349*^9, 3.669553026585553*^9}]
+  3.669551091481349*^9, 3.669553026585553*^9, 3.678516107680945*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6407,7 +6516,8 @@ Cell[BoxData[
    3.663399971516253*^9, 3.663911995281254*^9, 3.6660776452610493`*^9, 
    3.669450545977922*^9, 3.669525109408504*^9, 3.669525381601451*^9, 
    3.6695333579027147`*^9, 3.669533937676208*^9, 3.669549520187532*^9, 
-   3.669550337464694*^9, 3.669551091513686*^9, 3.669553026618053*^9}]
+   3.669550337464694*^9, 3.669551091513686*^9, 3.669553026618053*^9, 
+   3.678516107830761*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6511,7 +6621,7 @@ Cell[BoxData[
    3.663911995384982*^9, 3.666077645303545*^9, 3.669450546078328*^9, 
    3.669525109469555*^9, 3.669525381650497*^9, 3.6695333581502666`*^9, 
    3.669533937890706*^9, 3.669549520462811*^9, 3.6695503374897947`*^9, 
-   3.6695510915528*^9, 3.6695530266506844`*^9}]
+   3.6695510915528*^9, 3.6695530266506844`*^9, 3.678516107871139*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7005,7 +7115,7 @@ Cell[BoxData[
    3.66391199550353*^9, 3.66607764535166*^9, 3.669450546174994*^9, 
    3.669525109535652*^9, 3.669525381726082*^9, 3.669533358839857*^9, 
    3.6695339385532084`*^9, 3.6695495212402163`*^9, 3.669550337518025*^9, 
-   3.6695510916018877`*^9, 3.669553026710002*^9}]
+   3.6695510916018877`*^9, 3.669553026710002*^9, 3.6785161079759083`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7051,7 +7161,7 @@ Cell[BoxData[
    3.6639119956090517`*^9, 3.6660776454052258`*^9, 3.66945054627444*^9, 
    3.669525109544373*^9, 3.669525381763856*^9, 3.669533359206377*^9, 
    3.669533938927355*^9, 3.66954952183877*^9, 3.669550337535099*^9, 
-   3.669551091627738*^9, 3.669553026740501*^9}]
+   3.669551091627738*^9, 3.669553026740501*^9, 3.6785161080714273`*^9}]
 }, Open  ]]
 }, Closed]],
 
@@ -7298,21 +7408,21 @@ Cell[BoxData[
    3.6695330382869167`*^9, 3.66953324803631*^9, 3.669533898629808*^9, 
    3.669534787849793*^9, 3.669534847393931*^9, 3.669534983320388*^9, 
    3.669549465162031*^9, 3.669549599487837*^9, 3.669550337611875*^9, 
-   3.6695510917246037`*^9, 3.6695530268599977`*^9}],
+   3.6695510917246037`*^9, 3.6695530268599977`*^9, 3.6785161084327307`*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/QMCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/QMCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553026963358*^9}]
+ CellChangeTimes->{3.669553026963358*^9, 3.678516108517655*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7515,21 +7625,21 @@ Cell[BoxData[
    3.669533038446254*^9, 3.669533248230879*^9, 3.669533898866827*^9, 
    3.669534789338572*^9, 3.669534847489773*^9, 3.669534983548298*^9, 
    3.669549465267074*^9, 3.669549599860258*^9, 3.669550337749658*^9, 
-   3.669551091753072*^9, 3.669553026997877*^9}],
+   3.669551091753072*^9, 3.669553026997877*^9, 3.678516108614317*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/QACoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/QACoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530271011267`*^9}]
+ CellChangeTimes->{3.6695530271011267`*^9, 3.678516108693205*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7589,21 +7699,21 @@ Cell[BoxData[
    3.669533038589801*^9, 3.669533248404895*^9, 3.669533899084798*^9, 
    3.669534790409328*^9, 3.6695348475814047`*^9, 3.669534983679139*^9, 
    3.669549465345562*^9, 3.669549600263618*^9, 3.669550337883621*^9, 
-   3.669551091776087*^9, 3.6695530271314497`*^9}],
+   3.669551091776087*^9, 3.6695530271314497`*^9, 3.678516108778083*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/QBCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/QBCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.66955302725317*^9}]
+ CellChangeTimes->{3.66955302725317*^9, 3.678516108858193*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7663,21 +7773,21 @@ Cell[BoxData[
    3.669533038725719*^9, 3.669533248558032*^9, 3.6695338992159224`*^9, 
    3.669534791770576*^9, 3.669534847662972*^9, 3.669534984157878*^9, 
    3.6695494655820103`*^9, 3.669549600704137*^9, 3.669550338014102*^9, 
-   3.669551091792425*^9, 3.6695530273113194`*^9}],
+   3.669551091792425*^9, 3.6695530273113194`*^9, 3.678516108942631*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/QCCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/QCCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553027414299*^9}]
+ CellChangeTimes->{3.669553027414299*^9, 3.678516109028523*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7888,7 +7998,7 @@ Cell[BoxData[
    3.66953324871387*^9, 3.669533899366721*^9, 3.6695347927973824`*^9, 
    3.669534847728713*^9, 3.669534984709732*^9, 3.669549465607881*^9, 
    3.6695496010804996`*^9, 3.669550338169903*^9, 3.669551091814269*^9, 
-   3.66955302744895*^9}]
+   3.66955302744895*^9, 3.678516109119143*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -8103,21 +8213,21 @@ Cell[BoxData[
    3.669533039042547*^9, 3.6695332488668633`*^9, 3.669533899529142*^9, 
    3.669534793690921*^9, 3.6695348477947903`*^9, 3.6695349851440573`*^9, 
    3.6695494656991377`*^9, 3.669549601458559*^9, 3.669550338194018*^9, 
-   3.669551091843219*^9, 3.669553027483968*^9}],
+   3.669551091843219*^9, 3.669553027483968*^9, 3.678516109210691*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/QMUNUCoef.bin\
-\\\\\\\"\\\"}]\\)\[NoBreak] not found. \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/QMUNUCoef.bin\\\\\
+\\\"\\\"}]\\)\[NoBreak] not found. \
 \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
 ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553027581995*^9}]
+ CellChangeTimes->{3.669553027581995*^9, 3.678516109296729*^9}]
 }, Open  ]]
 }, Closed]]
 }, Closed]],
@@ -8195,7 +8305,8 @@ Cell[BoxData[
  CellChangeTimes->{3.666676293026816*^9, 3.666676405801361*^9, 
   3.669450547937457*^9, 3.669450645570284*^9, 3.669525550696188*^9, 
   3.669533364890135*^9, 3.669533944416895*^9, 3.669549528667489*^9, 
-  3.669550338353163*^9, 3.6695510918895683`*^9, 3.66955302763096*^9}]
+  3.669550338353163*^9, 3.6695510918895683`*^9, 3.66955302763096*^9, 
+  3.678516109587809*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -8261,7 +8372,8 @@ Cell[BoxData[
    3.66339997208016*^9, 3.663911996972129*^9, 3.666077664521727*^9, 
    3.669450548186049*^9, 3.669450645727594*^9, 3.669525555024406*^9, 
    3.669533365476927*^9, 3.6695339449408712`*^9, 3.66954952935597*^9, 
-   3.66955033837641*^9, 3.6695510919255877`*^9, 3.669553027664068*^9}]
+   3.66955033837641*^9, 3.6695510919255877`*^9, 3.669553027664068*^9, 
+   3.678516109743433*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -8299,7 +8411,7 @@ Cell[BoxData[
    3.666077664566156*^9, 3.669450548249777*^9, 3.6694506458302593`*^9, 
    3.669525555036119*^9, 3.669533365575069*^9, 3.669533945013071*^9, 
    3.66954952946157*^9, 3.669550338391589*^9, 3.669551091963428*^9, 
-   3.6695530276844*^9}]
+   3.6695530276844*^9, 3.678516109838265*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -8366,7 +8478,7 @@ Cell[BoxData[
    3.663911997229113*^9, 3.6660776646150846`*^9, 3.66945054828613*^9, 
    3.669450645938837*^9, 3.6695255551074543`*^9, 3.669533365757516*^9, 
    3.6695339451912317`*^9, 3.669549529677617*^9, 3.669550338413665*^9, 
-   3.669551091998259*^9, 3.669553027718481*^9}]
+   3.669551091998259*^9, 3.669553027718481*^9, 3.6785161099875793`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -8465,7 +8577,7 @@ Cell[BoxData[
    3.666077664662962*^9, 3.669450548382681*^9, 3.669450646042007*^9, 
    3.669525555172542*^9, 3.66953336598488*^9, 3.6695339453990917`*^9, 
    3.6695495299739933`*^9, 3.669550338439373*^9, 3.669551092031516*^9, 
-   3.669553027762755*^9}]
+   3.669553027762755*^9, 3.67851611003154*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -8959,7 +9071,7 @@ Cell[BoxData[
    3.6660776647108183`*^9, 3.669450548478891*^9, 3.669450646156506*^9, 
    3.669525555241943*^9, 3.6695333666354847`*^9, 3.669533946040707*^9, 
    3.6695495308414507`*^9, 3.669550338465177*^9, 3.6695510920771217`*^9, 
-   3.6695530278086348`*^9}]
+   3.6695530278086348`*^9, 3.678516110137045*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -9006,7 +9118,7 @@ Cell[BoxData[
    3.66607766475036*^9, 3.6694505485688047`*^9, 3.669450646257556*^9, 
    3.6695255553062983`*^9, 3.669533367015046*^9, 3.669533946406788*^9, 
    3.6695495313648653`*^9, 3.6695503384816*^9, 3.6695510921111393`*^9, 
-   3.6695530278345957`*^9}]
+   3.6695530278345957`*^9, 3.6785161102364197`*^9}]
 }, Open  ]]
 }, Closed]],
 
@@ -9197,21 +9309,21 @@ Cell[BoxData[
    3.6695330382869167`*^9, 3.66953324803631*^9, 3.669533898629808*^9, 
    3.669534787849793*^9, 3.669534847393931*^9, 3.669534983320388*^9, 
    3.669549465162031*^9, 3.669549599487837*^9, 3.669550338553296*^9, 
-   3.6695510921974287`*^9, 3.6695530279196444`*^9}],
+   3.6695510921974287`*^9, 3.6695530279196444`*^9, 3.678516110591916*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/FMCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/FMCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553028014852*^9}]
+ CellChangeTimes->{3.669553028014852*^9, 3.67851611067622*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -9350,21 +9462,21 @@ Cell[BoxData[
    3.669533038446254*^9, 3.669533248230879*^9, 3.669533898866827*^9, 
    3.669534789338572*^9, 3.669534847489773*^9, 3.669534983548298*^9, 
    3.669549465267074*^9, 3.669549599860258*^9, 3.669550338698922*^9, 
-   3.669551092215534*^9, 3.669553028062016*^9}],
+   3.669551092215534*^9, 3.669553028062016*^9, 3.6785161107672987`*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/FACoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/FACoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.66955302816374*^9}]
+ CellChangeTimes->{3.66955302816374*^9, 3.678516110855461*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -9416,21 +9528,21 @@ Cell[BoxData[
    3.669533038589801*^9, 3.669533248404895*^9, 3.669533899084798*^9, 
    3.669534790409328*^9, 3.6695348475814047`*^9, 3.669534983679139*^9, 
    3.669549465345562*^9, 3.669549600263618*^9, 3.669550338839314*^9, 
-   3.669551092245447*^9, 3.669553028191387*^9}],
+   3.669551092245447*^9, 3.669553028191387*^9, 3.678516110946207*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/FBCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/FBCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553028294232*^9}]
+ CellChangeTimes->{3.669553028294232*^9, 3.678516111032427*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -9482,21 +9594,21 @@ Cell[BoxData[
    3.669533038725719*^9, 3.669533248558032*^9, 3.6695338992159224`*^9, 
    3.669534791770576*^9, 3.669534847662972*^9, 3.669534984157878*^9, 
    3.6695494655820103`*^9, 3.669549600704137*^9, 3.669550338977707*^9, 
-   3.669551092270694*^9, 3.669553028354868*^9}],
+   3.669551092270694*^9, 3.669553028354868*^9, 3.6785161111247997`*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/FCCoef.bin\\\\\
-\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/FCCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553028451335*^9}]
+ CellChangeTimes->{3.669553028451335*^9, 3.678516111209248*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -9643,7 +9755,7 @@ Cell[BoxData[
    3.66953324871387*^9, 3.669533899366721*^9, 3.6695347927973824`*^9, 
    3.669534847728713*^9, 3.669534984709732*^9, 3.669549465607881*^9, 
    3.6695496010804996`*^9, 3.6695503391062527`*^9, 3.66955109229095*^9, 
-   3.6695530284805613`*^9}]
+   3.6695530284805613`*^9, 3.67851611130547*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -9794,21 +9906,21 @@ Cell[BoxData[
    3.669533039042547*^9, 3.6695332488668633`*^9, 3.669533899529142*^9, 
    3.669534793690921*^9, 3.6695348477947903`*^9, 3.6695349851440573`*^9, 
    3.6695494656991377`*^9, 3.669549601458559*^9, 3.669550339126218*^9, 
-   3.669551092321622*^9, 3.669553028513153*^9}],
+   3.669551092321622*^9, 3.669553028513153*^9, 3.678516111454513*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/FMUNUCoef.bin\
-\\\\\\\"\\\"}]\\)\[NoBreak] not found. \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S8/FMUNUCoef.bin\\\\\
+\\\"\\\"}]\\)\[NoBreak] not found. \
 \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
 ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553028608437*^9}]
+ CellChangeTimes->{3.669553028608437*^9, 3.6785161114908667`*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Closed]]
@@ -9867,7 +9979,8 @@ Cell[BoxData["15.954589770191003`"], "Output",
    3.666077401117289*^9, 3.6660775980417547`*^9, 3.666676285735071*^9, 
    3.6694505085989227`*^9, 3.669523016745379*^9, 3.6695248590116177`*^9, 
    3.6695250186419277`*^9, 3.669533375795704*^9, 3.669533962971808*^9, 
-   3.669550380715646*^9, 3.66955109235242*^9, 3.669553028665237*^9}],
+   3.669550380715646*^9, 3.66955109235242*^9, 3.669553028665237*^9, 
+   3.670783159995406*^9, 3.67851611172651*^9}],
 
 Cell[BoxData["53"], "Output",
  CellChangeTimes->{{3.662708995681954*^9, 3.662709012061921*^9}, 
@@ -9884,7 +9997,8 @@ Cell[BoxData["53"], "Output",
    3.666077401117289*^9, 3.6660775980417547`*^9, 3.666676285735071*^9, 
    3.6694505085989227`*^9, 3.669523016745379*^9, 3.6695248590116177`*^9, 
    3.6695250186419277`*^9, 3.669533375795704*^9, 3.669533962971808*^9, 
-   3.669550380715646*^9, 3.66955109235242*^9, 3.6695530286678534`*^9}]
+   3.669550380715646*^9, 3.66955109235242*^9, 3.669553028665237*^9, 
+   3.670783159995406*^9, 3.678516111730195*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -9904,7 +10018,8 @@ Cell[BoxData[
    3.666077403845604*^9, 3.666077598125081*^9, 3.666676288240815*^9, 
    3.669450508825554*^9, 3.669523018725819*^9, 3.669525018758045*^9, 
    3.669533375826508*^9, 3.669533962999721*^9, 3.669550380750452*^9, 
-   3.669551092378276*^9, 3.669553028691622*^9}]
+   3.669551092378276*^9, 3.669553028691622*^9, 3.670783160031749*^9, 
+   3.678516111877769*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -9943,7 +10058,8 @@ Cell[BoxData[
  CellChangeTimes->{3.666676293026816*^9, 3.669450509403557*^9, 
   3.669523022986624*^9, 3.6695248630946417`*^9, 3.669525018821995*^9, 
   3.669533375951488*^9, 3.669533963075077*^9, 3.669550381182304*^9, 
-  3.669551092477618*^9, 3.6695530287895737`*^9}]
+  3.669551092477618*^9, 3.6695530287895737`*^9, 3.67078316027859*^9, 
+  3.678516112038917*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -10028,7 +10144,7 @@ Cell[BoxData[
    3.66945050950881*^9, 3.6694505138338737`*^9}, 3.669523033803447*^9, 
    3.66952486493123*^9, 3.669525018853468*^9, 3.669533375981949*^9, 
    3.669533963091742*^9, 3.669550381211627*^9, 3.6695510925066633`*^9, 
-   3.669553028818527*^9}]
+   3.669553028818527*^9, 3.670783160327779*^9, 3.678516112188983*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -10082,7 +10198,8 @@ Cell[BoxData[
    3.666077598226592*^9, {3.669450509619166*^9, 3.66945051401447*^9}, 
    3.6695230339145*^9, 3.669524865017674*^9, 3.669525018912305*^9, 
    3.669533376014909*^9, 3.6695339631112947`*^9, 3.6695503812464743`*^9, 
-   3.6695510925170727`*^9, 3.669553028847714*^9}]
+   3.6695510925170727`*^9, 3.669553028847714*^9, 3.6707831603766327`*^9, 
+   3.678516112223586*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -10169,7 +10286,7 @@ Cell[BoxData[
    3.669450509929268*^9, 3.66945051413245*^9}, 3.669523034056232*^9, 
    3.669524865079734*^9, 3.6695250189602633`*^9, 3.669533376049294*^9, 
    3.6695339631426687`*^9, 3.6695503812889*^9, 3.669551092556807*^9, 
-   3.6695530288953123`*^9}]
+   3.6695530288953123`*^9, 3.670783160491156*^9, 3.678516112328576*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -10414,7 +10531,8 @@ Cell[BoxData[
    3.6660774099359827`*^9, 3.666077598333199*^9, {3.669450510051257*^9, 
    3.66945051424184*^9}, 3.669523034128336*^9, 3.669524865136611*^9, 
    3.6695250190079327`*^9, 3.669533376102191*^9, 3.6695339631749983`*^9, 
-   3.669550381323867*^9, 3.669551092610546*^9, 3.6695530289458227`*^9}]
+   3.669550381323867*^9, 3.669551092610546*^9, 3.6695530289458227`*^9, 
+   3.670783160533655*^9, 3.678516112380501*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -13778,7 +13896,8 @@ Cell[BoxData[
    3.666077410046487*^9, 3.666077598392743*^9, {3.669450510176928*^9, 
    3.669450514356537*^9}, 3.66952303424137*^9, 3.669524865192523*^9, 
    3.669525019070498*^9, 3.669533376196528*^9, 3.669533963268836*^9, 
-   3.669550381417077*^9, 3.6695510927449017`*^9, 3.6695530290355377`*^9}]
+   3.669550381417077*^9, 3.6695510927449017`*^9, 3.6695530290355377`*^9, 
+   3.67078316065126*^9, 3.678516112529262*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -13825,7 +13944,8 @@ Cell[BoxData[
    3.666077410164572*^9, 3.666077598435771*^9, {3.669450510303279*^9, 
    3.6694505144708767`*^9}, 3.669523034248042*^9, 3.66952486519865*^9, 
    3.669525019136979*^9, 3.6695333762451982`*^9, 3.669533963301444*^9, 
-   3.6695503814503937`*^9, 3.6695510927890368`*^9, 3.669553029067058*^9}]
+   3.6695503814503937`*^9, 3.6695510927890368`*^9, 3.669553029067058*^9, 
+   3.670783160687751*^9, 3.67851611271138*^9}]
 }, Open  ]]
 }, Closed]],
 
@@ -14272,21 +14392,23 @@ Cell[BoxData[
    3.6695330382869167`*^9, 3.66953324803631*^9, 3.669533898629808*^9, 
    3.669534787849793*^9, 3.669534847393931*^9, 3.669534983320388*^9, 
    3.669549465162031*^9, 3.669549599487837*^9, 3.6695503841200542`*^9, 
-   3.669551095366105*^9, 3.6695530316512537`*^9}],
+   3.669551095366105*^9, 3.6695530316512537`*^9, 3.670783163367186*^9, 
+   3.678516114955769*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/DMCoef.bin\\\
-\\\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/DMCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530317514963`*^9}]
+ CellChangeTimes->{3.6695530317514963`*^9, 3.670783163519662*^9, 
+  3.6785161150443296`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -14685,21 +14807,23 @@ Cell[BoxData[
    3.669533038446254*^9, 3.669533248230879*^9, 3.669533898866827*^9, 
    3.669534789338572*^9, 3.669534847489773*^9, 3.669534983548298*^9, 
    3.669549465267074*^9, 3.669549599860258*^9, 3.669550384254456*^9, 
-   3.669551095385108*^9, 3.669553031795423*^9}],
+   3.669551095385108*^9, 3.669553031795423*^9, 3.670783163560491*^9, 
+   3.678516115084228*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/DACoef.bin\\\
-\\\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/DACoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530318937817`*^9}]
+ CellChangeTimes->{3.6695530318937817`*^9, 3.6707831636561947`*^9, 
+  3.678516115199072*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -14758,21 +14882,23 @@ Cell[BoxData[
    3.669533038589801*^9, 3.669533248404895*^9, 3.669533899084798*^9, 
    3.669534790409328*^9, 3.6695348475814047`*^9, 3.669534983679139*^9, 
    3.669549465345562*^9, 3.669549600263618*^9, 3.66955038437961*^9, 
-   3.669551095407937*^9, 3.669553031934051*^9}],
+   3.669551095407937*^9, 3.669553031934051*^9, 3.670783163694312*^9, 
+   3.678516115238615*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/DBCoef.bin\\\
-\\\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/DBCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553032029706*^9}]
+ CellChangeTimes->{3.669553032029706*^9, 3.670783163791651*^9, 
+  3.67851611535291*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -14831,21 +14957,23 @@ Cell[BoxData[
    3.669533038725719*^9, 3.669533248558032*^9, 3.6695338992159224`*^9, 
    3.669534791770576*^9, 3.669534847662972*^9, 3.669534984157878*^9, 
    3.6695494655820103`*^9, 3.669549600704137*^9, 3.669550384501305*^9, 
-   3.66955109542157*^9, 3.6695530320610933`*^9}],
+   3.66955109542157*^9, 3.6695530320610933`*^9, 3.6707831638258*^9, 
+   3.6785161154005003`*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/DCCoef.bin\\\
-\\\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/DCCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553032162045*^9}]
+ CellChangeTimes->{3.669553032162045*^9, 3.6707831639223957`*^9, 
+  3.678516115507307*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -15296,7 +15424,7 @@ Cell[BoxData[
    3.66953324871387*^9, 3.669533899366721*^9, 3.6695347927973824`*^9, 
    3.669534847728713*^9, 3.669534984709732*^9, 3.669549465607881*^9, 
    3.6695496010804996`*^9, 3.669550384630307*^9, 3.669551095441987*^9, 
-   3.669553032209258*^9}]
+   3.669553032209258*^9, 3.670783163959971*^9, 3.678516115554357*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -15750,21 +15878,23 @@ Cell[BoxData[
    3.669533039042547*^9, 3.6695332488668633`*^9, 3.669533899529142*^9, 
    3.669534793690921*^9, 3.6695348477947903`*^9, 3.6695349851440573`*^9, 
    3.6695494656991377`*^9, 3.669549601458559*^9, 3.669550384649349*^9, 
-   3.669551095481587*^9, 3.669553032253532*^9}],
+   3.669551095481587*^9, 3.669553032253532*^9, 3.6707831639891043`*^9, 
+   3.678516115650872*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/DMUNUCoef.\
-bin\\\\\\\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\
-\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
-ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/DMUNUCoef.bin\\\
+\\\\\"\\\"}]\\)\[NoBreak] not found. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553032352894*^9}]
+ CellChangeTimes->{3.669553032352894*^9, 3.6707831640822906`*^9, 
+  3.678516115727807*^9}]
 }, Open  ]]
 }, Closed]]
 }, Closed]],
@@ -15812,7 +15942,7 @@ Cell[BoxData["113"], "Output",
    3.666077645054538*^9, 3.666676393424399*^9, 3.6694505453387127`*^9, 
    3.669525101779237*^9, 3.669525371590769*^9, 3.669533379181487*^9, 
    3.669533965965907*^9, 3.669550384775793*^9, 3.6695510954896307`*^9, 
-   3.66955303238449*^9}]
+   3.66955303238449*^9, 3.6707831641045923`*^9, 3.678516115888752*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -15853,7 +15983,8 @@ Cell[BoxData[
  CellChangeTimes->{3.666676293026816*^9, 3.6666763973245573`*^9, 
   3.669450545606368*^9, 3.669525104589869*^9, 3.669525373962*^9, 
   3.669533380827229*^9, 3.669533967553671*^9, 3.669550384856402*^9, 
-  3.6695510955553083`*^9, 3.669553032461914*^9}]
+  3.6695510955553083`*^9, 3.669553032461914*^9, 3.67078316418717*^9, 
+  3.6785161161390753`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -15942,7 +16073,8 @@ Cell[BoxData[
    3.663399858312813*^9, 3.663399971421612*^9, 3.6639119950629883`*^9, 
    3.6660776451694202`*^9, 3.669450545784913*^9, 3.669525109286354*^9, 
    3.669525381489882*^9, 3.66953338134599*^9, 3.6695339680618553`*^9, 
-   3.669550384880066*^9, 3.66955109559414*^9, 3.669553032501547*^9}]
+   3.669550384880066*^9, 3.66955109559414*^9, 3.669553032501547*^9, 
+   3.670783164315735*^9, 3.678516116256172*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -15989,7 +16121,7 @@ Cell[BoxData[
   3.663911995173749*^9, 3.666077645206389*^9, 3.669450545877063*^9, 
   3.6695251093525047`*^9, 3.669525381548221*^9, 3.669533381416301*^9, 
   3.66953396816261*^9, 3.669550384898794*^9, 3.669551095602771*^9, 
-  3.669553032535277*^9}]
+  3.669553032535277*^9, 3.6707831643398237`*^9, 3.6785161163581448`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -16073,7 +16205,8 @@ Cell[BoxData[
    3.663399971516253*^9, 3.663911995281254*^9, 3.6660776452610493`*^9, 
    3.669450545977922*^9, 3.669525109408504*^9, 3.669525381601451*^9, 
    3.669533381596981*^9, 3.669533968350309*^9, 3.669550384928514*^9, 
-   3.669551095649969*^9, 3.6695530325706987`*^9}]
+   3.669551095649969*^9, 3.6695530325706987`*^9, 3.670783164370137*^9, 
+   3.678516116507802*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -16301,7 +16434,7 @@ Cell[BoxData[
    3.663911995384982*^9, 3.666077645303545*^9, 3.669450546078328*^9, 
    3.669525109469555*^9, 3.669525381650497*^9, 3.669533381817564*^9, 
    3.669533968580821*^9, 3.669550384973612*^9, 3.669551095691371*^9, 
-   3.669553032612249*^9}]
+   3.669553032612249*^9, 3.670783164415938*^9, 3.678516116554902*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -19664,7 +19797,7 @@ Cell[BoxData[
    3.66391199550353*^9, 3.66607764535166*^9, 3.669450546174994*^9, 
    3.669525109535652*^9, 3.669525381726082*^9, 3.669533382503406*^9, 
    3.669533969256639*^9, 3.669550385048637*^9, 3.6695510957977753`*^9, 
-   3.66955303273446*^9}]
+   3.66955303273446*^9, 3.670783164515704*^9, 3.678516116682246*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -19715,7 +19848,7 @@ Cell[BoxData[
    3.6639119956090517`*^9, 3.6660776454052258`*^9, 3.66945054627444*^9, 
    3.669525109544373*^9, 3.669525381763856*^9, 3.669533382923954*^9, 
    3.6695339696372747`*^9, 3.669550385093382*^9, 3.6695510958471746`*^9, 
-   3.6695530327777348`*^9}]
+   3.6695530327777348`*^9, 3.6707831645525703`*^9, 3.678516116792211*^9}]
 }, Open  ]]
 }, Closed]],
 
@@ -20402,21 +20535,23 @@ Cell[BoxData[
    3.6695330382869167`*^9, 3.66953324803631*^9, 3.669533898629808*^9, 
    3.669534787849793*^9, 3.669534847393931*^9, 3.669534983320388*^9, 
    3.669549465162031*^9, 3.669549599487837*^9, 3.669550387683979*^9, 
-   3.6695510984191637`*^9, 3.669553035326098*^9}],
+   3.6695510984191637`*^9, 3.669553035326098*^9, 3.670783167130746*^9, 
+   3.678516119210432*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/QMCoef.bin\\\
-\\\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/QMCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553035420841*^9}]
+ CellChangeTimes->{3.669553035420841*^9, 3.6707831672291937`*^9, 
+  3.678516119293301*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -21067,21 +21202,23 @@ Cell[BoxData[
    3.669533038446254*^9, 3.669533248230879*^9, 3.669533898866827*^9, 
    3.669534789338572*^9, 3.669534847489773*^9, 3.669534983548298*^9, 
    3.669549465267074*^9, 3.669549599860258*^9, 3.669550387819252*^9, 
-   3.6695510984405823`*^9, 3.669553035446783*^9}],
+   3.6695510984405823`*^9, 3.669553035446783*^9, 3.670783167264821*^9, 
+   3.6785161193829203`*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/QACoef.bin\\\
-\\\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/QACoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553035540142*^9}]
+ CellChangeTimes->{3.669553035540142*^9, 3.67078316736307*^9, 
+  3.6785161194651413`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -21157,21 +21294,23 @@ Cell[BoxData[
    3.669533038589801*^9, 3.669533248404895*^9, 3.669533899084798*^9, 
    3.669534790409328*^9, 3.6695348475814047`*^9, 3.669534983679139*^9, 
    3.669549465345562*^9, 3.669549600263618*^9, 3.669550387938498*^9, 
-   3.669551098459132*^9, 3.669553035567959*^9}],
+   3.669551098459132*^9, 3.669553035567959*^9, 3.670783167394104*^9, 
+   3.6785161195486727`*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/QBCoef.bin\\\
-\\\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/QBCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530356707363`*^9}]
+ CellChangeTimes->{3.6695530356707363`*^9, 3.670783167494322*^9, 
+  3.678516119630172*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -21247,21 +21386,23 @@ Cell[BoxData[
    3.669533038725719*^9, 3.669533248558032*^9, 3.6695338992159224`*^9, 
    3.669534791770576*^9, 3.669534847662972*^9, 3.669534984157878*^9, 
    3.6695494655820103`*^9, 3.669549600704137*^9, 3.669550388071061*^9, 
-   3.669551098472426*^9, 3.6695530357046328`*^9}],
+   3.669551098472426*^9, 3.6695530357046328`*^9, 3.670783167526638*^9, 
+   3.678516119733239*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/QCCoef.bin\\\
-\\\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/QCCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530357992992`*^9}]
+ CellChangeTimes->{3.6695530357992992`*^9, 3.6707831676300097`*^9, 
+  3.678516119822062*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -21968,7 +22109,7 @@ Cell[BoxData[
    3.66953324871387*^9, 3.669533899366721*^9, 3.6695347927973824`*^9, 
    3.669534847728713*^9, 3.669534984709732*^9, 3.669549465607881*^9, 
    3.6695496010804996`*^9, 3.669550388201376*^9, 3.669551098487878*^9, 
-   3.6695530358504553`*^9}]
+   3.6695530358504553`*^9, 3.6707831676696863`*^9, 3.67851611987147*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -22679,21 +22820,23 @@ Cell[BoxData[
    3.669533039042547*^9, 3.6695332488668633`*^9, 3.669533899529142*^9, 
    3.669534793690921*^9, 3.6695348477947903`*^9, 3.6695349851440573`*^9, 
    3.6695494656991377`*^9, 3.669549601458559*^9, 3.6695503882236547`*^9, 
-   3.669551098523037*^9, 3.669553035887891*^9}],
+   3.669551098523037*^9, 3.669553035887891*^9, 3.670783167704421*^9, 
+   3.678516119975872*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/QMUNUCoef.\
-bin\\\\\\\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\
-\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
-ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/QMUNUCoef.bin\\\
+\\\\\"\\\"}]\\)\[NoBreak] not found. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553035979638*^9}]
+ CellChangeTimes->{3.669553035979638*^9, 3.670783167805051*^9, 
+  3.678516120049828*^9}]
 }, Open  ]]
 }, Closed]]
 }, Closed]],
@@ -22774,7 +22917,8 @@ Cell[BoxData[
   3.669450547937457*^9, 3.669450645570284*^9, 3.669525550696188*^9, 
   3.669533388843849*^9, 3.669533975283832*^9, 3.669550388384511*^9, 
   3.669551098585081*^9, 3.669551542317762*^9, 3.669552052313032*^9, 
-  3.669552227806246*^9, 3.66955303604813*^9}]
+  3.669552227806246*^9, 3.66955303604813*^9, 3.6707831678842993`*^9, 
+  3.678516120398037*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -22865,7 +23009,8 @@ Cell[BoxData[
    3.669450548186049*^9, 3.669450645727594*^9, 3.669525555024406*^9, 
    3.6695333894005136`*^9, 3.669533975767357*^9, 3.669550388409541*^9, 
    3.669551098642549*^9, 3.669551542492749*^9, 3.669552052728714*^9, 
-   3.669552227961739*^9, 3.669553036082287*^9}]
+   3.669552227961739*^9, 3.669553036082287*^9, 3.6707831679156437`*^9, 
+   3.678516120712612*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -22911,7 +23056,8 @@ Cell[BoxData[
    3.666077664566156*^9, 3.669450548249777*^9, 3.6694506458302593`*^9, 
    3.669525555036119*^9, 3.6695333894725027`*^9, 3.669533975844705*^9, 
    3.669550388423854*^9, 3.6695510986705503`*^9, 3.669551542608136*^9, 
-   3.669552052846418*^9, 3.6695522280694637`*^9, 3.669553036107891*^9}]
+   3.669552052846418*^9, 3.6695522280694637`*^9, 3.669553036107891*^9, 
+   3.670783167935749*^9, 3.678516120908223*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -22980,7 +23126,7 @@ Cell[BoxData[
    3.669450645938837*^9, 3.6695255551074543`*^9, 3.6695333896627398`*^9, 
    3.669533976020547*^9, 3.669550388444816*^9, 3.669551098717473*^9, 
    3.669551542724196*^9, 3.669552052954999*^9, 3.669552228219089*^9, 
-   3.669553036150794*^9}]
+   3.669553036150794*^9, 3.67078316797073*^9, 3.6785161209650793`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -23253,7 +23399,8 @@ Cell[BoxData[
    3.666077664662962*^9, 3.669450548382681*^9, 3.669450646042007*^9, 
    3.669525555172542*^9, 3.6695333898949833`*^9, 3.6695339762244663`*^9, 
    3.669550388471739*^9, 3.6695510987643337`*^9, 3.669551542843473*^9, 
-   3.6695520530661592`*^9, 3.669552228275807*^9, 3.6695530361947737`*^9}]
+   3.6695520530661592`*^9, 3.669552228275807*^9, 3.6695530361947737`*^9, 
+   3.670783168016622*^9, 3.6785161210893583`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -26616,7 +26763,8 @@ Cell[BoxData[
    3.6660776647108183`*^9, 3.669450548478891*^9, 3.669450646156506*^9, 
    3.669525555241943*^9, 3.6695333905695333`*^9, 3.669533976904359*^9, 
    3.669550388548452*^9, 3.669551098881947*^9, 3.6695515430295753`*^9, 
-   3.669552053382359*^9, 3.669552228433899*^9, 3.669553036286504*^9}]
+   3.669552053382359*^9, 3.669552228433899*^9, 3.669553036286504*^9, 
+   3.6707831681026793`*^9, 3.678516121378777*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -26663,7 +26811,8 @@ Cell[BoxData[
    3.66607766475036*^9, 3.6694505485688047`*^9, 3.669450646257556*^9, 
    3.6695255553062983`*^9, 3.6695333909592524`*^9, 3.669533977284964*^9, 
    3.669550388583734*^9, 3.66955109892395*^9, 3.6695515432129183`*^9, 
-   3.669552053493285*^9, 3.669552228542465*^9, 3.66955303634026*^9}]
+   3.669552053493285*^9, 3.669552228542465*^9, 3.66955303634026*^9, 
+   3.6707831681773033`*^9, 3.678516121435663*^9}]
 }, Open  ]]
 }, Closed]],
 
@@ -27111,21 +27260,23 @@ Cell[BoxData[
    3.669534787849793*^9, 3.669534847393931*^9, 3.669534983320388*^9, 
    3.669549465162031*^9, 3.669549599487837*^9, 3.6695503910647993`*^9, 
    3.669551101454475*^9, 3.669551546003892*^9, 3.66955205631995*^9, 
-   3.669552231347677*^9, 3.669553038884326*^9}],
+   3.669552231347677*^9, 3.669553038884326*^9, 3.6707831707374477`*^9, 
+   3.678516123690299*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/FMCoef.bin\\\
-\\\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/FMCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530389849253`*^9}]
+ CellChangeTimes->{3.6695530389849253`*^9, 3.670783170833392*^9, 
+  3.678516123778268*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -27521,21 +27672,23 @@ Cell[BoxData[
    3.669534789338572*^9, 3.669534847489773*^9, 3.669534983548298*^9, 
    3.669549465267074*^9, 3.669549599860258*^9, 3.669550391199918*^9, 
    3.669551101471292*^9, 3.669551546123561*^9, 3.669552056589732*^9, 
-   3.669552231458684*^9, 3.6695530390332813`*^9}],
+   3.669552231458684*^9, 3.6695530390332813`*^9, 3.6707831708812532`*^9, 
+   3.678516123974352*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/FACoef.bin\\\
-\\\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/FACoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530391337976`*^9}]
+ CellChangeTimes->{3.6695530391337976`*^9, 3.670783170977848*^9, 
+  3.678516123976761*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -27596,21 +27749,23 @@ Cell[BoxData[
    3.669534790409328*^9, 3.6695348475814047`*^9, 3.669534983679139*^9, 
    3.669549465345562*^9, 3.669549600263618*^9, 3.669550391324829*^9, 
    3.6695511014815817`*^9, 3.669551546236207*^9, 3.6695520567841167`*^9, 
-   3.66955223153799*^9, 3.6695530391821012`*^9}],
+   3.66955223153799*^9, 3.6695530391821012`*^9, 3.67078317101171*^9, 
+   3.6785161241481953`*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/FBCoef.bin\\\
-\\\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/FBCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530392774353`*^9}]
+ CellChangeTimes->{3.6695530392774353`*^9, 3.670783171106927*^9, 
+  3.678516124218577*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -27671,21 +27826,23 @@ Cell[BoxData[
    3.669534791770576*^9, 3.669534847662972*^9, 3.669534984157878*^9, 
    3.6695494655820103`*^9, 3.669549600704137*^9, 3.6695503914495697`*^9, 
    3.6695511014929867`*^9, 3.669551546345778*^9, 3.669552056936825*^9, 
-   3.669552231623904*^9, 3.66955303931284*^9}],
+   3.669552231623904*^9, 3.66955303931284*^9, 3.670783171146372*^9, 
+   3.6785161243205214`*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/FCCoef.bin\\\
-\\\\\"\\\"}]\\)\[NoBreak] not found. \
-\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
-ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/FCCoef.bin\\\\\\\
+\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.6695530394162607`*^9}]
+ CellChangeTimes->{3.6695530394162607`*^9, 3.670783171241787*^9, 
+  3.678516124464856*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -28137,7 +28294,7 @@ Cell[BoxData[
    3.669534847728713*^9, 3.669534984709732*^9, 3.669549465607881*^9, 
    3.6695496010804996`*^9, 3.669550391579378*^9, 3.669551101509775*^9, 
    3.669551546458991*^9, 3.669552057097925*^9, 3.669552231701195*^9, 
-   3.669553039467025*^9}]
+   3.669553039467025*^9, 3.67078317128028*^9, 3.678516124698258*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -28452,28 +28609,30 @@ Cell[BoxData[
    3.669534793690921*^9, 3.6695348477947903`*^9, 3.6695349851440573`*^9, 
    3.6695494656991377`*^9, 3.669549601458559*^9, 3.669550391599135*^9, 
    3.6695511015378428`*^9, 3.669551546574695*^9, 3.669552057363719*^9, 
-   3.669552231813396*^9, 3.66955303949942*^9}],
+   3.669552231813396*^9, 3.66955303949942*^9, 3.6707831713274927`*^9, 
+   3.678516124927026*^9}],
 
 Cell[BoxData[
  RowBox[{
   StyleBox[
-   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Directory or file \
+   RowBox[{"DeleteFile", "::", "fdnfnd"}], "MessageName"], ":", 
+  " ", "\<\"Directory or file \
 \[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"/home/joseba/Mahaigaina/PIC/Softwatea/\
-garapenak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/FMUNUCoef.\
-bin\\\\\\\"\\\"}]\\)\[NoBreak] not found. \\!\\(\\*ButtonBox[\\\"\
-\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
-ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
+garapenak/2-Atala/1-IRK \
+Kodeak/4-Artikulurako-I/C-inplementazioa/CoefficientsData/S16/FMUNUCoef.bin\\\
+\\\\\"\\\"}]\\)\[NoBreak] not found. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/DeleteFile\\\", ButtonNote -> \
 \\\"DeleteFile::fdnfnd\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.669553039601211*^9}]
+ CellChangeTimes->{3.669553039601211*^9, 3.670783171424713*^9, 
+  3.678516125011283*^9}]
 }, Open  ]]
 }, Closed]]
 }, Closed]]
 }, Open  ]]
 },
 WindowSize->{1215, 716},
-WindowMargins->{{Automatic, -10}, {Automatic, -10}},
+WindowMargins->{{Automatic, 0}, {76, Automatic}},
 PrintingCopies->1,
 PrintingPageRange->{Automatic, Automatic},
 PrintingOptions->{"PaperOrientation"->"Portrait",
@@ -28483,7 +28642,7 @@ gaussmetodoa/dokumentuak/print3.pdf",
 "PrintingMargins"->{{14.314960629914502`, 14.314960629914502`}, \
 {15.307086614165996`, 15.307086614165996`}}},
 ShowSelection->True,
-FrontEndVersion->"10.4 for Linux x86 (64-bit) (February 25, 2016)",
+FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -28501,747 +28660,752 @@ Cell[CellGroupData[{
 Cell[579, 22, 3689, 51, 65, "Section"],
 Cell[CellGroupData[{
 Cell[4293, 77, 144, 2, 44, "Subsection"],
-Cell[4440, 81, 790, 15, 99, "Input"]
+Cell[4440, 81, 790, 15, 104, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
 Cell[5267, 101, 270, 3, 37, "Subsection"],
-Cell[5540, 106, 348, 9, 32, "Input"],
-Cell[5891, 117, 517, 10, 32, "Input"]
-}, Open  ]]
+Cell[5540, 106, 350, 9, 35, "Input"],
+Cell[5893, 117, 517, 10, 35, "Input"]
+}, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6457, 133, 93, 1, 65, "Section"],
-Cell[6553, 136, 1242, 29, 77, "Input"],
+Cell[6459, 133, 93, 1, 65, "Section"],
+Cell[6555, 136, 1242, 29, 83, "Input"],
 Cell[CellGroupData[{
-Cell[7820, 169, 95, 1, 35, "Subsubsection"],
-Cell[CellGroupData[{
-Cell[7940, 174, 1670, 43, 99, "Input"],
-Cell[9613, 219, 998, 15, 143, "Output"]
-}, Open  ]]
+Cell[7822, 169, 95, 1, 35, "Subsubsection"],
+Cell[7920, 172, 1724, 45, 103, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[10660, 240, 97, 1, 35, "Subsubsection"],
-Cell[10760, 243, 1671, 44, 99, "Input"]
+Cell[9681, 222, 97, 1, 35, "Subsubsection"],
+Cell[9781, 225, 1671, 44, 103, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12468, 292, 147, 2, 35, "Subsubsection"],
-Cell[12618, 296, 1745, 45, 99, "Input"]
-}, Open  ]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[14412, 347, 90, 1, 51, "Section"],
-Cell[14505, 350, 237, 5, 32, "Input"],
-Cell[CellGroupData[{
-Cell[14767, 359, 230, 3, 45, "Subsection"],
-Cell[CellGroupData[{
-Cell[15022, 366, 497, 11, 77, "Input"],
-Cell[15522, 379, 1263, 17, 70, "Output"],
-Cell[16788, 398, 1245, 17, 70, "Output"]
+Cell[11489, 274, 147, 2, 35, "Subsubsection"],
+Cell[11639, 278, 1745, 45, 103, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18070, 420, 218, 6, 32, "Input"],
-Cell[18291, 428, 601, 9, 70, "Output"]
-}, Open  ]],
-Cell[18907, 440, 330, 8, 32, "Input"],
-Cell[CellGroupData[{
-Cell[19262, 452, 459, 13, 32, "Input"],
-Cell[19724, 467, 505, 9, 70, "Output"]
+Cell[13421, 328, 144, 2, 35, "Subsubsection"],
+Cell[13568, 332, 1770, 45, 103, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20266, 481, 143, 1, 35, "Subsubsection"],
-Cell[CellGroupData[{
-Cell[20434, 486, 228, 6, 32, "Input"],
-Cell[20665, 494, 2319, 43, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[23021, 542, 519, 15, 55, "Input"],
-Cell[23543, 559, 1361, 24, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[24941, 588, 1524, 49, 77, "Input"],
-Cell[26468, 639, 2016, 31, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[28521, 675, 521, 16, 32, "Input"],
-Cell[29045, 693, 3843, 71, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[32925, 769, 653, 21, 55, "Input"],
-Cell[33581, 792, 9929, 221, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[43547, 1018, 275, 8, 32, "Input"],
-Cell[43825, 1028, 2016, 31, 70, "Output"]
+Cell[15375, 382, 197, 3, 35, "Subsubsection"],
+Cell[15575, 387, 1794, 46, 103, "Input"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[45890, 1065, 99, 1, 29, "Subsubsection"],
-Cell[45992, 1068, 235, 6, 32, "Input"],
-Cell[46230, 1076, 529, 16, 55, "Input"]
+Cell[17418, 439, 90, 1, 51, "Section"],
+Cell[17511, 442, 237, 5, 30, "Input"],
+Cell[CellGroupData[{
+Cell[17773, 451, 230, 3, 45, "Subsection"],
+Cell[CellGroupData[{
+Cell[18028, 458, 497, 11, 77, "Input"],
+Cell[18528, 471, 1313, 18, 32, "Output"],
+Cell[19844, 491, 1296, 18, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21177, 514, 218, 6, 32, "Input"],
+Cell[21398, 522, 649, 10, 32, "Output"]
+}, Open  ]],
+Cell[22062, 535, 330, 8, 32, "Input"],
+Cell[CellGroupData[{
+Cell[22417, 547, 459, 13, 32, "Input"],
+Cell[22879, 562, 554, 10, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23470, 577, 143, 1, 35, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[23638, 582, 228, 6, 32, "Input"],
+Cell[23869, 590, 2393, 44, 128, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26299, 639, 519, 15, 55, "Input"],
+Cell[26821, 656, 1408, 25, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28266, 686, 1524, 49, 77, "Input"],
+Cell[29793, 737, 2060, 31, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31890, 773, 521, 16, 32, "Input"],
+Cell[32414, 791, 3893, 72, 146, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36344, 868, 653, 21, 55, "Input"],
+Cell[37000, 891, 9977, 222, 74, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[47014, 1118, 275, 8, 32, "Input"],
+Cell[47292, 1128, 2066, 32, 37, "Output"]
+}, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[46796, 1097, 154, 2, 29, "Subsubsection"],
-Cell[46953, 1101, 282, 8, 55, "Input"],
+Cell[49407, 1166, 99, 1, 29, "Subsubsection"],
+Cell[49509, 1169, 235, 6, 32, "Input"],
+Cell[49747, 1177, 529, 16, 55, "Input"]
+}, Closed]],
 Cell[CellGroupData[{
-Cell[47260, 1113, 1160, 28, 165, "Input"],
-Cell[48423, 1143, 3059, 66, 70, "Output"],
-Cell[51485, 1211, 593, 12, 70, "Message"]
+Cell[50313, 1198, 154, 2, 29, "Subsubsection"],
+Cell[50470, 1202, 282, 8, 55, "Input"],
+Cell[CellGroupData[{
+Cell[50777, 1214, 1160, 28, 165, "Input"],
+Cell[51940, 1244, 3081, 66, 249, "Output"],
+Cell[55024, 1312, 625, 12, 41, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[52115, 1228, 1134, 27, 165, "Input"],
-Cell[53252, 1257, 3229, 67, 70, "Output"],
-Cell[56484, 1326, 595, 12, 70, "Message"]
+Cell[55686, 1329, 1134, 27, 165, "Input"],
+Cell[56823, 1358, 3250, 67, 369, "Output"],
+Cell[60076, 1427, 627, 12, 41, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[57116, 1343, 1184, 28, 165, "Input"],
-Cell[58303, 1373, 823, 14, 70, "Output"],
-Cell[59129, 1389, 593, 12, 70, "Message"]
+Cell[60740, 1444, 1184, 28, 165, "Input"],
+Cell[61927, 1474, 845, 14, 49, "Output"],
+Cell[62775, 1490, 625, 12, 41, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[59759, 1406, 1181, 28, 165, "Input"],
-Cell[60943, 1436, 834, 14, 70, "Output"],
-Cell[61780, 1452, 593, 12, 70, "Message"]
+Cell[63437, 1507, 1181, 28, 165, "Input"],
+Cell[64621, 1537, 856, 14, 89, "Output"],
+Cell[65480, 1553, 625, 12, 41, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[62410, 1469, 726, 19, 143, "Input"],
-Cell[63139, 1490, 3392, 75, 70, "Output"]
+Cell[66142, 1570, 726, 19, 143, "Input"],
+Cell[66871, 1591, 3414, 75, 369, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[66568, 1570, 885, 24, 165, "Input"],
-Cell[67456, 1596, 3261, 74, 70, "Output"],
-Cell[70720, 1672, 598, 12, 70, "Message"]
+Cell[70322, 1671, 885, 24, 165, "Input"],
+Cell[71210, 1697, 3283, 74, 369, "Output"],
+Cell[74496, 1773, 630, 12, 58, "Message"]
 }, Open  ]]
 }, Closed]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[71379, 1691, 283, 3, 37, "Subsection"],
+Cell[75187, 1792, 283, 3, 37, "Subsection"],
 Cell[CellGroupData[{
-Cell[71687, 1698, 850, 19, 55, "Input"],
-Cell[72540, 1719, 931, 13, 70, "Output"]
+Cell[75495, 1799, 850, 19, 55, "Input"],
+Cell[76348, 1820, 953, 13, 32, "Output"]
 }, Open  ]],
-Cell[73486, 1735, 407, 9, 32, "Input"],
+Cell[77316, 1836, 407, 9, 32, "Input"],
 Cell[CellGroupData[{
-Cell[73918, 1748, 508, 14, 32, "Input"],
-Cell[74429, 1764, 506, 9, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[74972, 1778, 143, 1, 35, "Subsubsection"],
-Cell[75118, 1781, 222, 5, 55, "Input"],
-Cell[CellGroupData[{
-Cell[75365, 1790, 277, 7, 32, "Input"],
-Cell[75645, 1799, 2080, 39, 70, "Output"]
+Cell[77748, 1849, 508, 14, 32, "Input"],
+Cell[78259, 1865, 530, 9, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[77762, 1843, 551, 16, 55, "Input"],
-Cell[78316, 1861, 808, 16, 70, "Output"]
+Cell[78826, 1879, 143, 1, 35, "Subsubsection"],
+Cell[78972, 1882, 222, 5, 55, "Input"],
+Cell[CellGroupData[{
+Cell[79219, 1891, 277, 7, 32, "Input"],
+Cell[79499, 1900, 2108, 40, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[79161, 1882, 1572, 49, 77, "Input"],
-Cell[80736, 1933, 1831, 28, 70, "Output"]
+Cell[81644, 1945, 551, 16, 55, "Input"],
+Cell[82198, 1963, 830, 16, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[82604, 1966, 572, 17, 32, "Input"],
-Cell[83179, 1985, 3535, 67, 70, "Output"]
+Cell[83065, 1984, 1572, 49, 77, "Input"],
+Cell[84640, 2035, 1853, 28, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[86751, 2057, 653, 21, 55, "Input"],
-Cell[87407, 2080, 9847, 220, 70, "Output"]
+Cell[86530, 2068, 572, 17, 32, "Input"],
+Cell[87105, 2087, 3557, 67, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[97291, 2305, 328, 10, 32, "Input"],
-Cell[97622, 2317, 1981, 31, 70, "Output"]
+Cell[90699, 2159, 653, 21, 55, "Input"],
+Cell[91355, 2182, 9868, 220, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[101260, 2407, 328, 10, 32, "Input"],
+Cell[101591, 2419, 2003, 31, 70, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[99652, 2354, 99, 1, 29, "Subsubsection"],
-Cell[99754, 2357, 287, 6, 32, "Input"],
-Cell[100044, 2365, 555, 16, 55, "Input"]
+Cell[103643, 2456, 99, 1, 29, "Subsubsection"],
+Cell[103745, 2459, 287, 6, 32, "Input"],
+Cell[104035, 2467, 555, 16, 55, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[100636, 2386, 154, 2, 29, "Subsubsection"],
-Cell[100793, 2390, 334, 9, 55, "Input"],
+Cell[104627, 2488, 154, 2, 29, "Subsubsection"],
+Cell[104784, 2492, 334, 9, 55, "Input"],
 Cell[CellGroupData[{
-Cell[101152, 2403, 1206, 28, 165, "Input"],
-Cell[102361, 2433, 4370, 96, 70, "Output"],
-Cell[106734, 2531, 595, 12, 70, "Message"]
+Cell[105143, 2505, 1206, 28, 165, "Input"],
+Cell[106352, 2535, 4392, 96, 70, "Output"],
+Cell[110747, 2633, 627, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[107366, 2548, 1186, 28, 165, "Input"],
-Cell[108555, 2578, 4793, 101, 70, "Output"],
-Cell[113351, 2681, 593, 12, 70, "Message"]
+Cell[111411, 2650, 1186, 28, 165, "Input"],
+Cell[112600, 2680, 4815, 101, 70, "Output"],
+Cell[117418, 2783, 625, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[113981, 2698, 1233, 29, 165, "Input"],
-Cell[115217, 2729, 1079, 20, 70, "Output"],
-Cell[116299, 2751, 593, 12, 70, "Message"]
+Cell[118080, 2800, 1233, 29, 165, "Input"],
+Cell[119316, 2831, 1100, 20, 70, "Output"],
+Cell[120419, 2853, 625, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[116929, 2768, 1231, 29, 165, "Input"],
-Cell[118163, 2799, 1083, 20, 70, "Output"],
-Cell[119249, 2821, 595, 12, 70, "Message"]
+Cell[121081, 2870, 1231, 29, 165, "Input"],
+Cell[122315, 2901, 1107, 20, 70, "Output"],
+Cell[123425, 2923, 626, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[119881, 2838, 777, 20, 143, "Input"],
-Cell[120661, 2860, 4966, 110, 70, "Output"]
+Cell[124088, 2940, 777, 20, 143, "Input"],
+Cell[124868, 2962, 4988, 110, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[125664, 2975, 936, 25, 165, "Input"],
-Cell[126603, 3002, 4831, 109, 70, "Output"],
-Cell[131437, 3113, 596, 12, 70, "Message"]
-}, Open  ]]
-}, Closed]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[132094, 3132, 381, 5, 37, "Subsection"],
-Cell[132478, 3139, 980, 23, 55, "Input"],
-Cell[133461, 3164, 459, 10, 32, "Input"],
-Cell[CellGroupData[{
-Cell[133945, 3178, 508, 14, 32, "Input"],
-Cell[134456, 3194, 437, 8, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[134930, 3207, 143, 1, 35, "Subsubsection"],
-Cell[135076, 3210, 222, 5, 55, "Input"],
-Cell[CellGroupData[{
-Cell[135323, 3219, 374, 8, 32, "Input"],
-Cell[135700, 3229, 1988, 38, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[137725, 3272, 502, 15, 55, "Input"],
-Cell[138230, 3289, 710, 14, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[138977, 3308, 1105, 33, 55, "Input"],
-Cell[140085, 3343, 1747, 27, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[141869, 3375, 613, 17, 32, "Input"],
-Cell[142485, 3394, 3506, 68, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[146028, 3467, 653, 21, 55, "Input"],
-Cell[146684, 3490, 9791, 218, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[156512, 3713, 374, 10, 32, "Input"],
-Cell[156889, 3725, 227, 6, 70, "Output"]
-}, Open  ]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[157165, 3737, 99, 1, 29, "Subsubsection"],
-Cell[157267, 3740, 289, 6, 32, "Input"],
-Cell[157559, 3748, 529, 16, 55, "Input"]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[158125, 3769, 154, 2, 29, "Subsubsection"],
-Cell[158282, 3773, 331, 9, 55, "Input"],
-Cell[CellGroupData[{
-Cell[158638, 3786, 1205, 28, 165, "Input"],
-Cell[159846, 3816, 2535, 66, 70, "Output"],
-Cell[162384, 3884, 593, 12, 70, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[163014, 3901, 1184, 28, 165, "Input"],
-Cell[164201, 3931, 2601, 65, 70, "Output"],
-Cell[166805, 3998, 595, 12, 70, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[167437, 4015, 1236, 29, 165, "Input"],
-Cell[168676, 4046, 721, 14, 70, "Output"],
-Cell[169400, 4062, 593, 12, 70, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[170030, 4079, 1231, 29, 165, "Input"],
-Cell[171264, 4110, 733, 14, 70, "Output"],
-Cell[172000, 4126, 593, 12, 70, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[172630, 4143, 776, 20, 143, "Input"],
-Cell[173409, 4165, 2749, 74, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[176195, 4244, 938, 25, 165, "Input"],
-Cell[177136, 4271, 2629, 73, 70, "Output"],
-Cell[179768, 4346, 595, 12, 70, "Message"]
-}, Open  ]]
-}, Open  ]]
-}, Closed]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[180436, 4366, 139, 2, 65, "Section"],
-Cell[180578, 4370, 203, 5, 32, "Input"],
-Cell[CellGroupData[{
-Cell[180806, 4379, 278, 3, 45, "Subsection"],
-Cell[CellGroupData[{
-Cell[181109, 4386, 545, 11, 77, "Input"],
-Cell[181657, 4399, 1148, 16, 70, "Output"],
-Cell[182808, 4417, 1129, 16, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[183974, 4438, 218, 6, 32, "Input"],
-Cell[184195, 4446, 483, 7, 70, "Output"]
-}, Open  ]],
-Cell[184693, 4456, 330, 8, 32, "Input"],
-Cell[CellGroupData[{
-Cell[185048, 4468, 459, 13, 32, "Input"],
-Cell[185510, 4483, 415, 8, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[185962, 4496, 143, 1, 35, "Subsubsection"],
-Cell[CellGroupData[{
-Cell[186130, 4501, 228, 6, 32, "Input"],
-Cell[186361, 4509, 2408, 43, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[188806, 4557, 519, 15, 55, "Input"],
-Cell[189328, 4574, 1317, 24, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[190682, 4603, 1524, 49, 77, "Input"],
-Cell[192209, 4654, 1926, 30, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[194172, 4689, 521, 16, 32, "Input"],
-Cell[194696, 4707, 4483, 80, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[199216, 4792, 653, 21, 55, "Input"],
-Cell[199872, 4815, 20949, 468, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[220858, 5288, 275, 8, 32, "Input"],
-Cell[221136, 5298, 1988, 31, 70, "Output"]
-}, Open  ]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[223173, 5335, 99, 1, 29, "Subsubsection"],
-Cell[223275, 5338, 235, 6, 32, "Input"],
-Cell[223513, 5346, 529, 16, 55, "Input"]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[224079, 5367, 154, 2, 29, "Subsubsection"],
-Cell[224236, 5371, 384, 10, 55, "Input"],
-Cell[CellGroupData[{
-Cell[224645, 5385, 1160, 28, 165, "Input"],
-Cell[225808, 5415, 4997, 105, 70, "Output"],
-Cell[230808, 5522, 595, 12, 70, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[231440, 5539, 1134, 27, 165, "Input"],
-Cell[232577, 5568, 5311, 107, 70, "Output"],
-Cell[237891, 5677, 595, 12, 70, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[238523, 5694, 1184, 28, 165, "Input"],
-Cell[239710, 5724, 957, 16, 70, "Output"],
-Cell[240670, 5742, 593, 12, 70, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[241300, 5759, 1181, 28, 165, "Input"],
-Cell[242484, 5789, 957, 16, 70, "Output"],
-Cell[243444, 5807, 593, 12, 70, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[244074, 5824, 726, 19, 143, "Input"],
-Cell[244803, 5845, 5580, 121, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[250420, 5971, 885, 24, 165, "Input"],
-Cell[251308, 5997, 5342, 120, 70, "Output"],
-Cell[256653, 6119, 596, 12, 70, "Message"]
-}, Open  ]],
-Cell[257264, 6134, 89, 1, 55, "Input"]
-}, Closed]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[257402, 6141, 334, 4, 37, "Subsection"],
-Cell[CellGroupData[{
-Cell[257761, 6149, 900, 19, 55, "Input"],
-Cell[258664, 6170, 788, 11, 70, "Output"]
-}, Open  ]],
-Cell[259467, 6184, 407, 9, 32, "Input"],
-Cell[CellGroupData[{
-Cell[259899, 6197, 508, 14, 32, "Input"],
-Cell[260410, 6213, 415, 8, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[260862, 6226, 143, 1, 35, "Subsubsection"],
-Cell[261008, 6229, 222, 5, 55, "Input"],
-Cell[CellGroupData[{
-Cell[261255, 6238, 277, 7, 32, "Input"],
-Cell[261535, 6247, 2174, 40, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[263746, 6292, 551, 16, 55, "Input"],
-Cell[264300, 6310, 762, 16, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[265099, 6331, 1572, 49, 77, "Input"],
-Cell[266674, 6382, 1732, 27, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[268443, 6414, 572, 17, 32, "Input"],
-Cell[269018, 6433, 4503, 80, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[273558, 6518, 653, 21, 55, "Input"],
-Cell[274214, 6541, 20849, 466, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[295100, 7012, 328, 10, 32, "Input"],
-Cell[295431, 7024, 1845, 29, 70, "Output"]
-}, Open  ]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[297325, 7059, 99, 1, 29, "Subsubsection"],
-Cell[297427, 7062, 287, 6, 32, "Input"],
-Cell[297717, 7070, 555, 16, 55, "Input"]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[298309, 7091, 154, 2, 29, "Subsubsection"],
-Cell[298466, 7095, 383, 10, 55, "Input"],
-Cell[CellGroupData[{
-Cell[298874, 7109, 1206, 28, 165, "Input"],
-Cell[300083, 7139, 7432, 161, 70, "Output"],
-Cell[307518, 7302, 593, 12, 70, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[308148, 7319, 1185, 28, 165, "Input"],
-Cell[309336, 7349, 8079, 168, 70, "Output"],
-Cell[317418, 7519, 595, 12, 70, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[318050, 7536, 1234, 29, 165, "Input"],
-Cell[319287, 7567, 1285, 24, 70, "Output"],
-Cell[320575, 7593, 592, 12, 70, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[321204, 7610, 1231, 29, 165, "Input"],
-Cell[322438, 7641, 1292, 24, 70, "Output"],
-Cell[323733, 7667, 593, 12, 70, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[324363, 7684, 778, 20, 143, "Input"],
-Cell[325144, 7706, 8384, 184, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[333565, 7895, 936, 25, 165, "Input"],
-Cell[334504, 7922, 8125, 183, 70, "Output"],
-Cell[342632, 8107, 596, 12, 70, "Message"]
+Cell[129893, 3077, 936, 25, 165, "Input"],
+Cell[130832, 3104, 4853, 109, 70, "Output"],
+Cell[135688, 3215, 630, 12, 70, "Message"]
 }, Open  ]]
 }, Closed]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[343289, 8126, 429, 5, 37, "Subsection"],
-Cell[343721, 8133, 1030, 24, 55, "Input"],
-Cell[344754, 8159, 459, 10, 32, "Input"],
+Cell[136379, 3234, 381, 5, 37, "Subsection"],
+Cell[136763, 3241, 980, 23, 55, "Input"],
+Cell[137746, 3266, 459, 10, 32, "Input"],
 Cell[CellGroupData[{
-Cell[345238, 8173, 508, 14, 32, "Input"],
-Cell[345749, 8189, 411, 8, 70, "Output"]
+Cell[138230, 3280, 508, 14, 32, "Input"],
+Cell[138741, 3296, 459, 8, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[346197, 8202, 143, 1, 35, "Subsubsection"],
-Cell[346343, 8205, 222, 5, 55, "Input"],
+Cell[139237, 3309, 143, 1, 35, "Subsubsection"],
+Cell[139383, 3312, 222, 5, 55, "Input"],
 Cell[CellGroupData[{
-Cell[346590, 8214, 374, 8, 32, "Input"],
-Cell[346967, 8224, 2150, 39, 70, "Output"]
+Cell[139630, 3321, 374, 8, 32, "Input"],
+Cell[140007, 3331, 2010, 38, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[349154, 8268, 502, 15, 55, "Input"],
-Cell[349659, 8285, 743, 16, 70, "Output"]
+Cell[142054, 3374, 502, 15, 55, "Input"],
+Cell[142559, 3391, 735, 15, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[350439, 8306, 1105, 33, 55, "Input"],
-Cell[351547, 8341, 1723, 27, 70, "Output"]
+Cell[143331, 3411, 1105, 33, 55, "Input"],
+Cell[144439, 3446, 1769, 27, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[353307, 8373, 613, 17, 32, "Input"],
-Cell[353923, 8392, 4164, 75, 70, "Output"]
+Cell[146245, 3478, 613, 17, 32, "Input"],
+Cell[146861, 3497, 3532, 69, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[358124, 8472, 653, 21, 55, "Input"],
-Cell[358780, 8495, 20839, 466, 70, "Output"]
+Cell[150430, 3571, 653, 21, 55, "Input"],
+Cell[151086, 3594, 9819, 219, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[379656, 8966, 374, 10, 32, "Input"],
-Cell[380033, 8978, 1898, 30, 70, "Output"]
+Cell[160942, 3818, 374, 10, 32, "Input"],
+Cell[161319, 3830, 249, 6, 70, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[381980, 9014, 99, 1, 29, "Subsubsection"],
-Cell[382082, 9017, 289, 6, 32, "Input"],
-Cell[382374, 9025, 529, 16, 55, "Input"]
+Cell[161617, 3842, 99, 1, 29, "Subsubsection"],
+Cell[161719, 3845, 289, 6, 32, "Input"],
+Cell[162011, 3853, 529, 16, 55, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[382940, 9046, 154, 2, 29, "Subsubsection"],
-Cell[383097, 9050, 384, 10, 55, "Input"],
+Cell[162577, 3874, 154, 2, 29, "Subsubsection"],
+Cell[162734, 3878, 331, 9, 55, "Input"],
 Cell[CellGroupData[{
-Cell[383506, 9064, 1208, 28, 165, "Input"],
-Cell[384717, 9094, 4012, 105, 70, "Output"],
-Cell[388732, 9201, 593, 12, 70, "Message"]
+Cell[163090, 3891, 1205, 28, 165, "Input"],
+Cell[164298, 3921, 2557, 66, 129, "Output"],
+Cell[166858, 3989, 625, 12, 41, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[389362, 9218, 1184, 28, 165, "Input"],
-Cell[390549, 9248, 4202, 104, 70, "Output"],
-Cell[394754, 9354, 592, 12, 70, "Message"]
+Cell[167520, 4006, 1184, 28, 165, "Input"],
+Cell[168707, 4036, 2623, 65, 249, "Output"],
+Cell[171333, 4103, 629, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[395383, 9371, 1234, 29, 165, "Input"],
-Cell[396620, 9402, 811, 16, 70, "Output"],
-Cell[397434, 9420, 593, 12, 70, "Message"]
+Cell[171999, 4120, 1236, 29, 165, "Input"],
+Cell[173238, 4151, 745, 14, 70, "Output"],
+Cell[173986, 4167, 625, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[398064, 9437, 1231, 29, 165, "Input"],
-Cell[399298, 9468, 824, 16, 70, "Output"],
-Cell[400125, 9486, 593, 12, 70, "Message"]
+Cell[174648, 4184, 1231, 29, 165, "Input"],
+Cell[175882, 4215, 755, 14, 49, "Output"],
+Cell[176640, 4231, 625, 12, 41, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[400755, 9503, 776, 20, 143, "Input"],
-Cell[401534, 9525, 4466, 120, 70, "Output"]
+Cell[177302, 4248, 776, 20, 143, "Input"],
+Cell[178081, 4270, 2771, 74, 249, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[406037, 9650, 934, 25, 165, "Input"],
-Cell[406974, 9677, 4244, 119, 70, "Output"],
-Cell[411221, 9798, 596, 12, 70, "Message"]
+Cell[180889, 4349, 938, 25, 165, "Input"],
+Cell[181830, 4376, 2651, 73, 249, "Output"],
+Cell[184484, 4451, 629, 12, 58, "Message"]
 }, Open  ]]
 }, Open  ]]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[411890, 9818, 189, 3, 65, "Section"],
-Cell[412082, 9823, 253, 6, 32, "Input"],
+Cell[185186, 4471, 139, 2, 65, "Section"],
+Cell[185328, 4475, 203, 5, 30, "Input"],
 Cell[CellGroupData[{
-Cell[412360, 9833, 328, 4, 45, "Subsection"],
+Cell[185556, 4484, 278, 3, 45, "Subsection"],
 Cell[CellGroupData[{
-Cell[412713, 9841, 545, 11, 77, "Input"],
-Cell[413261, 9854, 1115, 15, 70, "Output"],
-Cell[414379, 9871, 1100, 15, 70, "Output"]
+Cell[185859, 4491, 545, 11, 77, "Input"],
+Cell[186407, 4504, 1170, 16, 30, "Output"],
+Cell[187580, 4522, 1153, 16, 30, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[415516, 9891, 218, 6, 26, "Input"],
-Cell[415737, 9899, 459, 7, 70, "Output"]
+Cell[188770, 4543, 218, 6, 32, "Input"],
+Cell[188991, 4551, 511, 8, 30, "Output"]
 }, Open  ]],
-Cell[416211, 9909, 330, 8, 32, "Input"],
+Cell[189517, 4562, 330, 8, 32, "Input"],
 Cell[CellGroupData[{
-Cell[416566, 9921, 459, 13, 32, "Input"],
-Cell[417028, 9936, 484, 9, 70, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[417549, 9950, 143, 1, 35, "Subsubsection"],
-Cell[CellGroupData[{
-Cell[417717, 9955, 228, 6, 32, "Input"],
-Cell[417948, 9963, 3901, 67, 70, "Output"]
+Cell[189872, 4574, 459, 13, 32, "Input"],
+Cell[190334, 4589, 440, 9, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[421886, 10035, 519, 15, 55, "Input"],
-Cell[422408, 10052, 1621, 32, 70, "Output"]
+Cell[190811, 4603, 143, 1, 35, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[190979, 4608, 228, 6, 32, "Input"],
+Cell[191210, 4616, 2429, 43, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[424066, 10089, 1524, 49, 77, "Input"],
-Cell[425593, 10140, 1985, 31, 70, "Output"]
+Cell[193676, 4664, 519, 15, 55, "Input"],
+Cell[194198, 4681, 1343, 25, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[427615, 10176, 521, 16, 32, "Input"],
-Cell[428139, 10194, 12384, 222, 70, "Output"]
+Cell[195578, 4711, 1524, 49, 77, "Input"],
+Cell[197105, 4762, 1948, 30, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[440560, 10421, 653, 21, 55, "Input"],
-Cell[441216, 10444, 155417, 3336, 70, "Output"]
+Cell[199090, 4797, 521, 16, 32, "Input"],
+Cell[199614, 4815, 4507, 80, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[596670, 13785, 275, 8, 32, "Input"],
-Cell[596948, 13795, 2077, 32, 70, "Output"]
+Cell[204158, 4900, 653, 21, 55, "Input"],
+Cell[204814, 4923, 20971, 468, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[225822, 5396, 275, 8, 32, "Input"],
+Cell[226100, 5406, 2009, 31, 70, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[599074, 13833, 99, 1, 29, "Subsubsection"],
-Cell[599176, 13836, 235, 6, 32, "Input"],
-Cell[599414, 13844, 529, 16, 55, "Input"]
+Cell[228158, 5443, 99, 1, 29, "Subsubsection"],
+Cell[228260, 5446, 235, 6, 32, "Input"],
+Cell[228498, 5454, 529, 16, 55, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[599980, 13865, 154, 2, 29, "Subsubsection"],
-Cell[600137, 13869, 382, 10, 55, "Input"],
+Cell[229064, 5475, 154, 2, 29, "Subsubsection"],
+Cell[229221, 5479, 384, 10, 55, "Input"],
 Cell[CellGroupData[{
-Cell[600544, 13883, 1160, 28, 165, "Input"],
-Cell[601707, 13913, 18229, 361, 70, "Output"],
-Cell[619939, 14276, 596, 12, 70, "Message"]
+Cell[229630, 5493, 1160, 28, 165, "Input"],
+Cell[230793, 5523, 5019, 105, 70, "Output"],
+Cell[235815, 5630, 627, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[620572, 14293, 1134, 27, 165, "Input"],
-Cell[621709, 14322, 19383, 365, 70, "Output"],
-Cell[641095, 14689, 596, 12, 70, "Message"]
+Cell[236479, 5647, 1134, 27, 165, "Input"],
+Cell[237616, 5676, 5332, 107, 70, "Output"],
+Cell[242951, 5785, 627, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[641728, 14706, 1184, 28, 165, "Input"],
-Cell[642915, 14736, 1462, 24, 70, "Output"],
-Cell[644380, 14762, 594, 12, 70, "Message"]
+Cell[243615, 5802, 1184, 28, 165, "Input"],
+Cell[244802, 5832, 979, 16, 70, "Output"],
+Cell[245784, 5850, 627, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[645011, 14779, 1181, 28, 165, "Input"],
-Cell[646195, 14809, 1458, 24, 70, "Output"],
-Cell[647656, 14835, 594, 12, 70, "Message"]
+Cell[246448, 5867, 1181, 28, 165, "Input"],
+Cell[247632, 5897, 981, 16, 70, "Output"],
+Cell[248616, 5915, 625, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[648287, 14852, 726, 19, 143, "Input"],
-Cell[649016, 14873, 20436, 425, 70, "Output"]
+Cell[249278, 5932, 726, 19, 143, "Input"],
+Cell[250007, 5953, 5604, 121, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[669489, 15303, 885, 24, 165, "Input"],
-Cell[670377, 15329, 18600, 423, 70, "Output"],
-Cell[688980, 15754, 597, 12, 70, "Message"]
+Cell[255648, 6079, 885, 24, 165, "Input"],
+Cell[256536, 6105, 5364, 120, 70, "Output"],
+Cell[261903, 6227, 628, 12, 70, "Message"]
+}, Open  ]],
+Cell[262546, 6242, 89, 1, 55, "Input"]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[262684, 6249, 334, 4, 37, "Subsection"],
+Cell[CellGroupData[{
+Cell[263043, 6257, 900, 19, 55, "Input"],
+Cell[263946, 6278, 810, 11, 70, "Output"]
+}, Open  ]],
+Cell[264771, 6292, 407, 9, 32, "Input"],
+Cell[CellGroupData[{
+Cell[265203, 6305, 508, 14, 32, "Input"],
+Cell[265714, 6321, 440, 9, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[266191, 6335, 143, 1, 35, "Subsubsection"],
+Cell[266337, 6338, 222, 5, 55, "Input"],
+Cell[CellGroupData[{
+Cell[266584, 6347, 277, 7, 32, "Input"],
+Cell[266864, 6356, 2196, 40, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[269097, 6401, 551, 16, 55, "Input"],
+Cell[269651, 6419, 784, 16, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[270472, 6440, 1572, 49, 77, "Input"],
+Cell[272047, 6491, 1758, 28, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[273842, 6524, 572, 17, 32, "Input"],
+Cell[274417, 6543, 4525, 80, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[278979, 6628, 653, 21, 55, "Input"],
+Cell[279635, 6651, 20873, 466, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[300545, 7122, 328, 10, 32, "Input"],
+Cell[300876, 7134, 1869, 29, 70, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[302794, 7169, 99, 1, 29, "Subsubsection"],
+Cell[302896, 7172, 287, 6, 32, "Input"],
+Cell[303186, 7180, 555, 16, 55, "Input"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[303778, 7201, 154, 2, 29, "Subsubsection"],
+Cell[303935, 7205, 383, 10, 55, "Input"],
+Cell[CellGroupData[{
+Cell[304343, 7219, 1206, 28, 165, "Input"],
+Cell[305552, 7249, 7456, 161, 70, "Output"],
+Cell[313011, 7412, 625, 12, 70, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[313673, 7429, 1185, 28, 165, "Input"],
+Cell[314861, 7459, 8101, 168, 70, "Output"],
+Cell[322965, 7629, 627, 12, 70, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[323629, 7646, 1234, 29, 165, "Input"],
+Cell[324866, 7677, 1307, 24, 70, "Output"],
+Cell[326176, 7703, 624, 12, 70, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[326837, 7720, 1231, 29, 165, "Input"],
+Cell[328071, 7751, 1314, 24, 70, "Output"],
+Cell[329388, 7777, 625, 12, 70, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[330050, 7794, 778, 20, 143, "Input"],
+Cell[330831, 7816, 8406, 184, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[339274, 8005, 936, 25, 165, "Input"],
+Cell[340213, 8032, 8147, 183, 70, "Output"],
+Cell[348363, 8217, 628, 12, 70, "Message"]
 }, Open  ]]
 }, Closed]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[689638, 15773, 386, 5, 37, "Subsection"],
+Cell[349052, 8236, 429, 5, 37, "Subsection"],
+Cell[349484, 8243, 1030, 24, 55, "Input"],
+Cell[350517, 8269, 459, 10, 32, "Input"],
 Cell[CellGroupData[{
-Cell[690049, 15782, 900, 19, 55, "Input"],
-Cell[690952, 15803, 762, 11, 70, "Output"]
-}, Open  ]],
-Cell[691729, 15817, 407, 9, 32, "Input"],
-Cell[CellGroupData[{
-Cell[692161, 15830, 508, 14, 32, "Input"],
-Cell[692672, 15846, 481, 9, 70, "Output"]
+Cell[351001, 8283, 508, 14, 32, "Input"],
+Cell[351512, 8299, 436, 9, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[693190, 15860, 143, 1, 35, "Subsubsection"],
-Cell[693336, 15863, 222, 5, 55, "Input"],
+Cell[351985, 8313, 143, 1, 35, "Subsubsection"],
+Cell[352131, 8316, 222, 5, 55, "Input"],
 Cell[CellGroupData[{
-Cell[693583, 15872, 277, 7, 32, "Input"],
-Cell[693863, 15881, 3658, 63, 70, "Output"]
+Cell[352378, 8325, 374, 8, 32, "Input"],
+Cell[352755, 8335, 2176, 40, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[697558, 15949, 551, 16, 55, "Input"],
-Cell[698112, 15967, 1059, 24, 70, "Output"]
+Cell[354968, 8380, 502, 15, 55, "Input"],
+Cell[355473, 8397, 765, 16, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[699208, 15996, 1572, 49, 77, "Input"],
-Cell[700783, 16047, 1795, 28, 70, "Output"]
+Cell[356275, 8418, 1105, 33, 55, "Input"],
+Cell[357383, 8453, 1747, 27, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[702615, 16080, 572, 17, 32, "Input"],
-Cell[703190, 16099, 11654, 204, 70, "Output"]
+Cell[359167, 8485, 613, 17, 32, "Input"],
+Cell[359783, 8504, 4185, 75, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[714881, 16308, 653, 21, 55, "Input"],
-Cell[715537, 16331, 155167, 3335, 70, "Output"]
+Cell[364005, 8584, 653, 21, 55, "Input"],
+Cell[364661, 8607, 20861, 466, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[870741, 19671, 328, 10, 32, "Input"],
-Cell[871072, 19683, 2099, 34, 70, "Output"]
+Cell[385559, 9078, 374, 10, 32, "Input"],
+Cell[385936, 9090, 1922, 30, 70, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[873220, 19723, 99, 1, 29, "Subsubsection"],
-Cell[873322, 19726, 287, 6, 32, "Input"],
-Cell[873612, 19734, 555, 16, 55, "Input"]
+Cell[387907, 9126, 99, 1, 29, "Subsubsection"],
+Cell[388009, 9129, 289, 6, 32, "Input"],
+Cell[388301, 9137, 529, 16, 55, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[874204, 19755, 154, 2, 29, "Subsubsection"],
-Cell[874361, 19759, 385, 10, 55, "Input"],
+Cell[388867, 9158, 154, 2, 29, "Subsubsection"],
+Cell[389024, 9162, 384, 10, 55, "Input"],
 Cell[CellGroupData[{
-Cell[874771, 19773, 1206, 28, 165, "Input"],
-Cell[875980, 19803, 28674, 601, 70, "Output"],
-Cell[904657, 20406, 594, 12, 70, "Message"]
+Cell[389433, 9176, 1208, 28, 165, "Input"],
+Cell[390644, 9206, 4034, 105, 70, "Output"],
+Cell[394681, 9313, 624, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[905288, 20423, 1184, 28, 165, "Input"],
-Cell[906475, 20453, 30470, 616, 70, "Output"],
-Cell[936948, 21071, 594, 12, 70, "Message"]
+Cell[395342, 9330, 1184, 28, 165, "Input"],
+Cell[396529, 9360, 4226, 104, 70, "Output"],
+Cell[400758, 9466, 624, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[937579, 21088, 1234, 29, 165, "Input"],
-Cell[938816, 21119, 2121, 40, 70, "Output"],
-Cell[940940, 21161, 596, 12, 70, "Message"]
+Cell[401419, 9483, 1234, 29, 165, "Input"],
+Cell[402656, 9514, 833, 16, 70, "Output"],
+Cell[403492, 9532, 625, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[941573, 21178, 1230, 29, 165, "Input"],
-Cell[942806, 21209, 2121, 40, 70, "Output"],
-Cell[944930, 21251, 596, 12, 70, "Message"]
+Cell[404154, 9549, 1231, 29, 165, "Input"],
+Cell[405388, 9580, 848, 16, 70, "Output"],
+Cell[406239, 9598, 625, 12, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[945563, 21268, 778, 20, 143, "Input"],
-Cell[946344, 21290, 31619, 680, 70, "Output"]
+Cell[406901, 9615, 776, 20, 143, "Input"],
+Cell[407680, 9637, 4487, 120, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[978000, 21975, 936, 25, 165, "Input"],
-Cell[978939, 22002, 29744, 679, 70, "Output"],
-Cell[1008686, 22683, 597, 12, 70, "Message"]
+Cell[412204, 9762, 934, 25, 165, "Input"],
+Cell[413141, 9789, 4266, 119, 70, "Output"],
+Cell[417410, 9910, 630, 12, 70, "Message"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[418113, 9930, 189, 3, 65, "Section"],
+Cell[418305, 9935, 253, 6, 30, "Input"],
+Cell[CellGroupData[{
+Cell[418583, 9945, 328, 4, 45, "Subsection"],
+Cell[CellGroupData[{
+Cell[418936, 9953, 545, 11, 77, "Input"],
+Cell[419484, 9966, 1162, 16, 32, "Output"],
+Cell[420649, 9984, 1146, 16, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[421832, 10005, 218, 6, 32, "Input"],
+Cell[422053, 10013, 507, 8, 32, "Output"]
+}, Open  ]],
+Cell[422575, 10024, 330, 8, 32, "Input"],
+Cell[CellGroupData[{
+Cell[422930, 10036, 459, 13, 32, "Input"],
+Cell[423392, 10051, 530, 10, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[423959, 10066, 143, 1, 35, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[424127, 10071, 228, 6, 32, "Input"],
+Cell[424358, 10079, 3945, 67, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[428340, 10151, 519, 15, 55, "Input"],
+Cell[428862, 10168, 1671, 33, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[430570, 10206, 1524, 49, 77, "Input"],
+Cell[432097, 10257, 2029, 31, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[434163, 10293, 521, 16, 32, "Input"],
+Cell[434687, 10311, 12432, 223, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[447156, 10539, 653, 21, 55, "Input"],
+Cell[447812, 10562, 155464, 3337, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[603313, 13904, 275, 8, 32, "Input"],
+Cell[603591, 13914, 2124, 33, 70, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[605764, 13953, 99, 1, 29, "Subsubsection"],
+Cell[605866, 13956, 235, 6, 32, "Input"],
+Cell[606104, 13964, 529, 16, 55, "Input"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[606670, 13985, 154, 2, 29, "Subsubsection"],
+Cell[606827, 13989, 382, 10, 55, "Input"],
+Cell[CellGroupData[{
+Cell[607234, 14003, 1160, 28, 165, "Input"],
+Cell[608397, 14033, 18277, 362, 70, "Output"],
+Cell[626677, 14397, 655, 13, 70, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[627369, 14415, 1134, 27, 165, "Input"],
+Cell[628506, 14444, 19431, 366, 70, "Output"],
+Cell[647940, 14812, 655, 13, 70, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[648632, 14830, 1184, 28, 165, "Input"],
+Cell[649819, 14860, 1510, 25, 70, "Output"],
+Cell[651332, 14887, 650, 13, 70, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[652019, 14905, 1181, 28, 165, "Input"],
+Cell[653203, 14935, 1506, 25, 70, "Output"],
+Cell[654712, 14962, 653, 13, 70, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[655402, 14980, 726, 19, 143, "Input"],
+Cell[656131, 15001, 20480, 425, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[676648, 15431, 885, 24, 165, "Input"],
+Cell[677536, 15457, 18650, 424, 70, "Output"],
+Cell[696189, 15883, 656, 13, 70, "Message"]
 }, Open  ]]
 }, Closed]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[1009344, 22702, 479, 6, 37, "Subsection"],
-Cell[1009826, 22710, 1030, 24, 55, "Input"],
-Cell[1010859, 22736, 459, 10, 32, "Input"],
+Cell[696906, 15903, 386, 5, 37, "Subsection"],
 Cell[CellGroupData[{
-Cell[1011343, 22750, 508, 14, 32, "Input"],
-Cell[1011854, 22766, 548, 10, 70, "Output"]
+Cell[697317, 15912, 900, 19, 55, "Input"],
+Cell[698220, 15933, 808, 11, 70, "Output"]
+}, Open  ]],
+Cell[699043, 15947, 407, 9, 32, "Input"],
+Cell[CellGroupData[{
+Cell[699475, 15960, 508, 14, 32, "Input"],
+Cell[699986, 15976, 529, 10, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1012439, 22781, 143, 1, 35, "Subsubsection"],
-Cell[1012585, 22784, 222, 5, 55, "Input"],
+Cell[700552, 15991, 143, 1, 35, "Subsubsection"],
+Cell[700698, 15994, 222, 5, 55, "Input"],
 Cell[CellGroupData[{
-Cell[1012832, 22793, 374, 8, 32, "Input"],
-Cell[1013209, 22803, 3710, 64, 70, "Output"]
+Cell[700945, 16003, 277, 7, 32, "Input"],
+Cell[701225, 16012, 3706, 64, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1016956, 22872, 502, 15, 55, "Input"],
-Cell[1017461, 22889, 1116, 24, 70, "Output"]
+Cell[704968, 16081, 551, 16, 55, "Input"],
+Cell[705522, 16099, 1107, 24, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1018614, 22918, 1105, 33, 55, "Input"],
-Cell[1019722, 22953, 1856, 29, 70, "Output"]
+Cell[706666, 16128, 1572, 49, 77, "Input"],
+Cell[708241, 16179, 1843, 29, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1021615, 22987, 613, 17, 32, "Input"],
-Cell[1022231, 23006, 12966, 249, 70, "Output"]
+Cell[710121, 16213, 572, 17, 32, "Input"],
+Cell[710696, 16232, 11698, 204, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1035234, 23260, 653, 21, 55, "Input"],
-Cell[1035890, 23283, 155429, 3335, 70, "Output"]
+Cell[722431, 16441, 653, 21, 55, "Input"],
+Cell[723087, 16464, 155211, 3335, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1191356, 26623, 374, 10, 32, "Input"],
-Cell[1191733, 26635, 1986, 30, 70, "Output"]
+Cell[878335, 19804, 328, 10, 32, "Input"],
+Cell[878666, 19816, 2145, 34, 70, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[1193768, 26671, 99, 1, 29, "Subsubsection"],
-Cell[1193870, 26674, 289, 6, 32, "Input"],
-Cell[1194162, 26682, 529, 16, 55, "Input"]
+Cell[880860, 19856, 99, 1, 29, "Subsubsection"],
+Cell[880962, 19859, 287, 6, 32, "Input"],
+Cell[881252, 19867, 555, 16, 55, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[1194728, 26703, 154, 2, 29, "Subsubsection"],
-Cell[1194885, 26707, 474, 10, 55, "Input"],
+Cell[881844, 19888, 154, 2, 29, "Subsubsection"],
+Cell[882001, 19892, 385, 10, 55, "Input"],
 Cell[CellGroupData[{
-Cell[1195384, 26721, 1208, 28, 165, "Input"],
-Cell[1196595, 26751, 14133, 362, 70, "Output"],
-Cell[1210731, 27115, 596, 12, 70, "Message"]
+Cell[882411, 19906, 1206, 28, 165, "Input"],
+Cell[883620, 19936, 28722, 602, 70, "Output"],
+Cell[912345, 20540, 653, 13, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1211364, 27132, 1184, 28, 165, "Input"],
-Cell[1212551, 27162, 15064, 361, 70, "Output"],
-Cell[1227618, 27525, 596, 12, 70, "Message"]
+Cell[913035, 20558, 1184, 28, 165, "Input"],
+Cell[914222, 20588, 30520, 617, 70, "Output"],
+Cell[944745, 21207, 652, 13, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1228251, 27542, 1234, 29, 165, "Input"],
-Cell[1229488, 27573, 1270, 25, 70, "Output"],
-Cell[1230761, 27600, 596, 12, 70, "Message"]
+Cell[945434, 21225, 1234, 29, 165, "Input"],
+Cell[946671, 21256, 2171, 41, 70, "Output"],
+Cell[948845, 21299, 653, 13, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1231394, 27617, 1231, 29, 165, "Input"],
-Cell[1232628, 27648, 1255, 25, 70, "Output"],
-Cell[1233886, 27675, 596, 12, 70, "Message"]
+Cell[949535, 21317, 1230, 29, 165, "Input"],
+Cell[950768, 21348, 2169, 41, 70, "Output"],
+Cell[952940, 21391, 655, 13, 70, "Message"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1234519, 27692, 776, 20, 143, "Input"],
-Cell[1235298, 27714, 16060, 425, 70, "Output"]
+Cell[953632, 21409, 778, 20, 143, "Input"],
+Cell[954413, 21431, 31664, 680, 70, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1251395, 28144, 934, 25, 165, "Input"],
-Cell[1252332, 28171, 11359, 283, 70, "Output"],
-Cell[1263694, 28456, 597, 12, 70, "Message"]
+Cell[986114, 22116, 936, 25, 165, "Input"],
+Cell[987053, 22143, 29792, 680, 70, "Output"],
+Cell[1016848, 22825, 654, 13, 70, "Message"]
+}, Open  ]]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[1017563, 22845, 479, 6, 37, "Subsection"],
+Cell[1018045, 22853, 1030, 24, 55, "Input"],
+Cell[1019078, 22879, 459, 10, 32, "Input"],
+Cell[CellGroupData[{
+Cell[1019562, 22893, 508, 14, 32, "Input"],
+Cell[1020073, 22909, 597, 11, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1020707, 22925, 143, 1, 35, "Subsubsection"],
+Cell[1020853, 22928, 222, 5, 55, "Input"],
+Cell[CellGroupData[{
+Cell[1021100, 22937, 374, 8, 32, "Input"],
+Cell[1021477, 22947, 3760, 65, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1025274, 23017, 502, 15, 55, "Input"],
+Cell[1025779, 23034, 1164, 25, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1026980, 23064, 1105, 33, 55, "Input"],
+Cell[1028088, 23099, 1901, 29, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1030026, 23133, 613, 17, 32, "Input"],
+Cell[1030642, 23152, 13016, 250, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1043695, 23407, 653, 21, 55, "Input"],
+Cell[1044351, 23430, 155479, 3336, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1199867, 26771, 374, 10, 32, "Input"],
+Cell[1200244, 26783, 2036, 31, 70, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[1202329, 26820, 99, 1, 29, "Subsubsection"],
+Cell[1202431, 26823, 289, 6, 32, "Input"],
+Cell[1202723, 26831, 529, 16, 55, "Input"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[1203289, 26852, 154, 2, 29, "Subsubsection"],
+Cell[1203446, 26856, 474, 10, 55, "Input"],
+Cell[CellGroupData[{
+Cell[1203945, 26870, 1208, 28, 165, "Input"],
+Cell[1205156, 26900, 14183, 363, 70, "Output"],
+Cell[1219342, 27265, 653, 13, 70, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1220032, 27283, 1184, 28, 165, "Input"],
+Cell[1221219, 27313, 15114, 362, 70, "Output"],
+Cell[1236336, 27677, 653, 13, 70, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1237026, 27695, 1234, 29, 165, "Input"],
+Cell[1238263, 27726, 1319, 26, 70, "Output"],
+Cell[1239585, 27754, 653, 13, 70, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1240275, 27772, 1231, 29, 165, "Input"],
+Cell[1241509, 27803, 1305, 26, 70, "Output"],
+Cell[1242817, 27831, 653, 13, 70, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1243507, 27849, 776, 20, 143, "Input"],
+Cell[1244286, 27871, 16103, 425, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1260426, 28301, 934, 25, 165, "Input"],
+Cell[1261363, 28328, 11409, 284, 70, "Output"],
+Cell[1272775, 28614, 654, 13, 70, "Message"]
 }, Open  ]]
 }, Closed]]
 }, Closed]]
