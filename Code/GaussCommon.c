@@ -738,7 +738,7 @@ void NSS_Step_plus  ( ode_sys *system, solution *u, val_type tn,val_type h,
      int info;
 
      val_type MM[neq*neq];
-     int ipiv[neq*neq];
+     int ipiv[neq];
 
     
 /* ----------- implementation  -----------------------------------------------*/ 
@@ -795,6 +795,7 @@ void NSS_Step_plus  ( ode_sys *system, solution *u, val_type tn,val_type h,
            {
                  for (is=0; is<ns;is++) for (i=0; i<neq; i++)     
                              zold[neq*is+i]=thestatptr->z[neq*is+i];
+                 Yi_update (u,z,system,method,thestatptr);
                  difftest=NormalizedDistance(neq,ns,options,z,zold);
                  if (difftest>1.)
                  {
@@ -852,7 +853,7 @@ void NSS_MIX_Step   ( ode_sys *system, solution *u, val_type tn,val_type h,
      int info;
 
      val_type MM[neq*neq];
-     int ipiv[neq*neq];
+     int ipiv[neq];
 
      val_type fz[ns*neq];
      val_type g[ns*neq];
@@ -1477,7 +1478,7 @@ void Compute_MM   (ode_sys *system,val_type h,val_type *MM,
 
      val_type aa,bb,cc;
      int lda,ldb,ldc;
-     int ipiv[neq*neq];
+     int ipiv[neq];
      
 /* ----------- implementation  -----------------------------------------------*/ 
 

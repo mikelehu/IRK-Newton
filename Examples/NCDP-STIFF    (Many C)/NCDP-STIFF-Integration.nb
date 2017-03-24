@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    245405,       5272]
-NotebookOptionsPosition[    239393,       5065]
-NotebookOutlinePosition[    240113,       5089]
-CellTagsIndexPosition[    240070,       5086]
+NotebookDataLength[    243385,       5226]
+NotebookOptionsPosition[    237370,       5019]
+NotebookOutlinePosition[    238092,       5043]
+CellTagsIndexPosition[    238049,       5040]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -2299,7 +2299,8 @@ Cell[BoxData[
              StyleBox[
               DynamicBox[ToBoxes[
                 FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
-                StandardForm]],
+                StandardForm],
+               ImageSizeCache->{56., {0., 8.}}],
               StripOnInput->False,
               DynamicUpdating->True], "SuggestionsBarControlActive",
              StripOnInput->False]}, Dynamic[
@@ -2405,11 +2406,6 @@ Cell[BoxData[
     RowBox[{"algorithmA", "=", " ", "myAlgorith"}], ";"}], " ", 
    "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"rdigitsA1", "=", "0"}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"rdigitsA2", "=", 
-     RowBox[{"-", "1"}]}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
     RowBox[{"outA", "=", 
      RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
@@ -2430,11 +2426,6 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"algorithmB", "=", " ", "myAlgorith"}], ";"}], " ", 
    "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"rdigitsB1", "=", "0"}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"rdigitsB2", "=", 
-     RowBox[{"-", "1"}]}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"outB", "=", 
      RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
@@ -2457,11 +2448,6 @@ Cell[BoxData[
     RowBox[{"algorithmC", "=", " ", "myAlgorith"}], ";"}], " ", 
    "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"rdigitsC1", "=", "0"}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"rdigitsC2", "=", 
-     RowBox[{"-", "1"}]}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
     RowBox[{"outC", "=", 
      RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
@@ -2482,11 +2468,6 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"algorithmD", "=", " ", "myAlgorith"}], ";"}], " ", 
    "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"rdigitsD1", "=", "0"}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"rdigitsD2", "=", 
-     RowBox[{"-", "1"}]}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"outD", "=", 
      RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
@@ -2509,11 +2490,6 @@ Cell[BoxData[
     RowBox[{"algorithmE", "=", " ", "myAlgorith"}], ";"}], " ", 
    "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"rdigitsE1", "=", "0"}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"rdigitsE2", "=", 
-     RowBox[{"-", "1"}]}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
     RowBox[{"outE", "=", 
      RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
@@ -2535,11 +2511,6 @@ Cell[BoxData[
     RowBox[{"algorithmF", "=", " ", "myAlgorith"}], ";"}], " ", 
    "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"rdigitsF1", "=", "0"}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"rdigitsF2", "=", 
-     RowBox[{"-", "1"}]}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
     RowBox[{"outF", "=", 
      RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
@@ -2560,11 +2531,6 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"algorithmG", "=", " ", "myAlgorith"}], ";"}], " ", 
    "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"rdigitsG1", "=", "0"}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"rdigitsG2", "=", 
-     RowBox[{"-", "1"}]}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"outG", "=", 
      RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
@@ -2590,19 +2556,6 @@ Cell[BoxData[
        RowBox[{"algorithmK", "=", 
         RowBox[{"algorithmL", "=", "myAlgorith"}]}]}]}]}], ";"}], " ", 
    "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"rdigitsH1", "=", 
-     RowBox[{"rdigitsI1", "=", 
-      RowBox[{"rdigitsJ1", "=", 
-       RowBox[{"rdigitsK1", "=", 
-        RowBox[{"rdigitsL1", "=", "0"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"rdigitsH2", "=", 
-     RowBox[{"rdigitsI2", "=", 
-      RowBox[{"rdigitsJ2", "=", 
-       RowBox[{"rdigitsK2", "=", 
-        RowBox[{"rdigitsL2", "=", 
-         RowBox[{"-", "1"}]}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"outH", "=", 
      RowBox[{"outI", "=", 
@@ -2701,7 +2654,7 @@ Cell[BoxData[
    3.690294974374508*^9}, {3.6935546878585157`*^9, 3.693554690443947*^9}, {
    3.696792083640915*^9, 3.6967922678596973`*^9}, {3.696923646760256*^9, 
    3.696923974088673*^9}, 3.6969243858603067`*^9, {3.6978043843544807`*^9, 
-   3.697804498743956*^9}}],
+   3.697804498743956*^9}, {3.699343509229437*^9, 3.699343535822052*^9}}],
 
 Cell[CellGroupData[{
 
@@ -2745,9 +2698,9 @@ Cell[BoxData[{
          RowBox[{"N", "[", "uu0AD", "]"}], ",", 
          RowBox[{"N", "[", "ee0A", "]"}], ",", "h", ",", 
          RowBox[{"N", "[", "prealA", "]"}], ",", "pint", ",", "approx", ",", 
-         "threads", ",", "algorithmA", ",", "rdigitsA1", ",", "rdigitsA2", 
-         ",", "filename", ",", "sampling", ",", "codfun0"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "threads", ",", "algorithmA", ",", "filename", ",", "sampling", ",", 
+         "codfun0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{"convergence", " ", "==", "0"}], ",", "\[IndentingNewLine]", 
@@ -2804,9 +2757,9 @@ Cell[BoxData[{
          RowBox[{"N", "[", "uu0BD", "]"}], ",", 
          RowBox[{"N", "[", "ee0B", "]"}], ",", "h", ",", 
          RowBox[{"N", "[", "prealB", "]"}], ",", "pint", ",", "approx", ",", 
-         "threads", ",", "algorithmB", ",", "rdigitsB1", ",", "rdigitsB2", 
-         ",", "filename", ",", "sampling", ",", "codfun0"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "threads", ",", "algorithmB", ",", "filename", ",", "sampling", ",", 
+         "codfun0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{"convergence", " ", "==", "0"}], ",", "\[IndentingNewLine]", 
@@ -2863,9 +2816,9 @@ Cell[BoxData[{
          RowBox[{"N", "[", "uu0CD", "]"}], ",", 
          RowBox[{"N", "[", "ee0C", "]"}], ",", "h", ",", 
          RowBox[{"N", "[", "prealC", "]"}], ",", "pint", ",", "approx", ",", 
-         "threads", ",", "algorithmC", ",", "rdigitsC1", ",", "rdigitsC2", 
-         ",", "filename", ",", "sampling", ",", "codfun0"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "threads", ",", "algorithmC", ",", "filename", ",", "sampling", ",", 
+         "codfun0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{"convergence", " ", "==", "0"}], ",", "\[IndentingNewLine]", 
@@ -2922,9 +2875,9 @@ Cell[BoxData[{
          RowBox[{"N", "[", "uu0DD", "]"}], ",", 
          RowBox[{"N", "[", "ee0D", "]"}], ",", "h", ",", 
          RowBox[{"N", "[", "prealD", "]"}], ",", "pint", ",", "approx", ",", 
-         "threads", ",", "algorithmD", ",", "rdigitsD1", ",", "rdigitsD2", 
-         ",", "filename", ",", "sampling", ",", "codfun0"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "threads", ",", "algorithmD", ",", "filename", ",", "sampling", ",", 
+         "codfun0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{"convergence", " ", "==", "0"}], ",", "\[IndentingNewLine]", 
@@ -2981,9 +2934,9 @@ Cell[BoxData[{
          RowBox[{"N", "[", "uu0ED", "]"}], ",", 
          RowBox[{"N", "[", "ee0E", "]"}], ",", "h", ",", 
          RowBox[{"N", "[", "prealE", "]"}], ",", "pint", ",", "approx", ",", 
-         "threads", ",", "algorithmE", ",", "rdigitsE1", ",", "rdigitsE2", 
-         ",", "filename", ",", "sampling", ",", "codfun0"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "threads", ",", "algorithmE", ",", "filename", ",", "sampling", ",", 
+         "codfun0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{"convergence", " ", "==", "0"}], ",", "\[IndentingNewLine]", 
@@ -3040,9 +2993,9 @@ Cell[BoxData[{
          RowBox[{"N", "[", "uu0FD", "]"}], ",", 
          RowBox[{"N", "[", "ee0F", "]"}], ",", "h", ",", 
          RowBox[{"N", "[", "prealF", "]"}], ",", "pint", ",", "approx", ",", 
-         "threads", ",", "algorithmF", ",", "rdigitsF1", ",", "rdigitsF2", 
-         ",", "filename", ",", "sampling", ",", "codfun0"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "threads", ",", "algorithmF", ",", "filename", ",", "sampling", ",", 
+         "codfun0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{"convergence", " ", "==", "0"}], ",", "\[IndentingNewLine]", 
@@ -3099,9 +3052,9 @@ Cell[BoxData[{
          RowBox[{"N", "[", "uu0GD", "]"}], ",", 
          RowBox[{"N", "[", "ee0G", "]"}], ",", "h", ",", 
          RowBox[{"N", "[", "prealG", "]"}], ",", "pint", ",", "approx", ",", 
-         "threads", ",", "algorithmG", ",", "rdigitsG1", ",", "rdigitsG2", 
-         ",", "filename", ",", "sampling", ",", "codfun0"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "threads", ",", "algorithmG", ",", "filename", ",", "sampling", ",", 
+         "codfun0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{"convergence", " ", "==", "0"}], ",", "\[IndentingNewLine]", 
@@ -3158,9 +3111,9 @@ Cell[BoxData[{
          RowBox[{"N", "[", "uu0HD", "]"}], ",", 
          RowBox[{"N", "[", "ee0H", "]"}], ",", "h", ",", 
          RowBox[{"N", "[", "prealH", "]"}], ",", "pint", ",", "approx", ",", 
-         "threads", ",", "algorithmH", ",", "rdigitsH1", ",", "rdigitsH2", 
-         ",", "filename", ",", "sampling", ",", "codfun0"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "threads", ",", "algorithmH", ",", "filename", ",", "sampling", ",", 
+         "codfun0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{"convergence", " ", "==", "0"}], ",", "\[IndentingNewLine]", 
@@ -3217,9 +3170,9 @@ Cell[BoxData[{
          RowBox[{"N", "[", "uu0ID", "]"}], ",", 
          RowBox[{"N", "[", "ee0I", "]"}], ",", "h", ",", 
          RowBox[{"N", "[", "prealI", "]"}], ",", "pint", ",", "approx", ",", 
-         "threads", ",", "algorithmI", ",", "rdigitsI1", ",", "rdigitsI2", 
-         ",", "filename", ",", "sampling", ",", "codfun0"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "threads", ",", "algorithmI", ",", "filename", ",", "sampling", ",", 
+         "codfun0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{"convergence", " ", "==", "0"}], ",", "\[IndentingNewLine]", 
@@ -3276,9 +3229,9 @@ Cell[BoxData[{
          RowBox[{"N", "[", "uu0JD", "]"}], ",", 
          RowBox[{"N", "[", "ee0J", "]"}], ",", "h", ",", 
          RowBox[{"N", "[", "prealJ", "]"}], ",", "pint", ",", "approx", ",", 
-         "threads", ",", "algorithmJ", ",", "rdigitsJ1", ",", "rdigitsJ2", 
-         ",", "filename", ",", "sampling", ",", "codfun0"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "threads", ",", "algorithmJ", ",", "filename", ",", "sampling", ",", 
+         "codfun0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{"convergence", " ", "==", "0"}], ",", "\[IndentingNewLine]", 
@@ -3335,9 +3288,9 @@ Cell[BoxData[{
          RowBox[{"N", "[", "uu0KD", "]"}], ",", 
          RowBox[{"N", "[", "ee0K", "]"}], ",", "h", ",", 
          RowBox[{"N", "[", "prealK", "]"}], ",", "pint", ",", "approx", ",", 
-         "threads", ",", "algorithmK", ",", "rdigitsK1", ",", "rdigitsK2", 
-         ",", "filename", ",", "sampling", ",", "codfun0"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "threads", ",", "algorithmK", ",", "filename", ",", "sampling", ",", 
+         "codfun0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{"convergence", " ", "==", "0"}], ",", "\[IndentingNewLine]", 
@@ -3394,9 +3347,9 @@ Cell[BoxData[{
          RowBox[{"N", "[", "uu0LD", "]"}], ",", 
          RowBox[{"N", "[", "ee0L", "]"}], ",", "h", ",", 
          RowBox[{"N", "[", "prealL", "]"}], ",", "pint", ",", "approx", ",", 
-         "threads", ",", "algorithmL", ",", "rdigitsL1", ",", "rdigitsL2", 
-         ",", "filename", ",", "sampling", ",", "codfun0"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "threads", ",", "algorithmL", ",", "filename", ",", "sampling", ",", 
+         "codfun0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{"convergence", " ", "==", "0"}], ",", "\[IndentingNewLine]", 
@@ -3595,7 +3548,8 @@ Cell[BoxData[{
    3.6968313630748863`*^9}, {3.6969229856845512`*^9, 3.696923369774983*^9}, {
    3.697804244730647*^9, 3.69780433398169*^9}, {3.69799921478514*^9, 
    3.697999480699025*^9}, {3.69855930638486*^9, 3.698559555145907*^9}, 
-   3.698559588227354*^9, {3.698865839208078*^9, 3.698865848710273*^9}}],
+   3.698559588227354*^9, {3.698865839208078*^9, 3.698865848710273*^9}, {
+   3.69934354572302*^9, 3.6993436016429663`*^9}}],
 
 Cell[BoxData["1"], "Print",
  CellChangeTimes->{
@@ -3782,7 +3736,7 @@ Cell[BoxData[
    3.698559867831292*^9, 3.698564280180711*^9, 3.698864963639594*^9, 
    3.6990172613514833`*^9}]
 }, Open  ]]
-}, Closed]]
+}, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -5063,8 +5017,8 @@ Cell[BoxData[
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{1375, 876},
-WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+WindowSize->{1215, 876},
+WindowMargins->{{Automatic, 0}, {-43, Automatic}},
 PrintingCopies->1,
 PrintingPageRange->{Automatic, Automatic},
 PrintingOptions->{"PaperOrientation"->"Portrait",
@@ -5169,108 +5123,108 @@ Cell[CellGroupData[{
 Cell[93014, 1957, 840, 14, 38, "Subsection"],
 Cell[CellGroupData[{
 Cell[93879, 1975, 95, 1, 30, "Input"],
-Cell[93977, 1978, 6027, 92, 70, "Output"]
+Cell[93977, 1978, 6027, 92, 42, "Output"]
 }, Open  ]],
 Cell[100019, 2073, 1934, 31, 51, "Input"],
 Cell[101956, 2106, 1493, 31, 319, "Input"],
 Cell[103452, 2139, 605, 12, 35, "Input"],
 Cell[CellGroupData[{
 Cell[104082, 2155, 117, 2, 32, "Input"],
-Cell[104202, 2159, 9799, 238, 70, "Output"]
+Cell[104202, 2159, 9847, 239, 151, "Output"]
 }, Open  ]],
-Cell[114016, 2400, 12019, 303, 2005, "Input"],
+Cell[114064, 2401, 10329, 255, 1685, "Input"],
 Cell[CellGroupData[{
-Cell[126060, 2707, 43776, 890, 5978, "Input"],
-Cell[169839, 3599, 6231, 88, 70, "Print"]
+Cell[124418, 2660, 43395, 891, 5978, "Input"],
+Cell[167816, 3553, 6231, 88, 22, "Print"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[176107, 3692, 95, 1, 30, "Input"],
-Cell[176205, 3695, 5684, 87, 70, "Output"]
+Cell[174084, 3646, 95, 1, 30, "Input"],
+Cell[174182, 3649, 5684, 87, 42, "Output"]
 }, Open  ]]
-}, Closed]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[181950, 3789, 594, 8, 65, "Section"],
-Cell[CellGroupData[{
-Cell[182569, 3801, 36, 0, 32, "Input"],
-Cell[182608, 3803, 423, 6, 30, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[183068, 3814, 97, 1, 30, "Input"],
-Cell[183168, 3817, 1826, 33, 42, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[185031, 3855, 174, 2, 45, "Subsection"],
-Cell[CellGroupData[{
-Cell[185230, 3861, 602, 12, 71, "Input"],
-Cell[185835, 3875, 819, 14, 32, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[186691, 3894, 348, 7, 32, "Input"],
-Cell[187042, 3903, 1245, 24, 32, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[188336, 3933, 178, 4, 37, "Subsection"],
-Cell[188517, 3939, 2752, 90, 271, "Input"],
+Cell[179927, 3743, 594, 8, 65, "Section"],
 Cell[CellGroupData[{
-Cell[191294, 4033, 622, 12, 32, "Input"],
-Cell[191919, 4047, 4868, 71, 70, "Output"]
+Cell[180546, 3755, 36, 0, 32, "Input"],
+Cell[180585, 3757, 423, 6, 30, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[196824, 4123, 537, 9, 32, "Input"],
-Cell[197364, 4134, 4723, 69, 70, "Output"]
+Cell[181045, 3768, 97, 1, 30, "Input"],
+Cell[181145, 3771, 1826, 33, 42, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[183008, 3809, 174, 2, 45, "Subsection"],
+Cell[CellGroupData[{
+Cell[183207, 3815, 602, 12, 71, "Input"],
+Cell[183812, 3829, 819, 14, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[184668, 3848, 348, 7, 32, "Input"],
+Cell[185019, 3857, 1245, 24, 32, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[186313, 3887, 178, 4, 37, "Subsection"],
+Cell[186494, 3893, 2752, 90, 271, "Input"],
+Cell[CellGroupData[{
+Cell[189271, 3987, 622, 12, 32, "Input"],
+Cell[189896, 4001, 4868, 71, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[194801, 4077, 537, 9, 32, "Input"],
+Cell[195341, 4088, 4723, 69, 70, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[202136, 4209, 201, 4, 29, "Subsection"],
+Cell[200113, 4163, 201, 4, 29, "Subsection"],
 Cell[CellGroupData[{
-Cell[202362, 4217, 533, 9, 32, "Input"],
-Cell[202898, 4228, 3964, 58, 32, "Output"]
+Cell[200339, 4171, 533, 9, 32, "Input"],
+Cell[200875, 4182, 3964, 58, 32, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[206911, 4292, 251, 5, 37, "Subsection"],
+Cell[204888, 4246, 251, 5, 37, "Subsection"],
 Cell[CellGroupData[{
-Cell[207187, 4301, 585, 10, 32, "Input"],
-Cell[207775, 4313, 4156, 61, 32, "Output"]
+Cell[205164, 4255, 585, 10, 32, "Input"],
+Cell[205752, 4267, 4156, 61, 32, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[211980, 4380, 351, 6, 37, "Subsection"],
+Cell[209957, 4334, 351, 6, 37, "Subsection"],
 Cell[CellGroupData[{
-Cell[212356, 4390, 2479, 55, 172, "Input"],
+Cell[210333, 4344, 2479, 55, 172, "Input"],
 Cell[CellGroupData[{
-Cell[214860, 4449, 1873, 66, 24, "Print"],
-Cell[216736, 4517, 1874, 66, 24, "Print"],
-Cell[218613, 4585, 1881, 66, 24, "Print"]
+Cell[212837, 4403, 1873, 66, 24, "Print"],
+Cell[214713, 4471, 1874, 66, 24, "Print"],
+Cell[216590, 4539, 1881, 66, 24, "Print"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[220543, 4657, 1724, 42, 171, "Input"],
+Cell[218520, 4611, 1724, 42, 171, "Input"],
 Cell[CellGroupData[{
-Cell[222292, 4703, 541, 10, 24, "Print"],
-Cell[222836, 4715, 503, 10, 24, "Print"],
-Cell[223342, 4727, 503, 10, 24, "Print"]
+Cell[220269, 4657, 541, 10, 24, "Print"],
+Cell[220813, 4669, 503, 10, 24, "Print"],
+Cell[221319, 4681, 503, 10, 24, "Print"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[223906, 4744, 251, 5, 37, "Subsection"],
+Cell[221883, 4698, 251, 5, 37, "Subsection"],
 Cell[CellGroupData[{
-Cell[224182, 4753, 925, 18, 35, "Input"],
-Cell[225110, 4773, 6430, 141, 42, "Output"]
+Cell[222159, 4707, 925, 18, 35, "Input"],
+Cell[223087, 4727, 6430, 141, 42, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[231589, 4920, 300, 5, 37, "Subsection"],
+Cell[229566, 4874, 300, 5, 37, "Subsection"],
 Cell[CellGroupData[{
-Cell[231914, 4929, 692, 12, 35, "Input"],
-Cell[232609, 4943, 4784, 76, 32, "Output"]
+Cell[229891, 4883, 692, 12, 35, "Input"],
+Cell[230586, 4897, 4784, 76, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[237430, 5024, 95, 1, 30, "Input"],
-Cell[237528, 5027, 1825, 33, 42, "Output"]
+Cell[235407, 4978, 95, 1, 30, "Input"],
+Cell[235505, 4981, 1825, 33, 42, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]

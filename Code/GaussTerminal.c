@@ -56,7 +56,6 @@ int main()
      options.approximation=0;   			 //     Approximation: Y^[0] (GaussCommon.c/Li_init()).
 
      options.algorithm=3;    				 //	   
-     options.rdigits=0;       
 
 /* ----------- problem parameters-----------------------------------------*/
 
@@ -97,7 +96,6 @@ int main()
           options.atol[i]=ATOL;
      }
 
-     if (options.rdigits>0) options.mrdigits=pow(2,options.rdigits);
 
      GaussCoefficients(DIR_TERM,&gsmethod,&options);  
      GaussCoefficientsNewton(DIR_TERM,&system,&gsmethod,&options);

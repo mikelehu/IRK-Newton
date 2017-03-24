@@ -24,8 +24,7 @@ int thread_count;
 void mathGauss (int neq, int n, int ns, double t0, double tend,
                 double *u0,long ulen, double *e0,long elen, 
                 double h, double *rpar,long rlen, int *ipar,long ilen,
-                int approximation, int threads,int algorithm,
-                int rdigits1,int rdigits2,
+                int approximation, int threads,int algorithm,               
                 const char *myfilename,int sampling,int codfun)
 
 {
@@ -51,8 +50,6 @@ void mathGauss (int neq, int n, int ns, double t0, double tend,
 
     clock_t clock0, clock1; 
     time_t  wtime0,wtime1;
-
-    options.rdigits=rdigits1;    
 
 
 /* ----------- implementation  -----------------------------------------------*/    
@@ -88,8 +85,6 @@ void mathGauss (int neq, int n, int ns, double t0, double tend,
           options.atol[i]=ATOL;
     }
   
-
-    if (options.rdigits>0) options.mrdigits=pow(2,options.rdigits);
 
     GaussCoefficients (DIR_MATH,&gsmethod,&options);
     GaussCoefficientsNewton (DIR_MATH,&system,&gsmethod,&options);
