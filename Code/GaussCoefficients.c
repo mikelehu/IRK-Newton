@@ -21,14 +21,14 @@
 /*									      */
 /******************************************************************************/
 
-void GaussCoefficients (char *path,gauss_method *method,toptions *options)
+void GaussCoefficients (char *path,gauss_method *method,val_type h)
 {
      int i,j;
      int info;
      int ns=method->ns;
      val_type sum;
 
-     char mydir[20];
+     char mydir[80];
      FILE *fileM,*fileA,*fileB,*fileC,*fileNU,*fileMUNU;
 
      char filenameM[STRMAX];
@@ -211,18 +211,18 @@ void GaussCoefficients (char *path,gauss_method *method,toptions *options)
      sum=0.;
      for (i=1; i<ns-1; i++)
      {
-        method->hb[i]=(options->h)*method->b[i];
+        method->hb[i]=h*method->b[i];
         sum+=method->hb[i];
      }
      
-     method->hb[0]=((options->h)-sum)/2;
-     method->hb[ns-1]=((options->h)-sum)/2;
+     method->hb[0]=(h-sum)/2;
+     method->hb[ns-1]=(h-sum)/2;
 
 /*---- Calculate hc coefficients ---------------------------------------------*/
 
      for (i=0; i<ns; i++)
      {
-        method->hc[i]=(options->h)*method->c[i];
+        method->hc[i]=h*method->c[i];
      }
 
 
@@ -248,16 +248,14 @@ void GaussCoefficients (char *path,gauss_method *method,toptions *options)
 /******************************************************************************/
 
 void GaussCoefficientsNewton (char *path,ode_sys *system, 
-                              gauss_method *method,toptions *options)
+                              gauss_method *method,val_type h)
 {
 
      int i,j;
      int info;
      int ns=method->ns;
-     int neq=system->neq; 
      int mm=method->mm;
      int smm=method->smm;
-     val_type h=options->h;
      val_type B[ns*ns],D[mm*smm],sigma[smm];
      val_type hB32[ns*ns];
      val_type m32[ns*ns];
@@ -265,7 +263,7 @@ void GaussCoefficientsNewton (char *path,ode_sys *system,
      val_type aa,bb;
      int lda,ldb,ldc;    
 
-     char mydir[20];
+     char mydir[80];
      FILE *fileQ1,*fileQ2,*fileSigma,*fileAlpha;
 
      char filenameQ1[STRMAX];
@@ -284,8 +282,8 @@ void GaussCoefficientsNewton (char *path,ode_sys *system,
      method->BQ2= (val_type *) malloc(ns*smm*sizeof(val_type));
      method->hBAB= (val_type *) malloc((ns*ns)*sizeof(val_type));
 
-  
      strcpy(mydir,path);
+
 
      switch (ns)
      { 

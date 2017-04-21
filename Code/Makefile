@@ -20,35 +20,35 @@ FLAGS=-I$(MATHLINKPATH) -O2 -Wall -std=c99 -fno-common -mfma
 OMP_FLAGS=-fopenmp
 
 # Objects
-OBJECTS = GaussTerminal.o GaussInitData.o GaussCommon.o GaussUserProblem.o GaussCoefficients.o 
-REALOBJECTS = math-Gausstm.o math-Gauss.o GaussCommon.o GaussUserProblem.o GaussCoefficients.o 
+OBJECTS = Terminal-IRKNEWTON.o  Common-IRKNEWTON.o Problems.o GaussCoefficients.o 
+REALOBJECTS = math-IRKNEWTONtm.o math-IRKNEWTON.o Common-IRKNEWTON.o Problems.o GaussCoefficients.o 
 
 .PHONY: clean help 
 
 all : 
 	make clean;
-	make term-Gauss;
-	make math-Gauss;
+	make term-IRKNEWTON;
+	make math-IRKNEWTON;
 
-term-Gauss: $(OBJECTS) 
-	${CC} $(OBJECTS) ${OMP_FLAGS} -lm -lquadmath -llapacke -lblas -o GaussTerminal.exe
+term-IRKNEWTON: $(OBJECTS) 
+	${CC} $(OBJECTS) ${OMP_FLAGS} -lm -llapacke -lblas -o Terminal-IRKNEWTON.exe
 
-math-Gausstm.c : math-Gauss.tm
-	${MPREP} math-Gauss.tm -o math-Gausstm.c
+math-IRKNEWTONtm.c : math-IRKNEWTON.tm
+	${MPREP} math-IRKNEWTON.tm -o math-IRKNEWTONtm.c
 
-%.o: %.c prec.h def.h 
+%.o: %.c def.h 
 	${CC}  ${FLAGS} ${OMP_FLAGS} -c -I./  $<
 
-math-Gauss : $(REALOBJECTS)    
-	${CC}  $(REALOBJECTS) $(LIBFLAGS) ${OMP_FLAGS} -lML64i4 -lm -lrt -lstdc++ -luuid -ldl -llapacke -lblas  -o math-Gauss.exe 
+math-IRKNEWTON : $(REALOBJECTS)    
+	${CC}  $(REALOBJECTS) $(LIBFLAGS) ${OMP_FLAGS} -lML64i4 -lm -lrt -lstdc++ -luuid -ldl -llapacke -lblas  -o math-IRKNEWTON.exe 
 
 clean :
 	rm -rf *.o *~ core *tm.* *.exe 
 
 help:
 	@echo "Valid targets;"
-	@echo " term-Gauss"
-	@echo " math-Gauss"
+	@echo " term-IRKNEWTON"
+	@echo " math-IRKNEWTON"
 
 
 

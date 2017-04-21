@@ -1423,7 +1423,7 @@ Cell[BoxData["512.`"], "Output",
    3.69838300433936*^9, 3.699006549195635*^9, 3.6990336923398037`*^9, 
    3.699033744286117*^9}]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -2401,9 +2401,9 @@ Cell[CellGroupData[{
 Cell[53133, 1242, 1239, 24, 114, "Input"],
 Cell[54375, 1268, 11070, 155, 30, "Output"]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 Cell[CellGroupData[{
-Cell[65494, 1429, 157, 3, 38, "Subsection"],
+Cell[65494, 1429, 157, 3, 30, "Subsection"],
 Cell[65654, 1434, 1265, 24, 109, "Input"]
 }, Closed]]
 }, Open  ]],

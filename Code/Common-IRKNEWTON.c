@@ -7,7 +7,8 @@
 /*	 InitStat():							      */
 /*	 NormalizedDistance():						      */
 /*	 RemoveDigitsFcn():						      */
-/*	 Li_init();							      */
+/*	 Default_Stage_init();						      */
+/*	 Interpolated_Stage_init();					      */
 /*	 Yi_update():							      */
 /*	 Yi_update_Classic():						      */
 /*	 statlinit():							      */
@@ -21,21 +22,20 @@
 /*	 MMNewtonSS():							      */
 /*	 NSS_Solve():							      */
 /*	 NSS_Solve_plus():						      */
+/*       Compute_MM();                                                        */
 /*       Compute_R();                                                         */
 /*       Compute_Z();                                                         */
 /*       Compute_W1();                                                        */
 /*       Compute_W2();                                                        */
 /*       Compute_DL();                                                        */
 /*       Compute_GG();                                                        */
-/*	 TheOutput():							      */
-/*	 RKG():								      */
-/*       select_gauss();						      */
-/*       select_odefun();						      */
+/*	 MyOutput():							      */
+/*	 CompensatedSummation():					      */
+/*	 IRKNEWTON():							      */
 /*                                                                            */
 /* ---------------------------------------------------------------------------*/
 
-#include <GaussCommon.h>
-#include <quadmath.h>
+#include <Common-IRKNEWTON.h>
 
 /******************************************************************************/
 /* 					   				      */
@@ -201,12 +201,54 @@ void RemoveDigitsFcn (val_type *x, int m)
 
 /******************************************************************************/
 /* 					   				      */
-/* Li_init: 		         	  				      */
+/* Default_Stage_init: 		         	  				      */
 /*                                        				      */
 /*									      */
 /******************************************************************************/
 
-int Li_init(solution *u, val_type *z,ode_sys *system,
+void Default_Stage_init(solution *u, val_type *z,ode_sys *system,
+            gauss_method *method,solver_stat *thestatptr, toptions *options)
+{
+
+
+/* ---------- First initializations ------------------------------------------*/
+
+     int neq,ns;
+
+     neq=system->neq;
+     ns=method->ns;
+
+/*------------- declarations -------------------------------------------------*/ 
+
+     int i,is;
+     val_type *li,*lit0;
+
+
+/* ----------- implementation  -----------------------------------------------*/
+
+     li=thestatptr->li;
+     lit0=thestatptr->lit0;
+
+     for (is = 0; is<ns; is++)
+          for (i = 0; i<neq; i++)
+          {
+               li[is*neq+i]=0.;
+               lit0[is*neq+i]=0.;       
+           }
+ 
+     return;
+
+}
+
+
+/******************************************************************************/
+/* 					   				      */
+/* Interpolated_Stage_init: 			         	  	      */
+/*                                        				      */
+/*									      */
+/******************************************************************************/
+
+void Interpolated_Stage_init(solution *u, val_type *z,ode_sys *system,
             gauss_method *method,solver_stat *thestatptr, toptions *options)
 {
 
@@ -227,63 +269,38 @@ int Li_init(solution *u, val_type *z,ode_sys *system,
      val_type liold[neq*ns];
 
 /* ----------- implementation  -----------------------------------------------*/
-
-     switch (options->approximation)
-     {
-
-     case 0:           
-
-          li=thestatptr->li;
-          lit0=thestatptr->lit0;
-
-          for (is = 0; is<ns; is++)
-               for (i = 0; i<neq; i++)
-               {
-                    li[is*neq+i]=0.;
-                    lit0[is*neq+i]=0.;       
-               }
-     break;
-
-     case 1:         
-   
-
-          for (is=0; is<ns;is++)
-                for (i=0; i<neq; i++) liold[neq*is+i]=thestatptr->li[neq*is+i];
-
-          li=thestatptr->li;
-          lit0=thestatptr->lit0;
-          coef=method->munu;     
-  
-          for (is = 0; is<ns; is++)
-          {
-                for (i = 0; i<neq; i++)
-                {  
-                     in=neq*is+i;
-                     sum=0.;
-
-                     for (js = 0; js<ns; js++)
-                     {
-                          jsn=ns*is+js;
-                          sum+=liold[neq*js+i]*(coef[jsn]);
-                     }
-
-                     li[in]=sum;
-                     lit0[in]=li[in];
-                }
-          }  
-
-     break;
-
-          
-     default:
-          printf("approximation=%i error\n", options->approximation);
-     break;
-
-     }
  
-     return(0);
+
+     for (is=0; is<ns;is++)
+            for (i=0; i<neq; i++) liold[neq*is+i]=thestatptr->li[neq*is+i];
+
+     li=thestatptr->li;
+     lit0=thestatptr->lit0;
+     coef=method->munu;     
+  
+     for (is = 0; is<ns; is++)
+     {
+          for (i = 0; i<neq; i++)
+          {  
+                in=neq*is+i;
+                sum=0.;
+
+                for (js = 0; js<ns; js++)
+                {
+                    jsn=ns*is+js;
+                    sum+=liold[neq*js+i]*(coef[jsn]);
+                }
+
+                li[in]=sum;
+                lit0[in]=li[in];
+           }
+     }  
+
+  
+     return;
 
 }
+
 
 
 /******************************************************************************/
@@ -1998,11 +2015,11 @@ void Compute_GG (ode_sys *system, val_type h,
 
 /******************************************************************************/
 /*									      */
-/*      TheOutput (RKG)							      */
+/*      MyOutput (RKG)							      */
 /*									      */
 /******************************************************************************/
  
-void TheOutput(ode_sys *system,gauss_method *method,val_type t,solution *u,
+void MyOutput(ode_sys *system,gauss_method *method,val_type t,solution *u,
                solver_stat *thestatptr,
                parameters *params,toptions *options,FILE *myfile)
 {
@@ -2080,9 +2097,7 @@ void CompensatedSummation (gauss_method *gsmethod,
      val_type aux;
      val_type s0,s1,delta,eli,ee;
      val_type *lik;
-     val_type *DL;
      lik=thestatptr->lik;
-     DL=thestatptr->DL;
 
 /* ----------- implementation  -----------------------------------------------*/ 
 
@@ -2141,8 +2156,11 @@ void CompensatedSummation (gauss_method *gsmethod,
 /* 									      */
 /*******************************************************************************/
 
-void RKG (gauss_method *gsmethod, solution *u,ode_sys *system,toptions *options,
-          void RKG_Step (), solver_stat *thestatptr)
+void IRKNEWTON 
+(val_type t0, val_type t1, val_type h,
+ gauss_method *gsmethod, solution *u,
+ ode_sys *system,toptions *options,
+ solver_stat *thestatptr)
 
 {
 
@@ -2167,27 +2185,26 @@ void RKG (gauss_method *gsmethod, solution *u,ode_sys *system,toptions *options,
 
 /* ----------- implementation  -----------------------------------------------*/ 
 
-     myfile = fopen(thestatptr->filename,"wb"); 
+     if (options->TheOutput != 0)
+         myfile = fopen(options->filename,"wb"); 
 
-/* ----------- initial energi (E0)   -----------------------------------------*/
+/* ----------- initial energy (E0)   -----------------------------------------*/
 
      thestatptr->E0=system->ham(neq,u,params);
      printf("Initial energy=%lg\n", thestatptr->E0);
 
-     tn=options->t0;
-     nstep=((options->t1)-(options->t0))/(options->h);
+     tn=t0;
+     nstep=(t1-t0)/h;
 
-
-#ifdef IOUT
-     TheOutput(system,gsmethod,tn,u,thestatptr,params,options,myfile);
-#endif 
+     if (options->TheOutput != 0)
+          options->TheOutput(system,gsmethod,tn,u,thestatptr,params,options,myfile);
 
      for(istep=0; istep<nstep; istep++) 
      {     
           
-          Li_init (u,z,system,gsmethod,thestatptr,options);              
+          options->StageInitFn (u,z,system,gsmethod,thestatptr,options);              
 
-          RKG_Step (system,u,tn,options->h,options,gsmethod,thestatptr);
+          options->IRKNEWTON_Step_Fn (system,u,tn,h,options,gsmethod,thestatptr);
 
           if (thestatptr->convergence==FAIL)
           { 
@@ -2199,20 +2216,20 @@ void RKG (gauss_method *gsmethod, solution *u,ode_sys *system,toptions *options,
           {
                CompensatedSummation (gsmethod,u,system,options,thestatptr);
 
-               tn=(istep+1)*(options->h);         
+               tn=(istep+1)*h;         
 
                thestatptr->stepcount++;		
                (thestatptr->totitcount)+=(thestatptr->itcount); 
                if ((thestatptr->itcount)>(thestatptr->maxitcount))
                    (thestatptr->maxitcount)=(thestatptr->itcount);
 
-#ifdef IOUT
-               TheOutput(system,gsmethod,tn,u,thestatptr,params,options,myfile);
-#endif 
+               if (options->TheOutput != 0)
+                   options->TheOutput(system,gsmethod,tn,u,thestatptr,params,options,myfile);
 
-               if ((tn+options->h)>=options->t1)
+
+               if ((tn+h)>=t1)
                { 
-                     options->h=options->t1-tn;
+                     h=t1-tn;
                      thestatptr->laststep=true;
                } 
 
@@ -2227,127 +2244,4 @@ void RKG (gauss_method *gsmethod, solution *u,ode_sys *system,toptions *options,
 
 }
 
-
-
-/******************************************************************************/
-/* 								              */
-/*   select_gauss				 			      */
-/*        								      */
-/* 									      */
-/******************************************************************************/
-
-void select_gauss(gauss_method *gsmethodptr, 
-           solution *uptr,
-           ode_sys *systemptr,toptions *optionsptr,
-           solver_stat *thestatptr)
-{
-
-    switch (optionsptr->algorithm)
-    {  
-    case  1: // NSS
-          RKG (gsmethodptr,uptr,systemptr,optionsptr,NSS_Step,thestatptr);                             
-    break; 
-
-    case  2: // NSS+ (efficient)
-          RKG (gsmethodptr,uptr,systemptr,optionsptr,NSS_Step_plus,thestatptr);                             
-    break;  
-
-    case  3: // NSS-MIX
-          RKG (gsmethodptr,uptr,systemptr,optionsptr,NSS_MIX_Step,thestatptr);                             
-    break;  
-
-                      
-    default:
-          printf("Error (select gauss): incorrect algorithm\n");
-    break;
-
-         
-    } 
-
-    return;
-}
-
-
-/******************************************************************************/
-/* 									      */
-/*   select_odefun				 			      */
-/*        								      */
-/* 									      */
-/******************************************************************************/
-
-void select_odefun (int codfun, ode_sys *system)
-{
-
-     switch (codfun)
-     { 
-     case 1: 
-           system->f = Ode1;
-           system->ham= Ham1;
-           system->jac= Jac1;                    
-     break;
-
-     case 2: 
-           system->f = Ode2;
-           system->ham= Ham2;
-           system->jac= Jac2;
-     break;
-
-     case 3: 
-           system->f = Ode3;
-           system->ham= Ham3;
-           system->jac= Jac3;                     
-     break;
-
-     case 4: 
-           system->f = Ode4;
-           system->ham= Ham4;
-           system->jac= Jac4;                    
-     break;
-
-     case 5: 
-           system->f = Ode5;
-           system->ham= Ham5;
-           system->jac= Jac5;                     
-     break;
-
-     case 6: 
-           system->f = Ode6;
-           system->ham= Ham6;
-           system->jac= Jac6;                      
-     break;
-
-     case 7: 
-           system->f = Ode7;
-           system->ham= Ham7;
-           system->jac= Jac7;                      
-     break;
-
-     case 8: 
-           system->f = Ode8;
-           system->ham= Ham8;
-           system->jac= Jac8;                       
-     break;
-
-     case 9: 
-           system->f = Ode9;
-           system->ham= Ham9;
-           system->jac= Jac9;                     
-     break;
-
-     case 10: 
-           system->f = Ode10;
-           system->ham= Ham10;
-           system->jac= Jac10;                        
-     break;
-
-
-     default:
-           printf("error. codfun\n");
-     break;
-
-     }
-
-     return;
-
-}
 

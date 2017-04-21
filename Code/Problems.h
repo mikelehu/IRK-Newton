@@ -4,9 +4,9 @@ void test_jac
 (int neq, val_type t,val_type *u,void (*Ode)(), 
  val_type *Jac,parameters *params
 );
-void Ode1 (int neq, val_type t,val_type *u,val_type *f,parameters *params);
-val_type Ham1 (int neq,solution *u,parameters *params);
-void Jac1 (int neq, val_type t,val_type *u,val_type *Jac,parameters *params);
+void OdeDPS (int neq, val_type t,val_type *u,val_type *f,parameters *params);
+val_type HamDPS (int neq,solution *u,parameters *params);
+void JacDPS (int neq, val_type t,val_type *u,val_type *Jac,parameters *params);
 void Ode2 (int neq, val_type t,val_type *u,val_type *f,parameters *params);
 val_type Ham2 (int neq,solution *u,parameters *params);
 void Jac2 (int neq, val_type t,val_type *u,val_type *Jac,parameters *params);

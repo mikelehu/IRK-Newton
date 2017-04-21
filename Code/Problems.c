@@ -3,9 +3,9 @@
 /*    GaussUserProblem.c							*/
 /*	Functions:								*/
 /*         test_jac()                                                           */
-/*	   Ode1()= OdePendulumStiff():						*/
-/*	   Ham1()= HamPendulumStiff():						*/
-/*	   Jac1()= JacPendulumStiff():						*/
+/*	   OdeDPS()= OdePendulumStiff():					*/
+/*	   HamDPS()= HamPendulumStiff():					*/
+/*	   JacDPS()= JacPendulumStiff():					*/
 /*         Ode2()= OdeNbody():							*/
 /*	   Ham2()= HamNBody():							*/
 /*	   Jac2()= JacNBody():							*/
@@ -22,7 +22,6 @@
 #include <ctype.h>
 #include <math.h>
 #include <def.h>
-#include <quadmath.h>
 
 
 void test_jac (int neq, val_type t,val_type *u,void (*Ode)(), 
@@ -80,13 +79,13 @@ void test_jac (int neq, val_type t,val_type *u,void (*Ode)(),
 /*------------------------------------------------------------------------------*/
 /*										*/
 /*       Pendulum Stiff Problem:						*/
-/*	    Ode1()=OdePendulum Stiff						*/
-/*	    Ham1()=HamPendulum Stiff()						*/
-/*	    Jac1()=JacPendulum Stiff()						*/
+/*	    OdeDPS()=OdePendulum Stiff						*/
+/*	    HamDPS()=HamPendulum Stiff()					*/
+/*	    JacDPS()=JacPendulum Stiff()					*/
 /*										*/
 /*------------------------------------------------------------------------------*/
 
-void Ode1 (int neq, val_type t,val_type *u,val_type *f,parameters *params)
+void OdeDPS (int neq, val_type t,val_type *u,val_type *f,parameters *params)
 
 {
     
@@ -152,7 +151,7 @@ void Ode1 (int neq, val_type t,val_type *u,val_type *f,parameters *params)
 
 
 
-val_type Ham1 (int neq,solution *u,parameters *params)
+val_type HamDPS (int neq,solution *u,parameters *params)
 {
 
 /* ---------- First initializations -----------------------------------------*/
@@ -205,14 +204,12 @@ val_type Ham1 (int neq,solution *u,parameters *params)
 }
 
 
-void Jac1 (int neq, val_type t,val_type *u,val_type *Jac,parameters *params)
+void JacDPS (int neq, val_type t,val_type *u,val_type *Jac,parameters *params)
 
 {
     
 
  /*------ declarations -------------------------------------------------*/ 
-
-     int i,j;
 
      val_type c1,c2,c3,c4,c5,c6,c7,c8;
      val_type Q1,Q2,P1,P2;
@@ -323,6 +320,8 @@ void Jac1 (int neq, val_type t,val_type *u,val_type *Jac,parameters *params)
 
 
 /*
+
+     int i,j;
      printf("\nJacobian\n");
      for (i=0; i<4; i++)
      {

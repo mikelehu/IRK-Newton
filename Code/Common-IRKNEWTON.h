@@ -10,7 +10,7 @@
 #include <math.h>
 #include <def.h>
 #include <sys/stat.h>
-#include <GaussUserProblem.h> 
+#include <Problems.h> 
 #include <GaussCoefficients.h>
 #include <omp.h>
 #include <time.h>
@@ -36,10 +36,16 @@ void RemoveDigitsFcn
 (val_type *x,int m
 );
 
-int Li_init
+void Default_Stage_init
 (solution *u, val_type *z,ode_sys *system,
  gauss_method *method,solver_stat *thestatptr, toptions *options
 );
+
+void Interpolated_Stage_init
+(solution *u, val_type *z,ode_sys *system,
+ gauss_method *method,solver_stat *thestatptr, toptions *options
+);
+
 
 int Yi_update
 (solution *u, val_type *z,ode_sys *system,
@@ -55,7 +61,6 @@ int statlinit
 (ode_sys *system,gauss_method *method,
  solver_stat *thestatptr
 );
-
 
 void StopCriterion
 (ode_sys *system,gauss_method *method,
@@ -163,7 +168,7 @@ void Compute_GG
 );
 
 
-void TheOutput
+void MyOutput
 (ode_sys *system,gauss_method *method,val_type t,solution *u,
  solver_stat *thestatptr, parameters *params,toptions *options,FILE *loga
 );
@@ -177,23 +182,11 @@ void CompensatedSummation
 );
 
 
-void RKG 
-(gauss_method *gsmethod,
- solution *u,
- ode_sys *system, toptions *options,
- void RKG_Step (), solver_stat *thestatptr
+void IRKNEWTON 
+(val_type t0, val_type t1, val_type h,
+ gauss_method *gsmethod, solution *u,
+ ode_sys *system,toptions *options,
+ solver_stat *thestatptr
 );
-
-
-void select_gauss
-(gauss_method *gsmethodptr, 
- solution *uptr,ode_sys *systemptr,
- toptions *optionsptr, solver_stat *thestatptr
-);
-
-void select_odefun
-(int codfun, ode_sys *system
-);
-
 
 

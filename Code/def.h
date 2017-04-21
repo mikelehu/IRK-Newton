@@ -4,7 +4,6 @@
 /*									      */
 /* ---------------------------------------------------------------------------*/
 
-#include "prec.h"
 #include <stdbool.h>
 
 /* ---------------------------------------------------------------------------*/
@@ -16,15 +15,12 @@
 #ifndef DEFH_
 #define DEFH_
 
-#define PI atan(1.) * 4.   
 #define INF 99999.
-#define MAXNEQ	200		   // Maximum neq.
-#define MAXPARAM 30		   // Number of maximum parameters.
 #define MAXIT 1000		   // Maximum number of fixed point iterations 
 
 #define SUCCESS 0
 #define FAIL -1
-#define STRMAX 40	           // Filename maximum string.
+#define STRMAX 256	           // Filename maximum string.
 #define RTOL pow(10.,-12);	   // pow(2.,-40);
 #define ATOL pow(10.,-12);
 #define IOUT
@@ -100,16 +96,15 @@ typedef struct solution
 
 typedef struct toptions
   {
-     val_type h; 				  // stepsize
-     val_type t0;
-     val_type t1;
-     val_type *rtol,*atol;
-     int algorithm;			  
+     val_type *rtol,*atol;		  
      int sampling;
-     int approximation;
      int rdigits,mrdigits;
-     int (*iteration[2])();			 // Iteration : Jacobi1, Jacobi2.
+     char filename[STRMAX];    			// Output filename.
+     void (*TheOutput)();       		// Output function.
+     void (*StageInitFn)();
+     void (*IRKNEWTON_Step_Fn) ();
    } toptions; 
+
 
 
 typedef struct parameters
@@ -123,11 +118,10 @@ typedef struct parameters
    } parameters;
 
 
+
 typedef struct ode_sys       
    {
-     int problem;
      int neq;					// number of equations.
-     int n;					// n-body.
      void (*f)();				// odefun.
      void (*jac)();				// jacobian.
      val_type (*ham)();				// hamiltonian
@@ -135,6 +129,7 @@ typedef struct ode_sys
      parameters params;
 
     } ode_sys;
+
 
 
 typedef struct solver_stat
@@ -166,14 +161,10 @@ typedef struct solver_stat
     int itzeroDL[3];                            // 08-03-2017		
     int fcn;
     int *initqlty;				// ns*neq matrix. Quality of initialization of Li stages   
-
-    /* output filename */
-    char filename[STRMAX];			// Integration filename.
     int nout;                                   // number of output values.
 
     } solver_stat; 
 
-
-
+  
 	
 #endif /*DEFH_*/
