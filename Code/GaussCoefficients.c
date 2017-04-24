@@ -85,22 +85,6 @@ void GaussCoefficients (char *path,gauss_method *method,val_type h)
 
      break;
 
-     case 9: 
-
-           // orderindices (ascending order).
-           method->orderedindices[0]=0;   
-	   method->orderedindices[1]=8;
-           method->orderedindices[2]=1;
-	   method->orderedindices[3]=7;
-	   method->orderedindices[4]=2;
-	   method->orderedindices[5]=6;
-	   method->orderedindices[6]=3;
-	   method->orderedindices[7]=5;
-	   method->orderedindices[8]=4;
-
-           strcat(mydir,"S9/");
-
-     break;
 
      case 16: 
 
@@ -123,21 +107,6 @@ void GaussCoefficients (char *path,gauss_method *method,val_type h)
            method->orderedindices[15]=8;
 
            strcat(mydir,"S16/");
-
-     break;
-
-     case 7: 
-
-           // orderindices (ascending order).
-           method->orderedindices[0]=0;   
-	   method->orderedindices[1]=6;
-           method->orderedindices[2]=1;
-	   method->orderedindices[3]=5;
-	   method->orderedindices[4]=2;
-	   method->orderedindices[5]=4;
-	   method->orderedindices[6]=3;
-
-           strcat(mydir,"S7/");
 
      break;
 
