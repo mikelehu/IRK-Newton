@@ -68,7 +68,6 @@ USE OF THE CODE:
 
    The Function call to integrate an ODE system is:
 
-     int thread_count = 1;   // the user can set the  number of threads for parallel computations. 
      IRKNEWTON (t0,t1,h, &gsmethod, &u, &system, &options, &thestat);
 
        t0,t1:     interval of numerical integration.
@@ -126,7 +125,10 @@ PARAMETERS (file: def.h):
 
    You can specify next parameters:
 
-   PARALLEL: we want parallel execution.
+   PARALLEL: define it to run a parallel execution. In this case we have to set the number of 
+             threads in the global variable named thread_count:
+
+             int thread_count = 1;   //  number of threads for parallel computations.
 
    MAXIT :     maximum number of Newton-like iterations 
    RTOL,ATOL:  Newton iteration tolerance. 
